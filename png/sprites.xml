@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<gfx-xform version="1">
+    <input file="png/sprites-pal.png" type="png" tile-width="8" tile-height="8" width="144" height="24" />
+    <output file="gfxdata/sprites.inc">
+        <tiles var-name="spriteTiles" />
+        <maps pointers-size="8">
+            <map var-name="spriteMapCrosshair" left="0" top="0" width="2" height="2" />
+            <map var-name="spriteMapCrosshairTarget" left="2" top="0" width="2" height="2" />
+
+            <map var-name="spriteMapSharpgunnerA" left="4" top="0" width="2" height="2" />
+            <map var-name="spriteMapSharpgunnerB" left="6" top="0" width="2" height="2" />
+            <map var-name="spriteMapSharpgunnerC" left="8" top="0" width="2" height="2" />
+
+            <map var-name="spriteMapBulletA" left="0" top="2" width="1" height="1" />
+            <map var-name="spriteMapBulletB" left="1" top="2" width="1" height="1" />
+            <map var-name="spriteMapBulletC" left="2" top="2" width="1" height="1" />
+            <map var-name="spriteMapBulletD" left="3" top="2" width="1" height="1" />
+        </maps>
+    </output>
+</gfx-xform>
