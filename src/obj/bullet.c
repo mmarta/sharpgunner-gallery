@@ -70,12 +70,15 @@ void BulletUpdate(u8 i) {
             break;
         case 2:
             MapSprite(BULLET_SPRITE_ID + i, spriteMapBulletB);
+            MoveSprite(BULLET_SPRITE_ID + i, sprites[BULLET_SPRITE_ID + i].x, sprites[BULLET_SPRITE_ID + i].y + (i % 2 ? -1 : 1), BULLET_W, BULLET_H);
             break;
         case 4:
             MapSprite(BULLET_SPRITE_ID + i, spriteMapBulletC);
+            MoveSprite(BULLET_SPRITE_ID + i, sprites[BULLET_SPRITE_ID + i].x, sprites[BULLET_SPRITE_ID + i].y + (i % 2 ? -1 : 1), BULLET_W, BULLET_H);
             break;
         case 6:
             MapSprite(BULLET_SPRITE_ID + i, spriteMapBulletD);
+            MoveSprite(BULLET_SPRITE_ID + i, sprites[BULLET_SPRITE_ID + i].x, sprites[BULLET_SPRITE_ID + i].y + (i % 2 ? -1 : 1), BULLET_W, BULLET_H);
             break;
     }
     MoveSprite(BULLET_SPRITE_ID + i, bullets[i].xTravel[bullets[i].pointOfFire], sprites[BULLET_SPRITE_ID + i].y, BULLET_W, BULLET_H);

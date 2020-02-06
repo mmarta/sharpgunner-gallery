@@ -75,11 +75,13 @@ void PlayerInput() {
 
     if(stick & BTN_A) {
         if(!players[activePlayer].firing) {
+            MapSprite(PLAYER_XHAIR_SPRITE_ID, spriteMapCrosshairTarget);
             PlayerFire();
             players[activePlayer].firing = 1;
         }
     } else {
         if(players[activePlayer].firing) {
+            MapSprite(PLAYER_XHAIR_SPRITE_ID, spriteMapCrosshair);
             players[activePlayer].firing = 0;
         }
     }
