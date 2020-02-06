@@ -19,8 +19,8 @@ void PlayerResume() {
     players[activePlayer].animationTime = 0;
     MapSprite(PLAYER_SHIP_SPRITE_ID, spriteMapSharpgunnerA);
     MapSprite(PLAYER_XHAIR_SPRITE_ID, spriteMapCrosshair);
-    MoveSprite(PLAYER_SHIP_SPRITE_ID, 224, 104, PLAYER_SHIP_W, PLAYER_SHIP_H);
-    MoveSprite(PLAYER_XHAIR_SPRITE_ID, 120, 104, PLAYER_XHAIR_W, PLAYER_XHAIR_H);
+    MoveSprite(PLAYER_SHIP_SPRITE_ID, 224, 104, PLAYER_SHIP_WIDTH, PLAYER_SHIP_HEIGHT);
+    MoveSprite(PLAYER_XHAIR_SPRITE_ID, 120, 104, PLAYER_XHAIR_WIDTH, PLAYER_XHAIR_HEIGHT);
 }
 
 void PlayerFire() {
@@ -38,22 +38,22 @@ void PlayerInput() {
         if(sprites[PLAYER_SHIP_SPRITE_ID].y < 208) {
             MoveSprite(
                 PLAYER_SHIP_SPRITE_ID, sprites[PLAYER_SHIP_SPRITE_ID].x,
-                sprites[PLAYER_SHIP_SPRITE_ID].y + 2, PLAYER_SHIP_W, PLAYER_SHIP_H
+                sprites[PLAYER_SHIP_SPRITE_ID].y + 2, PLAYER_SHIP_WIDTH, PLAYER_SHIP_HEIGHT
             );
             MoveSprite(
                 PLAYER_XHAIR_SPRITE_ID, sprites[PLAYER_XHAIR_SPRITE_ID].x,
-                sprites[PLAYER_XHAIR_SPRITE_ID].y + 2, PLAYER_XHAIR_W, PLAYER_XHAIR_H
+                sprites[PLAYER_XHAIR_SPRITE_ID].y + 2, PLAYER_XHAIR_WIDTH, PLAYER_XHAIR_HEIGHT
             );
         }
     } else if(stick & BTN_RIGHT) {
         if(sprites[PLAYER_SHIP_SPRITE_ID].y > 0) {
             MoveSprite(
                 PLAYER_SHIP_SPRITE_ID, sprites[PLAYER_SHIP_SPRITE_ID].x,
-                sprites[PLAYER_SHIP_SPRITE_ID].y - 2, PLAYER_SHIP_W, PLAYER_SHIP_H
+                sprites[PLAYER_SHIP_SPRITE_ID].y - 2, PLAYER_SHIP_WIDTH, PLAYER_SHIP_HEIGHT
             );
             MoveSprite(
                 PLAYER_XHAIR_SPRITE_ID, sprites[PLAYER_XHAIR_SPRITE_ID].x,
-                sprites[PLAYER_XHAIR_SPRITE_ID].y - 2, PLAYER_XHAIR_W, PLAYER_XHAIR_H
+                sprites[PLAYER_XHAIR_SPRITE_ID].y - 2, PLAYER_XHAIR_WIDTH, PLAYER_XHAIR_HEIGHT
             );
         }
     }
@@ -62,14 +62,14 @@ void PlayerInput() {
         if(sprites[PLAYER_XHAIR_SPRITE_ID].x > 16) {
             MoveSprite(
                 PLAYER_XHAIR_SPRITE_ID, sprites[PLAYER_XHAIR_SPRITE_ID].x - 2,
-                sprites[PLAYER_XHAIR_SPRITE_ID].y, PLAYER_XHAIR_W, PLAYER_XHAIR_H
+                sprites[PLAYER_XHAIR_SPRITE_ID].y, PLAYER_XHAIR_WIDTH, PLAYER_XHAIR_HEIGHT
             );
         }
     } else if(stick & BTN_DOWN) {
         if(sprites[PLAYER_XHAIR_SPRITE_ID].x < 208) {
             MoveSprite(
                 PLAYER_XHAIR_SPRITE_ID, sprites[PLAYER_XHAIR_SPRITE_ID].x + 2,
-                sprites[PLAYER_XHAIR_SPRITE_ID].y, PLAYER_XHAIR_W, PLAYER_XHAIR_H
+                sprites[PLAYER_XHAIR_SPRITE_ID].y, PLAYER_XHAIR_WIDTH, PLAYER_XHAIR_HEIGHT
             );
         }
     }

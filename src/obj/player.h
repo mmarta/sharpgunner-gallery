@@ -7,11 +7,11 @@
 
 #define PLAYER_COUNT 2
 #define PLAYER_SHIP_SPRITE_ID 0
-#define PLAYER_SHIP_W 2
-#define PLAYER_SHIP_H 2
+#define PLAYER_SHIP_WIDTH 2
+#define PLAYER_SHIP_HEIGHT 2
 #define PLAYER_XHAIR_SPRITE_ID 4
-#define PLAYER_XHAIR_W 2
-#define PLAYER_XHAIR_H 2
+#define PLAYER_XHAIR_WIDTH 2
+#define PLAYER_XHAIR_HEIGHT 2
 
 typedef struct {
     u8 lives, animationTime, firing, poweredUp;
