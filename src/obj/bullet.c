@@ -34,16 +34,18 @@ void BulletInit(u8 poweredUp, u8 *sX, u8 *sY, u8 tX) {
             bullets[i + 1].xTravel[1] = *sX - quarter;
             bullets[i + 1].xTravel[5] = bullets[i + 1].xTravel[3] - quarter;
 
-            // Eighth
-            eighth = (*sX - tX) >> 3;
-            bullets[i].xTravel[0] = *sX - eighth;
-            bullets[i].xTravel[2] = bullets[i].xTravel[1] - eighth;
-            bullets[i].xTravel[4] = bullets[i].xTravel[3] - eighth;
-            bullets[i].xTravel[6] = bullets[i].xTravel[5] - eighth;
-            bullets[i + 1].xTravel[0] = *sX - eighth;
-            bullets[i + 1].xTravel[2] = bullets[i + 1].xTravel[1] - eighth;
-            bullets[i + 1].xTravel[4] = bullets[i + 1].xTravel[3] - eighth;
-            bullets[i + 1].xTravel[6] = bullets[i + 1].xTravel[5] - eighth;
+            if(!poweredUp) {
+                // Eighth
+                eighth = (*sX - tX) >> 3;
+                bullets[i].xTravel[0] = *sX - eighth;
+                bullets[i].xTravel[2] = bullets[i].xTravel[1] - eighth;
+                bullets[i].xTravel[4] = bullets[i].xTravel[3] - eighth;
+                bullets[i].xTravel[6] = bullets[i].xTravel[5] - eighth;
+                bullets[i + 1].xTravel[0] = *sX - eighth;
+                bullets[i + 1].xTravel[2] = bullets[i + 1].xTravel[1] - eighth;
+                bullets[i + 1].xTravel[4] = bullets[i + 1].xTravel[3] - eighth;
+                bullets[i + 1].xTravel[6] = bullets[i + 1].xTravel[5] - eighth;
+            }
 
             return;
         }
@@ -57,7 +59,7 @@ void BulletUpdate(u8 i) {
         return;
     }
 
-    bullets[i].pointOfFire++;
+    bullets[i].pointOfFire += (bullets[i].poweredUp ? 2 : 1);
     if(bullets[i].pointOfFire >= BULLET_POINTS) {
         bullets[i].active = 0;
         HideSprite(BULLET_SPRITE_ID + i, BULLET_W, BULLET_H);
@@ -65,18 +67,18 @@ void BulletUpdate(u8 i) {
     }
 
     switch(bullets[i].pointOfFire) {
-        case 0:
+        case 1:
             MapSprite(BULLET_SPRITE_ID + i, spriteMapBulletA);
             break;
-        case 2:
+        case 3:
             MapSprite(BULLET_SPRITE_ID + i, spriteMapBulletB);
             MoveSprite(BULLET_SPRITE_ID + i, sprites[BULLET_SPRITE_ID + i].x, sprites[BULLET_SPRITE_ID + i].y + (i % 2 ? -1 : 1), BULLET_W, BULLET_H);
             break;
-        case 4:
+        case 5:
             MapSprite(BULLET_SPRITE_ID + i, spriteMapBulletC);
             MoveSprite(BULLET_SPRITE_ID + i, sprites[BULLET_SPRITE_ID + i].x, sprites[BULLET_SPRITE_ID + i].y + (i % 2 ? -1 : 1), BULLET_W, BULLET_H);
             break;
-        case 6:
+        case 7:
             MapSprite(BULLET_SPRITE_ID + i, spriteMapBulletD);
             MoveSprite(BULLET_SPRITE_ID + i, sprites[BULLET_SPRITE_ID + i].x, sprites[BULLET_SPRITE_ID + i].y + (i % 2 ? -1 : 1), BULLET_W, BULLET_H);
             break;

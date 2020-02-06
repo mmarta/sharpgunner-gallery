@@ -11,6 +11,7 @@ u8 activePlayer = 0;
 void PlayerStart(u8 i) {
     players[i].lives = 3;
     players[i].score = 0;
+    players[i].poweredUp = 0;
     PrintVerticalPROGMEM(0, i ? 4 : 25, i ? p2UPStr : p1UPStr);
 }
 
