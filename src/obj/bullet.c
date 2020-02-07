@@ -74,22 +74,18 @@ u8 BulletUpdate(u8 i) {
 
     switch(bullets[i].pointOfFire) {
         case 3:
-            MapSprite(BULLET_SPRITE(i, 0), spriteMapBulletA);
-            MapSprite(BULLET_SPRITE(i, 1), spriteMapBulletA);
-            break;
-        case 7:
             MapSprite(BULLET_SPRITE(i, 0), spriteMapBulletB);
             MapSprite(BULLET_SPRITE(i, 1), spriteMapBulletB);
             MoveSprite(BULLET_SPRITE(i, 0), sprites[BULLET_SPRITE(i, 0)].x, sprites[BULLET_SPRITE(i, 0)].y + 1, BULLET_WIDTH, BULLET_HEIGHT);
             MoveSprite(BULLET_SPRITE(i, 1), sprites[BULLET_SPRITE(i, 1)].x, sprites[BULLET_SPRITE(i, 1)].y - 1, BULLET_WIDTH, BULLET_HEIGHT);
             break;
-        case 11:
+        case 5:
             MapSprite(BULLET_SPRITE(i, 0), spriteMapBulletC);
             MapSprite(BULLET_SPRITE(i, 1), spriteMapBulletC);
             MoveSprite(BULLET_SPRITE(i, 0), sprites[BULLET_SPRITE(i, 0)].x, sprites[BULLET_SPRITE(i, 0)].y + 1, BULLET_WIDTH, BULLET_HEIGHT);
             MoveSprite(BULLET_SPRITE(i, 1), sprites[BULLET_SPRITE(i, 1)].x, sprites[BULLET_SPRITE(i, 1)].y - 1, BULLET_WIDTH, BULLET_HEIGHT);
             break;
-        case 15:
+        case 9:
             MapSprite(BULLET_SPRITE(i, 0), spriteMapBulletD);
             MapSprite(BULLET_SPRITE(i, 1), spriteMapBulletD);
             MoveSprite(BULLET_SPRITE(i, 0), sprites[BULLET_SPRITE(i, 0)].x, sprites[BULLET_SPRITE(i, 0)].y + 1, BULLET_WIDTH, BULLET_HEIGHT);
