@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<gfx-xform version="1">
+    <input file="png/gfx-pal.png" type="png" tile-width="8" tile-height="8" />
+    <output file="gfxdata/tiles.inc">
+        <tiles var-name="tiles" />
+        <maps pointers-size="8">
+            <map var-name="mapFighterSouthA" left="4" top="3" width="2" height="2" />
+            <map var-name="mapFighterSouthB" left="6" top="3" width="2" height="2" />
+            <map var-name="mapFighterSouthC" left="8" top="3" width="2" height="2" />
+
+            <map var-name="mapLaserSouthA" left="18" top="3" width="1" height="2" />
+            <map var-name="mapLaserSouthB" left="19" top="3" width="1" height="2" />
+            <map var-name="mapLaserSouthC" left="20" top="3" width="1" height="2" />
+            <map var-name="mapLaserSouthD" left="21" top="3" width="1" height="2" />
+            <map var-name="mapLaserSouthE" left="22" top="3" width="1" height="2" />
+            <map var-name="mapLaserSouthF" left="23" top="3" width="1" height="2" />
+            <map var-name="mapLaserSouthG" left="24" top="3" width="1" height="2" />
+            <map var-name="mapLaserSouthH" left="25" top="3" width="1" height="2" />
+        </maps>
+    </output>
+</gfx-xform>

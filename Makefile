@@ -12,7 +12,7 @@ GCONVERT_DIR=../../uzebox/tools/gconvert/
 ## Kernel settings
 KERNEL_DIR = ../../uzebox/kernel
 KERNEL_OPTIONS = -DVIDEO_MODE=3 -DINTRO_LOGO=0 -DRESOLUTION_EXT=1 -DVRAM_TILES_H=32 -DSOUND_MIXER=1
-KERNEL_OPTIONS += -DSCROLLING=0 -DMAX_SPRITES=14 -DRAM_TILES_COUNT=26 -DTRANSLUCENT_COLOR=0x00
+KERNEL_OPTIONS += -DSCROLLING=0 -DTRANSLUCENT_COLOR=0x00 -DMAX_SPRITES=0
 
 ## Options common to compile, link and assembly rules
 COMMON = -mmcu=$(MCU)
@@ -45,7 +45,7 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 ## Objects that must be built in order to link
 OBJECTS = uzeboxVideoEngineCore.o uzeboxCore.o uzeboxSoundEngine.o uzeboxSoundEngineCore.o uzeboxVideoEngine.o
-OBJECTS += graphics.o bullet.o player.o main.o
+OBJECTS += graphics.o laser.o player.o main.o
 
 ## Objects explicitly added by the user
 LINKONLYOBJECTS =
@@ -76,8 +76,8 @@ uzeboxVideoEngine.o: $(KERNEL_DIR)/uzeboxVideoEngine.c
 graphics.o: src/system/graphics.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $< -o graphics.o
 
-bullet.o: src/obj/bullet.c
-	$(CC) $(INCLUDES) $(CFLAGS) -c  $< -o bullet.o
+laser.o: src/obj/laser.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $< -o laser.o
 
 player.o: src/obj/player.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $< -o player.o
@@ -112,8 +112,7 @@ clean:
 	-rm -r dep
 
 gfx:
-	$(GCONVERT_DIR)gconvert png/bg-font.xml
-	$(GCONVERT_DIR)gconvert png/sprites.xml
+	$(GCONVERT_DIR)gconvert png/gfx.xml
 
 test:
 	$(UZEM_DIR)uzem $(GAME)-program.uze

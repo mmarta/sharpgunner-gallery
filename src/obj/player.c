@@ -51,74 +51,39 @@ void PlayerDrawScoreLabel(u8 i) {
 }
 
 void PlayerResume() {
+    players[activePlayer].dir = DIR_SOUTH;
     players[activePlayer].animationTime = 0;
-    MapSprite(PLAYER_SHIP_SPRITE_ID, spriteMapSharpgunnerA);
-    MapSprite(PLAYER_XHAIR_SPRITE_ID, spriteMapCrosshair);
-    MoveSprite(PLAYER_SHIP_SPRITE_ID, 224, 104, PLAYER_SHIP_WIDTH, PLAYER_SHIP_HEIGHT);
-    MoveSprite(PLAYER_XHAIR_SPRITE_ID, 120, 104, PLAYER_XHAIR_WIDTH, PLAYER_XHAIR_HEIGHT);
+    DrawMap(28, 13, mapFighterSouthA);
 }
 
 void PlayerFire() {
-    BulletInit(
-        players[activePlayer].poweredUp,
-        &sprites[PLAYER_SHIP_SPRITE_ID].x, &sprites[PLAYER_SHIP_SPRITE_ID].y,
-        sprites[PLAYER_XHAIR_SPRITE_ID].x
-    );
+    LaserInit(players[activePlayer].dir);
+    PlayerAddScoreDelta(100);
 }
 
 void PlayerInput() {
     int stick = ReadJoypad(activePlayer);
 
     if(stick & BTN_LEFT) {
-        if(sprites[PLAYER_SHIP_SPRITE_ID].y < 208) {
-            MoveSprite(
-                PLAYER_SHIP_SPRITE_ID, sprites[PLAYER_SHIP_SPRITE_ID].x,
-                sprites[PLAYER_SHIP_SPRITE_ID].y + 2, PLAYER_SHIP_WIDTH, PLAYER_SHIP_HEIGHT
-            );
-            MoveSprite(
-                PLAYER_XHAIR_SPRITE_ID, sprites[PLAYER_XHAIR_SPRITE_ID].x,
-                sprites[PLAYER_XHAIR_SPRITE_ID].y + 2, PLAYER_XHAIR_WIDTH, PLAYER_XHAIR_HEIGHT
-            );
-        }
+        
     } else if(stick & BTN_RIGHT) {
-        if(sprites[PLAYER_SHIP_SPRITE_ID].y > 0) {
-            MoveSprite(
-                PLAYER_SHIP_SPRITE_ID, sprites[PLAYER_SHIP_SPRITE_ID].x,
-                sprites[PLAYER_SHIP_SPRITE_ID].y - 2, PLAYER_SHIP_WIDTH, PLAYER_SHIP_HEIGHT
-            );
-            MoveSprite(
-                PLAYER_XHAIR_SPRITE_ID, sprites[PLAYER_XHAIR_SPRITE_ID].x,
-                sprites[PLAYER_XHAIR_SPRITE_ID].y - 2, PLAYER_XHAIR_WIDTH, PLAYER_XHAIR_HEIGHT
-            );
-        }
+        
     }
 
     if(stick & BTN_UP) {
-        if(sprites[PLAYER_XHAIR_SPRITE_ID].x > 16) {
-            MoveSprite(
-                PLAYER_XHAIR_SPRITE_ID, sprites[PLAYER_XHAIR_SPRITE_ID].x - 2,
-                sprites[PLAYER_XHAIR_SPRITE_ID].y, PLAYER_XHAIR_WIDTH, PLAYER_XHAIR_HEIGHT
-            );
-        }
+        
     } else if(stick & BTN_DOWN) {
-        if(sprites[PLAYER_XHAIR_SPRITE_ID].x < 208) {
-            MoveSprite(
-                PLAYER_XHAIR_SPRITE_ID, sprites[PLAYER_XHAIR_SPRITE_ID].x + 2,
-                sprites[PLAYER_XHAIR_SPRITE_ID].y, PLAYER_XHAIR_WIDTH, PLAYER_XHAIR_HEIGHT
-            );
-        }
+        
     }
 
     if(stick & BTN_A) {
         if(!players[activePlayer].firing) {
-            MapSprite(PLAYER_XHAIR_SPRITE_ID, spriteMapCrosshairTarget);
             PlayerFire();
             players[activePlayer].firing = 1;
         }
     } else {
         if(players[activePlayer].firing) {
-            MapSprite(PLAYER_XHAIR_SPRITE_ID, spriteMapCrosshair);
-            players[activePlayer].firing = 0;
+           players[activePlayer].firing = 0;
         }
     }
 }
@@ -129,13 +94,13 @@ void PlayerUpdate() {
 
     switch(players[activePlayer].animationTime) {
         case 0:
-            MapSprite(PLAYER_SHIP_SPRITE_ID, spriteMapSharpgunnerA);
+            DrawMap(28, 13, mapFighterSouthA);
             break;
         case 2:
         case 6:
-            MapSprite(PLAYER_SHIP_SPRITE_ID, spriteMapSharpgunnerB);
+            DrawMap(28, 13, mapFighterSouthB);
             break;
         case 4:
-            MapSprite(PLAYER_SHIP_SPRITE_ID, spriteMapSharpgunnerC);
+            DrawMap(28, 13, mapFighterSouthC);
     }
 }

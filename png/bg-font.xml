@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<gfx-xform version="1">
-    <input file="png/bg-font-pal.png" type="png" tile-width="8" tile-height="8" width="256" height="16" />
-    <output file="gfxdata/bg-font.inc">
-        <tiles var-name="bgFontTiles" />
-        <maps pointers-size="8">
-        </maps>
-    </output>
-</gfx-xform>

@@ -1,6 +1,6 @@
 #include "system/defines.h"
 #include "system/graphics.h"
-#include "obj/bullet.h"
+#include "obj/laser.h"
 #include "obj/player.h"
 
 u32 hi = 10000;
@@ -13,11 +13,8 @@ void DrawHiLabel() {
 int main() {
     u8 i;
 
-    SetTileTable(bgFontTiles);
+    SetTileTable(tiles);
     ClearVram();
-
-    SetSpritesTileTable(spriteTiles);
-    SetSpriteVisibility(1);
 
     DrawHiLabel();
     PrintU32Vertical(1, 11, hi, 9999999);
@@ -38,11 +35,7 @@ int main() {
         }
 
         // Sprite stuff next
-        for(i = 0; i < BULLET_COUNT; i++) {
-            if(BulletUpdate(i)) {
-                PlayerAddScoreDelta(100);
-            }
-        }
+        LaserUpdate();
         PlayerUpdate();
         
         PlayerInput();

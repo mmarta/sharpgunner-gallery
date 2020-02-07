@@ -3,7 +3,7 @@
 
 #include "../system/defines.h"
 #include "../system/graphics.h"
-#include "bullet.h"
+#include "laser.h"
 
 #define PLAYER_COUNT 2
 #define PLAYER_SHIP_SPRITE_ID 0
@@ -14,7 +14,7 @@
 #define PLAYER_XHAIR_HEIGHT 2
 
 typedef struct {
-    u8 lives, animationTime, firing, poweredUp;
+    u8 lives, animationTime, firing, poweredUp, x, y, dir;
     u16 scoreDelta;
     u32 score;
 } Player;

@@ -4,20 +4,19 @@
 #include "defines.h"
 
 #define U32_MAX 0xffffffff
-            
-extern const char spriteMapCrosshair[];
-extern const char spriteMapCrosshairTarget[];
-extern const char spriteMapSharpgunnerA[];
-extern const char spriteMapSharpgunnerB[];
-extern const char spriteMapSharpgunnerC[];
 
-extern const char spriteMapBulletA[];
-extern const char spriteMapBulletB[];
-extern const char spriteMapBulletC[];
-extern const char spriteMapBulletD[];
+extern const char mapFighterSouthA[];
+extern const char mapFighterSouthB[];
+extern const char mapFighterSouthC[];
 
-extern const char bgFontTiles[];
-extern const char spriteTiles[];
+extern const char mapLaserSouthA[];
+extern const char mapLaserSouthB[];
+extern const char mapLaserSouthC[];
+extern const char mapLaserSouthD[];
+
+extern const char *mapLaserSouth[];
+
+extern const char tiles[];
 
 void PrintVerticalPROGMEM(u8, u8, const char *);
 void PrintVerticalRAM(u8, u8, const char *);

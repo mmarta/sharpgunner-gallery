@@ -1,7 +1,13 @@
 #include "graphics.h"
 
-#include "../../gfxdata/bg-font.inc"
-#include "../../gfxdata/sprites.inc"
+#include "../../gfxdata/tiles.inc"
+
+const char *mapLaserSouth[] = {
+    mapLaserSouthH, mapLaserSouthG,
+    mapLaserSouthF, mapLaserSouthE,
+    mapLaserSouthD, mapLaserSouthC,
+    mapLaserSouthB, mapLaserSouthA
+};
 
 void PrintVerticalPROGMEM(u8 x, u8 y, const char *str) {
     u8 i = 0, c = pgm_read_byte(&(str[i]));
