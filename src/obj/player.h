@@ -3,7 +3,7 @@
 
 #include "../system/defines.h"
 #include "../system/graphics.h"
-#include "laser.h"
+#include "bullet.h"
 
 #define PLAYER_COUNT 2
 #define PLAYER_SHIP_SPRITE_ID 0

@@ -6,6 +6,7 @@ const char pBlankStr[] PROGMEM = "   ";
 
 u8 activePlayer = 0;
 u8 toggleTime = 0;
+u8 fireTimeout = 0;
 
 void PlayerDrawScoreLabel(u8);
 
@@ -57,8 +58,10 @@ void PlayerResume() {
 }
 
 void PlayerFire() {
-    LaserInit(players[activePlayer].dir);
-    PlayerAddScoreDelta(100);
+    if(!fireTimeout && BulletInit(players[activePlayer].dir)) {
+        PlayerAddScoreDelta(100);
+        fireTimeout = 4;
+    }
 }
 
 void PlayerInput() {
@@ -89,6 +92,10 @@ void PlayerInput() {
 }
 
 void PlayerUpdate() {
+    if(fireTimeout) {
+        fireTimeout--;
+    }
+
     players[activePlayer].animationTime =
         players[activePlayer].animationTime == 7 ? 0 : players[activePlayer].animationTime + 1;
 
