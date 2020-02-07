@@ -6,6 +6,8 @@ TARGET=$(GAME).elf
 CC=avr-gcc
 INFO=game.properties
 UZEBIN_DIR=../../uzebox/tools/packrom/
+UZEM_DIR=../../uzebox/tools/uzem/
+GCONVERT_DIR=../../uzebox/tools/gconvert/
 
 ## Kernel settings
 KERNEL_DIR = ../../uzebox/kernel
@@ -92,7 +94,7 @@ $(TARGET): $(OBJECTS)
 	avr-objcopy -O ihex $(HEX_FLASH_FLAGS)  $< $@
 
 %.uze: $(TARGET)
-	packrom $(GAME).hex $(GAME)-program.uze $(INFO)
+	$(UZEBIN_DIR)packrom $(GAME).hex $(GAME)-program.uze $(INFO)
 
 UNAME := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 AVRSIZEFLAGS := -A ${TARGET}
@@ -111,9 +113,11 @@ clean:
 	-rm -r dep
 
 gfx:
-	gconvert png/bg-font.xml
-	gconvert png/sprites.xml
+	$(GCONVERT_DIR)gconvert png/bg-font.xml
+	$(GCONVERT_DIR)gconvert png/sprites.xml
 
+test:
+	$(UZEM_DIR)uzem $(GAME)-program.uze
 
 ## Other dependencies
 -include $(shell mkdir dep 2>/dev/null) $(wildcard dep/*)

@@ -2,17 +2,52 @@
 
 Player players[PLAYER_COUNT];
 
-const char p1UPStr[] PROGMEM = "1UP";
-const char p2UPStr[] PROGMEM = "2UP";
 const char pBlankStr[] PROGMEM = "   ";
 
 u8 activePlayer = 0;
+u8 toggleTime = 0;
+
+void PlayerDrawScoreLabel(u8);
 
 void PlayerStart(u8 i) {
     players[i].lives = 3;
     players[i].score = 0;
     players[i].poweredUp = 0;
-    PrintVerticalPROGMEM(0, i ? 4 : 25, i ? p2UPStr : p1UPStr);
+    PlayerDrawScoreLabel(i);
+    PrintU32Vertical(1, i ? 0 : 21, players[i].score, 9999999);
+}
+
+void PlayerAddScoreDelta(u16 val) {
+    players[activePlayer].scoreDelta += val;
+}
+
+void PlayerFlushScore() {
+    if(players[activePlayer].scoreDelta) {
+        players[activePlayer].score += players[activePlayer].scoreDelta;
+        players[activePlayer].scoreDelta = 0;
+        PrintU32Vertical(1, activePlayer ? 0 : 21, players[activePlayer].score, 9999999);
+    }
+
+    toggleTime = toggleTime == 59 ? 0 : toggleTime + 1;
+    switch(toggleTime) {
+        case 0:
+            PlayerDrawScoreLabel(activePlayer);
+            break;
+        case 30:
+            PrintVerticalPROGMEM(0, activePlayer ? 4 : 25, pBlankStr);
+    }
+}
+
+void PlayerDrawScoreLabel(u8 i) {
+    if(i) {
+        SetTile(0, 2, 69);
+        SetTile(0, 3, 68);
+        SetTile(0, 4, 67);
+    } else {
+        SetTile(0, 23, 66);
+        SetTile(0, 24, 65);
+        SetTile(0, 25, 64);
+    }
 }
 
 void PlayerResume() {
