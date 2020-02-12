@@ -1,6 +1,6 @@
 #include "system/defines.h"
 #include "system/graphics.h"
-#include "obj/bullet.h"
+#include "obj/laser.h"
 #include "obj/player.h"
 
 u32 hi = 10000;
@@ -35,9 +35,9 @@ int main() {
         }
 
         // Sprite stuff next
-        i = BULLET_COUNT;
+        i = LASER_COUNT;
         while(i--) {
-            BulletUpdate(i);
+            LaserUpdate(i);
         }
         PlayerUpdate();
         

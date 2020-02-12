@@ -4,36 +4,36 @@
     <output file="gfxdata/tiles.inc">
         <tiles var-name="tiles" />
         <maps pointers-size="8">
-            <map var-name="mapFighterSouthA" left="4" top="3" width="2" height="2" />
-            <map var-name="mapFighterSouthB" left="6" top="3" width="2" height="2" />
-            <map var-name="mapFighterSouthC" left="8" top="3" width="2" height="2" />
+            <map var-name="mapFighterSouthA" left="0" top="3" width="2" height="2" />
+            <map var-name="mapFighterSouthB" left="8" top="3" width="2" height="2" />
+            <map var-name="mapFighterSouthC" left="16" top="3" width="2" height="2" />
+            <map var-name="mapFighterWestA" left="2" top="3" width="2" height="2" />
+            <map var-name="mapFighterWestB" left="10" top="3" width="2" height="2" />
+            <map var-name="mapFighterWestC" left="18" top="3" width="2" height="2" />
+            <map var-name="mapFighterNorthA" left="4" top="3" width="2" height="2" />
+            <map var-name="mapFighterNorthB" left="12" top="3" width="2" height="2" />
+            <map var-name="mapFighterNorthC" left="20" top="3" width="2" height="2" />
+            <map var-name="mapFighterEastA" left="6" top="3" width="2" height="2" />
+            <map var-name="mapFighterEastB" left="14" top="3" width="2" height="2" />
+            <map var-name="mapFighterEastC" left="22" top="3" width="2" height="2" />
 
-            <map var-name="mapBulletSouthA" left="18" top="3" width="1" height="2" />
-            <map var-name="mapBulletSouthB" left="19" top="3" width="1" height="2" />
-            <map var-name="mapBulletSouthC" left="20" top="3" width="1" height="2" />
-            <map var-name="mapBulletSouthD" left="21" top="3" width="1" height="2" />
-            <map var-name="mapBulletSouthE" left="22" top="3" width="1" height="2" />
-            <map var-name="mapBulletSouthF" left="23" top="3" width="1" height="2" />
-            <map var-name="mapBulletSouthG" left="24" top="3" width="1" height="2" />
-            <map var-name="mapBulletSouthH" left="25" top="3" width="1" height="2" />
+            <map var-name="mapLaserHorizontalA" left="0" top="6" width="2" height="1" />
+            <map var-name="mapLaserHorizontalB" left="0" top="5" width="2" height="1" />
+            <map var-name="mapLaserHorizontalC" left="2" top="6" width="2" height="1" />
+            <map var-name="mapLaserHorizontalD" left="2" top="5" width="2" height="1" />
+            <map var-name="mapLaserHorizontalE" left="4" top="6" width="2" height="1" />
+            <map var-name="mapLaserHorizontalF" left="4" top="5" width="2" height="1" />
+            <map var-name="mapLaserHorizontalG" left="6" top="6" width="2" height="1" />
+            <map var-name="mapLaserHorizontalH" left="6" top="5" width="2" height="1" />
 
-            <map var-name="mapBulletBigA" left="5" top="5" width="1" height="1" />
-            <map var-name="mapBulletBigB" left="6" top="5" width="1" height="1" />
-            <map var-name="mapBulletBigC" left="7" top="5" width="1" height="1" />
-            <map var-name="mapBulletBigD" left="8" top="5" width="1" height="1" />
-
-            <map var-name="mapBulletSmallA" left="9" top="5" width="1" height="1" />
-            <map var-name="mapBulletSmallB" left="10" top="5" width="1" height="1" />
-            <map var-name="mapBulletSmallC" left="11" top="5" width="1" height="1" />
-            <map var-name="mapBulletSmallD" left="12" top="5" width="1" height="1" />
-            <map var-name="mapBulletSmallE" left="13" top="5" width="1" height="1" />
-            <map var-name="mapBulletSmallF" left="14" top="5" width="1" height="1" />
-            <map var-name="mapBulletSmallG" left="15" top="5" width="1" height="1" />
-            <map var-name="mapBulletSmallH" left="16" top="5" width="1" height="1" />
-            <map var-name="mapBulletSmallI" left="17" top="5" width="1" height="1" />
-            <map var-name="mapBulletSmallJ" left="18" top="5" width="1" height="1" />
-            <map var-name="mapBulletSmallK" left="19" top="5" width="1" height="1" />
-            <map var-name="mapBulletSmallL" left="20" top="5" width="1" height="1" />
+            <map var-name="mapLaserVerticalA" left="8" top="5" width="1" height="2" />
+            <map var-name="mapLaserVerticalB" left="9" top="5" width="1" height="2" />
+            <map var-name="mapLaserVerticalC" left="10" top="5" width="1" height="2" />
+            <map var-name="mapLaserVerticalD" left="11" top="5" width="1" height="2" />
+            <map var-name="mapLaserVerticalE" left="12" top="5" width="1" height="2" />
+            <map var-name="mapLaserVerticalF" left="13" top="5" width="1" height="2" />
+            <map var-name="mapLaserVerticalG" left="14" top="5" width="1" height="2" />
+            <map var-name="mapLaserVerticalH" left="15" top="5" width="1" height="2" />
         </maps>
     </output>
 </gfx-xform>

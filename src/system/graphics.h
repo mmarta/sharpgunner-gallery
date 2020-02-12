@@ -8,27 +8,40 @@
 extern const char mapFighterSouthA[];
 extern const char mapFighterSouthB[];
 extern const char mapFighterSouthC[];
+extern const char mapFighterWestA[];
+extern const char mapFighterWestB[];
+extern const char mapFighterWestC[];
+extern const char mapFighterNorthA[];
+extern const char mapFighterNorthB[];
+extern const char mapFighterNorthC[];
+extern const char mapFighterEastA[];
+extern const char mapFighterEastB[];
+extern const char mapFighterEastC[];
 
-extern const char mapBulletBigA[];
-extern const char mapBulletBigB[];
-extern const char mapBulletBigC[];
-extern const char mapBulletBigD[];
-extern const char mapBulletBigE[];
+extern const char mapLaserVerticalA[];
+extern const char mapLaserVerticalB[];
+extern const char mapLaserVerticalC[];
+extern const char mapLaserVerticalD[];
+extern const char mapLaserVerticalE[];
+extern const char mapLaserVerticalF[];
+extern const char mapLaserVerticalG[];
+extern const char mapLaserVerticalH[];
 
-extern const char mapBulletSmallA[];
-extern const char mapBulletSmallB[];
-extern const char mapBulletSmallC[];
-extern const char mapBulletSmallD[];
-extern const char mapBulletSmallE[];
-extern const char mapBulletSmallF[];
-extern const char mapBulletSmallG[];
-extern const char mapBulletSmallH[];
-extern const char mapBulletSmallI[];
-extern const char mapBulletSmallJ[];
-extern const char mapBulletSmallK[];
-extern const char mapBulletSmallL[];
+extern const char mapLaserHorizontalA[];
+extern const char mapLaserHorizontalB[];
+extern const char mapLaserHorizontalC[];
+extern const char mapLaserHorizontalD[];
+extern const char mapLaserHorizontalE[];
+extern const char mapLaserHorizontalF[];
+extern const char mapLaserHorizontalG[];
+extern const char mapLaserHorizontalH[];
 
-extern const char *mapBulletSouth[];
+extern const char *mapFighterA[];
+extern const char *mapFighterB[];
+extern const char *mapFighterC[];
+
+extern const char *mapLaserVertical[];
+extern const char *mapLaserHorizontal[];
 
 extern const char tiles[];
 

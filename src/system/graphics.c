@@ -2,11 +2,33 @@
 
 #include "../../gfxdata/tiles.inc"
 
-const char *mapBulletSouth[] = {
-    mapBulletSouthH, mapBulletSouthG,
-    mapBulletSouthF, mapBulletSouthE,
-    mapBulletSouthD, mapBulletSouthC,
-    mapBulletSouthB, mapBulletSouthA
+const char *mapLaserVertical[] = {
+    mapLaserVerticalA, mapLaserVerticalB,
+    mapLaserVerticalC, mapLaserVerticalD,
+    mapLaserVerticalE, mapLaserVerticalF,
+    mapLaserVerticalG, mapLaserVerticalH
+};
+
+const char *mapLaserHorizontal[] = {
+    mapLaserHorizontalA, mapLaserHorizontalB,
+    mapLaserHorizontalC, mapLaserHorizontalD,
+    mapLaserHorizontalE, mapLaserHorizontalF,
+    mapLaserHorizontalG, mapLaserHorizontalH
+};
+
+const char *mapFighterA[] = {
+    mapFighterSouthA, mapFighterWestA,
+    mapFighterNorthA, mapFighterEastA
+};
+
+const char *mapFighterB[] = {
+    mapFighterSouthB, mapFighterWestB,
+    mapFighterNorthB, mapFighterEastB
+};
+
+const char *mapFighterC[] = {
+    mapFighterSouthC, mapFighterWestC,
+    mapFighterNorthC, mapFighterEastC
 };
 
 void PrintVerticalPROGMEM(u8 x, u8 y, const char *str) {

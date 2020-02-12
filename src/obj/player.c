@@ -9,6 +9,7 @@ u8 toggleTime = 0;
 u8 fireTimeout = 0;
 
 void PlayerDrawScoreLabel(u8);
+void PlayerSetDirCoordinates();
 
 void PlayerStart(u8 i) {
     players[i].lives = 3;
@@ -16,6 +17,26 @@ void PlayerStart(u8 i) {
     players[i].poweredUp = 0;
     PlayerDrawScoreLabel(i);
     PrintU32Vertical(1, i ? 0 : 21, players[i].score, 9999999);
+}
+
+void PlayerSetDirCoordinates() {
+    switch(players[activePlayer].dir) {
+        case DIR_WEST:
+            players[activePlayer].x = PLAYER_WEST_X;
+            players[activePlayer].y = PLAYER_WEST_Y;
+            break;
+        case DIR_NORTH:
+            players[activePlayer].x = PLAYER_NORTH_X;
+            players[activePlayer].y = PLAYER_NORTH_Y;
+            break;
+        case DIR_EAST:
+            players[activePlayer].x = PLAYER_EAST_X;
+            players[activePlayer].y = PLAYER_EAST_Y;
+            break;
+        default:
+            players[activePlayer].x = PLAYER_SOUTH_X;
+            players[activePlayer].y = PLAYER_SOUTH_Y;
+    }
 }
 
 void PlayerAddScoreDelta(u16 val) {
@@ -54,13 +75,35 @@ void PlayerDrawScoreLabel(u8 i) {
 void PlayerResume() {
     players[activePlayer].dir = DIR_SOUTH;
     players[activePlayer].animationTime = 0;
-    DrawMap(28, 13, mapFighterSouthA);
+    PlayerSetDirCoordinates();
+    DrawMap(players[activePlayer].x, players[activePlayer].y, mapFighterSouthA);
 }
 
 void PlayerFire() {
-    if(!fireTimeout && BulletInit(players[activePlayer].dir)) {
-        PlayerAddScoreDelta(100);
-        fireTimeout = 4;
+    u8 x, y;
+    if(!fireTimeout) {
+        switch(players[activePlayer].dir) {
+            case DIR_WEST:
+                x = players[activePlayer].x;
+                y = players[activePlayer].y - 1;
+                break;
+            case DIR_NORTH:
+                x = players[activePlayer].x + 2;
+                y = players[activePlayer].y;
+                break;
+            case DIR_EAST:
+                x = players[activePlayer].x;
+                y = players[activePlayer].y + 2;
+                break;
+            default:
+                x = players[activePlayer].x - 1;
+                y = players[activePlayer].y;
+        }
+
+        if(LaserInit(players[activePlayer].dir, x, y)) {
+            PlayerAddScoreDelta(100);
+            fireTimeout = 2;
+        }
     }
 }
 
@@ -68,15 +111,27 @@ void PlayerInput() {
     int stick = ReadJoypad(activePlayer);
 
     if(stick & BTN_LEFT) {
-        
+        Fill(players[activePlayer].x, players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT, 0);
+        players[activePlayer].dir = DIR_WEST;
+        PlayerSetDirCoordinates();
+        players[activePlayer].animationTime = 7;
     } else if(stick & BTN_RIGHT) {
-        
+        Fill(players[activePlayer].x, players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT, 0);
+        players[activePlayer].dir = DIR_EAST;
+        PlayerSetDirCoordinates();
+        players[activePlayer].animationTime = 7;
     }
 
     if(stick & BTN_UP) {
-        
+        Fill(players[activePlayer].x, players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT, 0);
+        players[activePlayer].dir = DIR_NORTH;
+        PlayerSetDirCoordinates();
+        players[activePlayer].animationTime = 7;
     } else if(stick & BTN_DOWN) {
-        
+        Fill(players[activePlayer].x, players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT, 0);
+        players[activePlayer].dir = DIR_SOUTH;
+        PlayerSetDirCoordinates();
+        players[activePlayer].animationTime = 7;
     }
 
     if(stick & BTN_A) {
@@ -101,13 +156,13 @@ void PlayerUpdate() {
 
     switch(players[activePlayer].animationTime) {
         case 0:
-            DrawMap(28, 13, mapFighterSouthA);
+            DrawMap(players[activePlayer].x, players[activePlayer].y, mapFighterA[players[activePlayer].dir]);
             break;
         case 2:
         case 6:
-            DrawMap(28, 13, mapFighterSouthB);
+            DrawMap(players[activePlayer].x, players[activePlayer].y, mapFighterB[players[activePlayer].dir]);
             break;
         case 4:
-            DrawMap(28, 13, mapFighterSouthC);
+            DrawMap(players[activePlayer].x, players[activePlayer].y, mapFighterC[players[activePlayer].dir]);
     }
 }
