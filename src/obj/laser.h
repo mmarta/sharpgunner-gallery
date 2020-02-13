@@ -7,7 +7,7 @@
 #define LASER_COUNT 2
 
 typedef struct {
-    u8 active, dir, x, y, time, tileIndex;
+    u8 active, dir, x, y, time, tileIndex, backfeed;
 } Laser;
 
 extern Laser lasers[];

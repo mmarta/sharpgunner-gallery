@@ -36,6 +36,13 @@ extern const char mapLaserHorizontalF[];
 extern const char mapLaserHorizontalG[];
 extern const char mapLaserHorizontalH[];
 
+extern const char mapHookNE[];
+extern const char mapHookSE[];
+extern const char mapHookSW[];
+extern const char mapHookNW[];
+extern const char mapWireA[];
+extern const char mapWireB[];
+
 extern const char *mapFighterA[];
 extern const char *mapFighterB[];
 extern const char *mapFighterC[];

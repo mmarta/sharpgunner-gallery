@@ -20,6 +20,7 @@
 
 typedef struct {
     u8 lives, animationTime, firing, poweredUp, x, y, dir;
+    u8 hookDir, hookX, hookY, hookDX, hookDY, hookEnabled;
     u16 scoreDelta;
     u32 score;
 } Player;
@@ -30,7 +31,6 @@ extern u8 activePlayer;
 void PlayerStart(u8);
 void PlayerAddScoreDelta(u16);
 void PlayerFlushScore();
-void PlayerFire();
 void PlayerResume();
 void PlayerInput();
 void PlayerUpdate();
