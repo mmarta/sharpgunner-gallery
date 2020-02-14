@@ -70,11 +70,3 @@ void PrintU32Vertical(u8 x, u8 y, u32 val, u32 maxVal) {
         first = 0;
     } while(maxVal > 0);
 }
-
-void HideSprite(u8 id, u8 w, u8 h) {
-    w *= h;
-    w += id;
-    while(w-- > id) {
-        sprites[w].y = 224;
-    }
-}

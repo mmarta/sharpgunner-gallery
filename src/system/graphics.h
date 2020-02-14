@@ -56,6 +56,5 @@ void PrintVerticalPROGMEM(u8, u8, const char *);
 void PrintVerticalRAM(u8, u8, const char *);
 void PrintU8Vertical(u8, u8, u8);
 void PrintU32Vertical(u8, u8, u32, u32);
-void HideSprite(u8, u8, u8);
 
 #endif
