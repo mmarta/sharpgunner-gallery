@@ -117,5 +117,8 @@ gfx:
 test:
 	$(UZEM_DIR)uzem $(GAME)-program.uze
 
+testfull:
+	$(UZEM_DIR)uzem $(GAME)-program.uze -f
+
 ## Other dependencies
 -include $(shell mkdir dep 2>/dev/null) $(wildcard dep/*)
