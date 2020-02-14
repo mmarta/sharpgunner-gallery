@@ -30,7 +30,6 @@ u8 LaserInit(u8 dir, u8 x, u8 y) {
 }
 
 void LaserUpdate(u8 i) {
-    u8 update = false;
     if(!lasers[i].active) {
         return;
     }
@@ -48,17 +47,14 @@ void LaserUpdate(u8 i) {
     } else if(lasers[i].time < 4) {
         if(lasers[i].time % 2 == 0) {
             lasers[i].tileIndex++;
-            update = true;
         }
     } else if(lasers[i].time < 16) {
         if(lasers[i].time % 4 == 0) {
             lasers[i].tileIndex++;
-            update = true;
         }
     } else {
         if(lasers[i].time % 2 == 0) {
             lasers[i].tileIndex++;
-            update = true;
         }
     }
 
