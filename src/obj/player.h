@@ -20,10 +20,10 @@
 
 typedef struct {
     u8 lives, animationTime, firing, poweredUp, x, y;
-    u8 hookDir, hookX, hookY, hookDX, hookDY, hookEnabled;
+    u8 hookX, hookY, hookDX, hookDY, hookEnabled;
     u16 scoreDelta;
     u32 score;
-    direction dir;
+    direction dir, hookDir;
 } Player;
 
 extern Player players[];

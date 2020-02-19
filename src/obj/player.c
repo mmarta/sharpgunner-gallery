@@ -221,8 +221,6 @@ void PlayerInput() {
     if(stick & BTN_LEFT) {
         if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
             players[activePlayer].hookDir = WEST;
-            players[activePlayer].hookDX = PLAYER_WEST_X;
-            players[activePlayer].hookDY = PLAYER_WEST_Y;
             players[activePlayer].hookX = players[activePlayer].x + (players[activePlayer].dir == NORTH ? 2 : -1);
             players[activePlayer].hookY = players[activePlayer].y + 2;
             players[activePlayer].hookEnabled = true;
@@ -230,8 +228,6 @@ void PlayerInput() {
     } else if(stick & BTN_RIGHT) {
         if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
             players[activePlayer].hookDir = EAST;
-            players[activePlayer].hookDX = PLAYER_EAST_X;
-            players[activePlayer].hookDY = PLAYER_EAST_Y;
             players[activePlayer].hookX = players[activePlayer].x + (players[activePlayer].dir == NORTH ? 2 : -1);
             players[activePlayer].hookY = players[activePlayer].y - 1;
             players[activePlayer].hookEnabled = true;
@@ -239,8 +235,6 @@ void PlayerInput() {
     } else if(stick & BTN_UP) {
         if(players[activePlayer].dir == EAST || players[activePlayer].dir == WEST) {
             players[activePlayer].hookDir = NORTH;
-            players[activePlayer].hookDX = PLAYER_NORTH_X;
-            players[activePlayer].hookDY = PLAYER_NORTH_Y;
             players[activePlayer].hookY = players[activePlayer].y + (players[activePlayer].dir == EAST ? 2 : -1);
             players[activePlayer].hookX = players[activePlayer].x - 1;
             players[activePlayer].hookEnabled = true;
@@ -248,12 +242,16 @@ void PlayerInput() {
     } else if(stick & BTN_DOWN) {
         if(players[activePlayer].dir == EAST || players[activePlayer].dir == WEST) {
             players[activePlayer].hookDir = SOUTH;
-            players[activePlayer].hookDX = PLAYER_SOUTH_X;
-            players[activePlayer].hookDY = PLAYER_SOUTH_Y;
             players[activePlayer].hookY = players[activePlayer].y + (players[activePlayer].dir == EAST ? 2 : -1);
             players[activePlayer].hookX = players[activePlayer].x + 2;
             players[activePlayer].hookEnabled = true;
         }
+    }
+
+    // Did we grapple off this round?
+    if(players[activePlayer].hookEnabled) {
+        players[activePlayer].hookDX = playerXCoords[players[activePlayer].hookDir];
+        players[activePlayer].hookDY = playerYCoords[players[activePlayer].hookDir];
     }
 
     if(stick & BTN_A) {
