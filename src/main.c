@@ -2,6 +2,7 @@
 #include "system/graphics.h"
 #include "obj/laser.h"
 #include "obj/player.h"
+#include "obj/enemy.h"
 
 u32 hi = 10000;
 
@@ -24,6 +25,8 @@ int main() {
     activePlayer = 0;
     PlayerResume();
 
+    EnemyInit(SOUTH, INVADER);
+
     while(1) {
         WaitVsync(1);
 
@@ -39,6 +42,12 @@ int main() {
         while(i--) {
             LaserUpdate(i);
         }
+
+        i = ENEMY_COUNT;
+        while(i--) {
+            EnemyUpdate(i);
+        }
+
         PlayerUpdate();
         
         PlayerInput();

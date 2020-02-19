@@ -19,13 +19,16 @@
 #define PLAYER_EAST_Y 0
 
 typedef struct {
-    u8 lives, animationTime, firing, poweredUp, x, y, dir;
+    u8 lives, animationTime, firing, poweredUp, x, y;
     u8 hookDir, hookX, hookY, hookDX, hookDY, hookEnabled;
     u16 scoreDelta;
     u32 score;
+    direction dir;
 } Player;
 
 extern Player players[];
+extern u8 playerXCoords[];
+extern u8 playerYCoords[];
 extern u8 activePlayer;
 
 void PlayerStart(u8);

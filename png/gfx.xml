@@ -35,6 +35,15 @@
             <map var-name="mapLaserVerticalG" left="14" top="5" width="1" height="2" />
             <map var-name="mapLaserVerticalH" left="15" top="5" width="1" height="2" />
 
+            <map var-name="mapInvaderSouthA" left="16" top="5" width="2" height="2" />
+            <map var-name="mapInvaderWestA" left="18" top="5" width="2" height="2" />
+            <map var-name="mapInvaderNorthA" left="20" top="5" width="2" height="2" />
+            <map var-name="mapInvaderEastA" left="22" top="5" width="2" height="2" />
+            <map var-name="mapInvaderSouthB" left="24" top="5" width="2" height="2" />
+            <map var-name="mapInvaderWestB" left="26" top="5" width="2" height="2" />
+            <map var-name="mapInvaderNorthB" left="28" top="5" width="2" height="2" />
+            <map var-name="mapInvaderEastB" left="30" top="5" width="2" height="2" />
+
             <map var-name="mapHookNE" left="0" top="7" width="1" height="1" />
             <map var-name="mapHookSE" left="1" top="7" width="1" height="1" />
             <map var-name="mapHookSW" left="2" top="7" width="1" height="1" />

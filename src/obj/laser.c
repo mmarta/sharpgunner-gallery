@@ -2,7 +2,7 @@
 
 Laser lasers[LASER_COUNT];
 
-u8 LaserInit(u8 dir, u8 x, u8 y) {
+u8 LaserInit(direction dir, u8 x, u8 y) {
     u8 i = LASER_COUNT;
 
     while(i--) {
@@ -13,8 +13,8 @@ u8 LaserInit(u8 dir, u8 x, u8 y) {
             lasers[i].time = 0;
             lasers[i].tileIndex = 0;
             switch(dir) {
-                case DIR_WEST:
-                case DIR_EAST:
+                case WEST:
+                case EAST:
                     DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
                     break;
                 default:
@@ -38,7 +38,7 @@ void LaserUpdate(u8 i) {
 
     if(lasers[i].time == 20) {
         lasers[i].active = 0;
-        if(lasers[i].dir == DIR_EAST || lasers[i].dir == DIR_WEST) {
+        if(lasers[i].dir == EAST || lasers[i].dir == WEST) {
             Fill(lasers[i].x, lasers[i].y, 2, 1, 0);
         } else {
             Fill(lasers[i].x, lasers[i].y, 1, 2, 0);
@@ -63,17 +63,17 @@ void LaserUpdate(u8 i) {
     }
 
     switch(lasers[i].dir) {
-        case DIR_WEST:
+        case WEST:
             Fill(lasers[i].x, lasers[i].y, 2, 1, 0);
             lasers[i].y--;
             DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
             break;
-        case DIR_EAST:
+        case EAST:
             Fill(lasers[i].x, lasers[i].y, 2, 1, 0);
             lasers[i].y++;
             DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
             break;
-        case DIR_NORTH:
+        case NORTH:
             Fill(lasers[i].x, lasers[i].y, 1, 2, 0);
             lasers[i].x++;
             DrawMap(lasers[i].x, lasers[i].y, mapLaserVertical[lasers[i].tileIndex]);
