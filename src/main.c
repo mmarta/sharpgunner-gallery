@@ -3,6 +3,7 @@
 #include "obj/laser.h"
 #include "obj/player.h"
 #include "obj/enemy.h"
+#include "obj/collision.h"
 
 u32 hi = 10000;
 
@@ -36,6 +37,9 @@ int main() {
             hi = players[activePlayer].score;
             PrintU32Vertical(1, 11, hi, 9999999);
         }
+
+        // ...then collisions
+        CollisionRunAll();
 
         // Sprite stuff next
         i = LASER_COUNT;

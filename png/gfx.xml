@@ -44,12 +44,17 @@
             <map var-name="mapInvaderNorthB" left="28" top="5" width="2" height="2" />
             <map var-name="mapInvaderEastB" left="30" top="5" width="2" height="2" />
 
-            <map var-name="mapHookNE" left="0" top="7" width="1" height="1" />
-            <map var-name="mapHookSE" left="1" top="7" width="1" height="1" />
-            <map var-name="mapHookSW" left="2" top="7" width="1" height="1" />
-            <map var-name="mapHookNW" left="3" top="7" width="1" height="1" />
-            <map var-name="mapWireA" left="4" top="7" width="1" height="1" />
-            <map var-name="mapWireB" left="5" top="7" width="1" height="1" />
+            <map var-name="mapEnemyKillA" left="0" top="7" width="2" height="2" />
+            <map var-name="mapEnemyKillB" left="2" top="7" width="2" height="2" />
+            <map var-name="mapEnemyKillC" left="4" top="7" width="2" height="2" />
+            <map var-name="mapEnemyKillD" left="6" top="7" width="2" height="2" />
+
+            <map var-name="mapHookNE" left="0" top="9" width="1" height="1" />
+            <map var-name="mapHookSE" left="1" top="9" width="1" height="1" />
+            <map var-name="mapHookSW" left="2" top="9" width="1" height="1" />
+            <map var-name="mapHookNW" left="3" top="9" width="1" height="1" />
+            <map var-name="mapWireA" left="4" top="9" width="1" height="1" />
+            <map var-name="mapWireB" left="5" top="9" width="1" height="1" />
         </maps>
     </output>
 </gfx-xform>

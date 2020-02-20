@@ -33,5 +33,6 @@ extern u8 enemyStartYCoords[];
 
 void EnemyInit(direction, enemytype);
 void EnemyUpdate(u8);
+void EnemyKill(u8);
 
 #endif

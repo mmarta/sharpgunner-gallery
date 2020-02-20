@@ -45,6 +45,11 @@ extern const char mapInvaderWestB[];
 extern const char mapInvaderNorthB[];
 extern const char mapInvaderEastB[];
 
+extern const char mapEnemyKillA[];
+extern const char mapEnemyKillB[];
+extern const char mapEnemyKillC[];
+extern const char mapEnemyKillD[];
+
 extern const char mapHookNE[];
 extern const char mapHookSE[];
 extern const char mapHookSW[];
@@ -61,6 +66,8 @@ extern const char *mapLaserHorizontal[];
 
 extern const char *mapInvaderA[];
 extern const char *mapInvaderB[];
+
+extern const char *mapEnemyKill[];
 
 extern const char tiles[];
 

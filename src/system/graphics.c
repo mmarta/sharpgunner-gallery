@@ -41,6 +41,11 @@ const char *mapInvaderB[] = {
     mapInvaderNorthB, mapInvaderEastB
 };
 
+const char *mapEnemyKill[] = {
+    mapEnemyKillA, mapEnemyKillB,
+    mapEnemyKillC, mapEnemyKillD
+};
+
 void PrintVerticalPROGMEM(u8 x, u8 y, const char *str) {
     u8 i = 0, c = pgm_read_byte(&(str[i]));
     while(c) {

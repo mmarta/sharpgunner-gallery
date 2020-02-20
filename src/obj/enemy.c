@@ -24,11 +24,18 @@ void EnemyInit(direction dir, enemytype type) {
             enemyPool[i].y = enemyStartYCoords[dir];
             enemyPool[i].type = type;
             enemyPool[i].animationTime = 0;
+            enemyPool[i].killTime = 0;
             enemyPool[i].active = true;
             DrawMap(
                 enemyPool[i].x, enemyPool[i].y,
                 mapInvaderA[enemyPool[i].dir]
             );
+
+            switch(type) {
+                case INVADER:
+                    enemyPool[i].score = 100;
+                    break;
+            }
             return;
         }
     }
@@ -85,9 +92,24 @@ void EnemyUpdate(u8 i) {
         return;
     }
 
+    if(enemyPool[i].killTime > 0) {
+        if(enemyPool[i].killTime == 17) {
+            EnemyDeactivate(i);
+            return;
+        } else if(enemyPool[i].killTime % 4 == 1) {
+            DrawMap(enemyPool[i].x, enemyPool[i].y, mapEnemyKill[enemyPool[i].killTime / 4]);
+        }
+        enemyPool[i].killTime++;
+        return;
+    }
+
     switch(enemyPool[i].type) {
         case INVADER:
             EnemyInvaderUpdate(i);
             break;
     }
+}
+
+void EnemyKill(u8 i) {
+    enemyPool[i].killTime = 1;
 }

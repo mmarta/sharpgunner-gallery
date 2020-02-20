@@ -15,9 +15,13 @@ u8 LaserInit(direction dir, u8 x, u8 y) {
             switch(dir) {
                 case WEST:
                 case EAST:
+                    lasers[i].w = 2;
+                    lasers[i].h = 1;
                     DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
                     break;
                 default:
+                    lasers[i].w = 1;
+                    lasers[i].h = 2;
                     DrawMap(lasers[i].x, lasers[i].y, mapLaserVertical[lasers[i].tileIndex]);
             }
             
@@ -37,12 +41,7 @@ void LaserUpdate(u8 i) {
     lasers[i].time += 2;
 
     if(lasers[i].time == 20) {
-        lasers[i].active = 0;
-        if(lasers[i].dir == EAST || lasers[i].dir == WEST) {
-            Fill(lasers[i].x, lasers[i].y, 2, 1, 0);
-        } else {
-            Fill(lasers[i].x, lasers[i].y, 1, 2, 0);
-        }
+        LaserDeactivate(i);
         return;
     } else if(lasers[i].time < 4) {
         if(lasers[i].time % 2 == 0) {
@@ -62,25 +61,27 @@ void LaserUpdate(u8 i) {
         return;
     }
 
+    Fill(lasers[i].x, lasers[i].y, lasers[i].w, lasers[i].h, 0);
     switch(lasers[i].dir) {
         case WEST:
-            Fill(lasers[i].x, lasers[i].y, 2, 1, 0);
             lasers[i].y--;
             DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
             break;
         case EAST:
-            Fill(lasers[i].x, lasers[i].y, 2, 1, 0);
             lasers[i].y++;
             DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
             break;
         case NORTH:
-            Fill(lasers[i].x, lasers[i].y, 1, 2, 0);
             lasers[i].x++;
             DrawMap(lasers[i].x, lasers[i].y, mapLaserVertical[lasers[i].tileIndex]);
             break;
         default:
-            Fill(lasers[i].x, lasers[i].y, 1, 2, 0);
             lasers[i].x--;
             DrawMap(lasers[i].x, lasers[i].y, mapLaserVertical[lasers[i].tileIndex]);
     }
+}
+
+void LaserDeactivate(u8 i) {
+    Fill(lasers[i].x, lasers[i].y, lasers[i].w, lasers[i].h, 0);
+    lasers[i].active = 0;
 }

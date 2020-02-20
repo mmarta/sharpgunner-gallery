@@ -99,7 +99,6 @@ void PlayerFire() {
         }
 
         if(LaserInit(players[activePlayer].dir, x, y)) {
-            PlayerAddScoreDelta(100);
             fireTimeout = 2;
         }
     }
