@@ -74,6 +74,9 @@ void PlayerDrawScoreLabel(u8 i) {
 void PlayerResume() {
     players[activePlayer].animationTime = 0;
     players[activePlayer].killTime = 0;
+    toggleTime = 59;
+
+    // Back to south
     Fill(players[activePlayer].x, players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT, 0);
     players[activePlayer].dir = SOUTH;
     PlayerSetDirCoordinates();
