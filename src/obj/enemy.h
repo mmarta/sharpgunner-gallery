@@ -21,7 +21,7 @@
 typedef enum { INVADER } enemytype;
 
 typedef struct {
-    u8 x, y, active, animationTime, killTime;
+    u8 x, y, active, movements, animationTime, killTime;
     u16 score;
     direction dir;
     enemytype type;

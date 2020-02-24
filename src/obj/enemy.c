@@ -25,6 +25,7 @@ void EnemyInit(direction dir, enemytype type) {
             enemyPool[i].type = type;
             enemyPool[i].animationTime = 0;
             enemyPool[i].killTime = 0;
+            enemyPool[i].movements = 0;
             enemyPool[i].active = true;
             DrawMap(
                 enemyPool[i].x, enemyPool[i].y,
@@ -69,6 +70,7 @@ void EnemyInvaderUpdate(u8 i) {
         Fill(enemyPool[i].x, enemyPool[i].y, ENEMY_WIDTH, ENEMY_HEIGHT, 0);
         enemyPool[i].x += xDelta;
         enemyPool[i].y += yDelta;
+        enemyPool[i].movements++;
 
         // Reached the player? Then Deactivate
         if(
@@ -84,6 +86,11 @@ void EnemyInvaderUpdate(u8 i) {
                     : mapInvaderA[enemyPool[i].dir]
             );
         }
+    } else if(
+        enemyPool[i].movements >= 6
+        && (enemyPool[i].animationTime == 20 || enemyPool[i].animationTime == 60)
+    ) {
+        DrawMap(enemyPool[i].x, enemyPool[i].y, mapInvaderWarn[enemyPool[i].dir]);
     }
 }
 

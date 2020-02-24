@@ -2,6 +2,7 @@
 
 u8 CollisionCheck(u8 *, u8 *, u8, u8, u8 *, u8 *, u8, u8);
 u8 CollisionEnemyLaserPreCheck(Enemy *, Laser *);
+u8 CollisionEnemyPlayerPreCheck(Enemy *, Player *);
 
 u8 CollisionCheck(
     u8 *x1, u8 *y1, u8 w1, u8 h1,
@@ -29,6 +30,18 @@ u8 CollisionEnemyLaserPreCheck(Enemy *enemy, Laser *laser) {
     return true;
 }
 
+u8 CollisionEnemyPlayerPreCheck(Enemy *enemy, Player *player) {
+    if(!(*enemy).active || !(*player).active) {
+        return false;
+    }
+
+    if((*enemy).killTime > 0 || (*player).killTime > 0) {
+        return false;
+    }
+
+    return true;
+}
+
 void CollisionRunAll() {
     u8 i, j;
 
@@ -44,6 +57,16 @@ void CollisionRunAll() {
                 EnemyKill(i);
                 PlayerAddScoreDelta(enemyPool[i].score);
             }
+        }
+
+        // Check player collision too
+        if(CollisionEnemyPlayerPreCheck(&enemyPool[i], &players[activePlayer]) && CollisionCheck(
+            &enemyPool[i].x, &enemyPool[i].y, ENEMY_WIDTH, ENEMY_HEIGHT,
+            &players[activePlayer].x, &players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT
+        )) {
+            PlayerKill();
+            EnemyKill(i);
+            PlayerAddScoreDelta(enemyPool[i].score);
         }
     }
 }

@@ -19,8 +19,8 @@
 #define PLAYER_EAST_Y 0
 
 typedef struct {
-    u8 lives, animationTime, firing, poweredUp, x, y;
-    u8 hookX, hookY, hookDX, hookDY, hookEnabled;
+    u8 lives, animationTime, killTime, firing, poweredUp, x, y;
+    u8 hookX, hookY, hookDX, hookDY, hookEnabled, active;
     u16 scoreDelta;
     u32 score;
     direction dir, hookDir;
@@ -37,5 +37,6 @@ void PlayerFlushScore();
 void PlayerResume();
 void PlayerInput();
 void PlayerUpdate();
+void PlayerKill();
 
 #endif

@@ -17,6 +17,11 @@ const char *mapFighterC[] = {
     mapFighterNorthC, mapFighterEastC
 };
 
+const char *mapFighterKill[] = {
+    mapFighterKillA, mapFighterKillB,
+    mapFighterKillC, mapFighterKillD
+};
+
 const char *mapLaserVertical[] = {
     mapLaserVerticalA, mapLaserVerticalB,
     mapLaserVerticalC, mapLaserVerticalD,
@@ -44,6 +49,11 @@ const char *mapInvaderB[] = {
 const char *mapEnemyKill[] = {
     mapEnemyKillA, mapEnemyKillB,
     mapEnemyKillC, mapEnemyKillD
+};
+
+const char *mapInvaderWarn[] = {
+    mapInvaderWarnSouth, mapInvaderWarnWest,
+    mapInvaderWarnNorth, mapInvaderWarnEast
 };
 
 void PrintVerticalPROGMEM(u8 x, u8 y, const char *str) {

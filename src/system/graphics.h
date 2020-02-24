@@ -5,6 +5,8 @@
 
 #define U32_MAX 0xffffffff
 
+// The created tilemaps
+
 extern const char mapFighterSouthA[];
 extern const char mapFighterSouthB[];
 extern const char mapFighterSouthC[];
@@ -17,6 +19,11 @@ extern const char mapFighterNorthC[];
 extern const char mapFighterEastA[];
 extern const char mapFighterEastB[];
 extern const char mapFighterEastC[];
+
+extern const char mapFighterKillA[];
+extern const char mapFighterKillB[];
+extern const char mapFighterKillC[];
+extern const char mapFighterKillD[];
 
 extern const char mapLaserVerticalA[];
 extern const char mapLaserVerticalB[];
@@ -50,6 +57,11 @@ extern const char mapEnemyKillB[];
 extern const char mapEnemyKillC[];
 extern const char mapEnemyKillD[];
 
+extern const char mapInvaderWarnSouth[];
+extern const char mapInvaderWarnWest[];
+extern const char mapInvaderWarnNorth[];
+extern const char mapInvaderWarnEast[];
+
 extern const char mapHookNE[];
 extern const char mapHookSE[];
 extern const char mapHookSW[];
@@ -57,17 +69,23 @@ extern const char mapHookNW[];
 extern const char mapWireA[];
 extern const char mapWireB[];
 
+// Progression Maps (arrays of pointers)
+
 extern const char *mapFighterA[];
 extern const char *mapFighterB[];
 extern const char *mapFighterC[];
+extern const char *mapFighterKill[];
 
 extern const char *mapLaserVertical[];
 extern const char *mapLaserHorizontal[];
 
 extern const char *mapInvaderA[];
 extern const char *mapInvaderB[];
+extern const char *mapInvaderWarn[];
 
 extern const char *mapEnemyKill[];
+
+// The bare tiles themselves
 
 extern const char tiles[];
 

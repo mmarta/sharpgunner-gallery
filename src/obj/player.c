@@ -28,6 +28,7 @@ void PlayerStart(u8 i) {
     players[i].lives = 3;
     players[i].score = 0;
     players[i].poweredUp = 0;
+    players[i].active = true;
     PlayerDrawScoreLabel(i);
     PrintU32Vertical(1, i ? 0 : 21, players[i].score, 9999999);
 }
@@ -71,8 +72,10 @@ void PlayerDrawScoreLabel(u8 i) {
 }
 
 void PlayerResume() {
-    players[activePlayer].dir = SOUTH;
     players[activePlayer].animationTime = 0;
+    players[activePlayer].killTime = 0;
+    Fill(players[activePlayer].x, players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT, 0);
+    players[activePlayer].dir = SOUTH;
     PlayerSetDirCoordinates();
     DrawMap(players[activePlayer].x, players[activePlayer].y, mapFighterSouthA);
 }
@@ -201,6 +204,13 @@ void PlayerMoveHook() {
 }
 
 void PlayerDrawTiles() {
+    if(players[activePlayer].killTime) {
+        if(players[activePlayer].killTime % 6 == 1) {
+            DrawMap(players[activePlayer].x, players[activePlayer].y, mapFighterKill[players[activePlayer].killTime / 6]);
+        }
+        return;
+    }
+
     if(players[activePlayer].animationTime < 2) {
         DrawMap(players[activePlayer].x, players[activePlayer].y, mapFighterA[players[activePlayer].dir]);
     } else if(players[activePlayer].animationTime < 4 || players[activePlayer].animationTime >= 6) {
@@ -266,8 +276,23 @@ void PlayerInput() {
 }
 
 void PlayerUpdate() {
+    if(!players[activePlayer].active) {
+        return;
+    }
+
     if(fireTimeout) {
         fireTimeout--;
+    }
+
+    if(players[activePlayer].killTime) {
+        PlayerDrawTiles();
+        players[activePlayer].killTime++;
+        if(players[activePlayer].killTime == 25) {
+            players[activePlayer].killTime = 0;
+            players[activePlayer].lives--;
+            PlayerResume(); // Move this later
+        }
+        return;
     }
 
     players[activePlayer].animationTime =
@@ -283,4 +308,8 @@ void PlayerUpdate() {
     if(players[activePlayer].animationTime % 2 == 0) {
         PlayerDrawTiles();
     }
+}
+
+void PlayerKill() {
+    players[activePlayer].killTime = 1;
 }
