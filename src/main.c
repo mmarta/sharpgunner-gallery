@@ -27,6 +27,7 @@ int main() {
     PlayerResume();
 
     EnemyInit(WEST, INVADER);
+    EnemyInit(SOUTH, SWEEPER);
 
     while(1) {
         WaitVsync(1);
@@ -53,7 +54,7 @@ int main() {
         }
 
         PlayerUpdate();
-        
+
         PlayerInput();
     }
 

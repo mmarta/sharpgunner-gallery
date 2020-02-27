@@ -18,7 +18,9 @@
 #define ENEMY_EAST_START_X 15
 #define ENEMY_EAST_START_Y 13
 
-typedef enum { INVADER } enemytype;
+typedef enum {
+  INVADER, SWEEPER
+} enemytype;
 
 typedef struct {
     u8 x, y, active, movements, animationTime, killTime;

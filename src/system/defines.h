@@ -6,6 +6,8 @@
 #include <avr/pgmspace.h>
 #include <uzebox.h>
 
-typedef enum { SOUTH, WEST, NORTH, EAST } direction;
+typedef enum {
+  SOUTH, WEST, NORTH, EAST
+} direction;
 
 #endif

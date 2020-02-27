@@ -118,7 +118,7 @@ clean:
 	-rm -r dep
 
 gfx:
-	$(GCONVERT_DIR)gconvert png/gfx.xml
+	$(GCONVERT_DIR)gconvert gfxdata/gfx.xml
 
 test:
 	$(UZEM_DIR)uzem $(GAME)-program.uze

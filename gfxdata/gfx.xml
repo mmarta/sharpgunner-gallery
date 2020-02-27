@@ -16,7 +16,7 @@
             <map var-name="mapFighterEastA" left="6" top="3" width="2" height="2" />
             <map var-name="mapFighterEastB" left="14" top="3" width="2" height="2" />
             <map var-name="mapFighterEastC" left="22" top="3" width="2" height="2" />
-            
+
             <map var-name="mapFighterKillA" left="24" top="3" width="2" height="2" />
             <map var-name="mapFighterKillB" left="26" top="3" width="2" height="2" />
             <map var-name="mapFighterKillC" left="28" top="3" width="2" height="2" />
@@ -58,6 +58,15 @@
             <map var-name="mapInvaderWarnWest" left="10" top="7" width="2" height="2" />
             <map var-name="mapInvaderWarnNorth" left="12" top="7" width="2" height="2" />
             <map var-name="mapInvaderWarnEast" left="14" top="7" width="2" height="2" />
+
+            <map var-name="mapSweeperSouthA" left="16" top="7" width="2" height="2" />
+            <map var-name="mapSweeperWestA" left="18" top="7" width="2" height="2" />
+            <map var-name="mapSweeperNorthA" left="20" top="7" width="2" height="2" />
+            <map var-name="mapSweeperEastA" left="22" top="7" width="2" height="2" />
+            <map var-name="mapSweeperSouthB" left="24" top="7" width="2" height="2" />
+            <map var-name="mapSweeperWestB" left="26" top="7" width="2" height="2" />
+            <map var-name="mapSweeperNorthB" left="28" top="7" width="2" height="2" />
+            <map var-name="mapSweeperEastB" left="30" top="7" width="2" height="2" />
 
             <map var-name="mapHookNE" left="0" top="9" width="1" height="1" />
             <map var-name="mapHookSE" left="1" top="9" width="1" height="1" />
