@@ -68,12 +68,25 @@
             <map var-name="mapSweeperNorthB" left="28" top="7" width="2" height="2" />
             <map var-name="mapSweeperEastB" left="30" top="7" width="2" height="2" />
 
-            <map var-name="mapHookNE" left="0" top="10" width="1" height="1" />
-            <map var-name="mapHookSE" left="1" top="10" width="1" height="1" />
-            <map var-name="mapHookSW" left="2" top="10" width="1" height="1" />
-            <map var-name="mapHookNW" left="3" top="10" width="1" height="1" />
-            <map var-name="mapWireA" left="4" top="10" width="1" height="1" />
-            <map var-name="mapWireB" left="5" top="10" width="1" height="1" />
+            <map var-name="mapSparxSouthA" left="0" top="9" width="2" height="2" />
+            <map var-name="mapSparxWestA" left="2" top="9" width="2" height="2" />
+            <map var-name="mapSparxNorthA" left="4" top="9" width="2" height="2" />
+            <map var-name="mapSparxEastA" left="6" top="9" width="2" height="2" />
+            <map var-name="mapSparxSouthB" left="8" top="9" width="2" height="2" />
+            <map var-name="mapSparxWestB" left="10" top="9" width="2" height="2" />
+            <map var-name="mapSparxNorthB" left="12" top="9" width="2" height="2" />
+            <map var-name="mapSparxEastB" left="14" top="9" width="2" height="2" />
+            <map var-name="mapSparxSouthC" left="16" top="9" width="2" height="2" />
+            <map var-name="mapSparxWestC" left="18" top="9" width="2" height="2" />
+            <map var-name="mapSparxNorthC" left="20" top="9" width="2" height="2" />
+            <map var-name="mapSparxEastC" left="22" top="9" width="2" height="2" />
+
+            <map var-name="mapHookNE" left="0" top="11" width="1" height="1" />
+            <map var-name="mapHookSE" left="1" top="11" width="1" height="1" />
+            <map var-name="mapHookSW" left="2" top="11" width="1" height="1" />
+            <map var-name="mapHookNW" left="3" top="11" width="1" height="1" />
+            <map var-name="mapWireA" left="4" top="11" width="1" height="1" />
+            <map var-name="mapWireB" left="5" top="11" width="1" height="1" />
         </maps>
     </output>
 </gfx-xform>

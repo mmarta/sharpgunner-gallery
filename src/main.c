@@ -28,6 +28,7 @@ int main() {
 
     EnemyInit(WEST, INVADER);
     EnemyInit(SOUTH, SWEEPER);
+    EnemyInit(EAST, SPARX);
 
     while(1) {
         WaitVsync(1);

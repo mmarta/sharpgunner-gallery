@@ -71,6 +71,19 @@ extern const char mapSweeperWestB[];
 extern const char mapSweeperNorthB[];
 extern const char mapSweeperEastB[];
 
+extern const char mapSparxSouthA[];
+extern const char mapSparxWestA[];
+extern const char mapSparxNorthA[];
+extern const char mapSparxEastA[];
+extern const char mapSparxSouthB[];
+extern const char mapSparxWestB[];
+extern const char mapSparxNorthB[];
+extern const char mapSparxEastB[];
+extern const char mapSparxSouthC[];
+extern const char mapSparxWestC[];
+extern const char mapSparxNorthC[];
+extern const char mapSparxEastC[];
+
 extern const char mapHookNE[];
 extern const char mapHookSE[];
 extern const char mapHookSW[];
@@ -94,6 +107,10 @@ extern const char *mapInvaderWarn[];
 
 extern const char *mapSweeperA[];
 extern const char *mapSweeperB[];
+
+extern const char *mapSparxA[];
+extern const char *mapSparxB[];
+extern const char *mapSparxC[];
 
 extern const char *mapEnemyKill[];
 

@@ -19,7 +19,7 @@
 #define ENEMY_EAST_START_Y 13
 
 typedef enum {
-  INVADER, SWEEPER
+  INVADER, SWEEPER, SPARX
 } enemytype;
 
 typedef struct {

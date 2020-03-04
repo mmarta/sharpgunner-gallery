@@ -12,6 +12,8 @@ u8 LaserInit(direction dir, u8 x, u8 y) {
             lasers[i].y = y;
             lasers[i].time = 0;
             lasers[i].tileIndex = 0;
+            lasers[i].backfeed = false;
+
             switch(dir) {
                 case WEST:
                 case EAST:
@@ -24,7 +26,7 @@ u8 LaserInit(direction dir, u8 x, u8 y) {
                     lasers[i].h = 2;
                     DrawMap(lasers[i].x, lasers[i].y, mapLaserVertical[lasers[i].tileIndex]);
             }
-            
+
             lasers[i].active = 1;
             return 1;
         }
@@ -38,22 +40,26 @@ void LaserUpdate(u8 i) {
         return;
     }
 
-    lasers[i].time += 2;
+    if(lasers[i].backfeed) {
+        lasers[i].time -= 2;
+    } else {
+        lasers[i].time += 2;
+    }
 
-    if(lasers[i].time == 20) {
+    if(lasers[i].time == 20 || !lasers[i].time) {
         LaserDeactivate(i);
         return;
     } else if(lasers[i].time < 4) {
         if(lasers[i].time % 2 == 0) {
-            lasers[i].tileIndex++;
+            lasers[i].tileIndex += lasers[i].backfeed ? -1 : 1;
         }
     } else if(lasers[i].time < 16) {
         if(lasers[i].time % 4 == 0) {
-            lasers[i].tileIndex++;
+            lasers[i].tileIndex += lasers[i].backfeed ? -1 : 1;
         }
     } else {
         if(lasers[i].time % 2 == 0) {
-            lasers[i].tileIndex++;
+            lasers[i].tileIndex += lasers[i].backfeed ? -1 : 1;
         }
     }
 
@@ -64,19 +70,19 @@ void LaserUpdate(u8 i) {
     Fill(lasers[i].x, lasers[i].y, lasers[i].w, lasers[i].h, 0);
     switch(lasers[i].dir) {
         case WEST:
-            lasers[i].y--;
+            lasers[i].y -= lasers[i].backfeed ? -1 : 1;
             DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
             break;
         case EAST:
-            lasers[i].y++;
+            lasers[i].y += lasers[i].backfeed ? -1 : 1;
             DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
             break;
         case NORTH:
-            lasers[i].x++;
+            lasers[i].x += lasers[i].backfeed ? -1 : 1;
             DrawMap(lasers[i].x, lasers[i].y, mapLaserVertical[lasers[i].tileIndex]);
             break;
         default:
-            lasers[i].x--;
+            lasers[i].x -= lasers[i].backfeed ? -1 : 1;
             DrawMap(lasers[i].x, lasers[i].y, mapLaserVertical[lasers[i].tileIndex]);
     }
 }

@@ -61,6 +61,21 @@ const char *mapSweeperB[] = {
     mapSweeperNorthB, mapSweeperEastB
 };
 
+const char *mapSparxA[] = {
+    mapSparxSouthA, mapSparxWestA,
+    mapSparxNorthA, mapSparxEastA
+};
+
+const char *mapSparxB[] = {
+    mapSparxSouthB, mapSparxWestB,
+    mapSparxNorthB, mapSparxEastB
+};
+
+const char *mapSparxC[] = {
+    mapSparxSouthC, mapSparxWestC,
+    mapSparxNorthC, mapSparxEastC
+};
+
 const char *mapEnemyKill[] = {
     mapEnemyKillA, mapEnemyKillB,
     mapEnemyKillC, mapEnemyKillD

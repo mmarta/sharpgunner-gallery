@@ -12,9 +12,11 @@ u8 enemyStartYCoords[] = {
     ENEMY_NORTH_START_Y, ENEMY_EAST_START_Y
 };
 
+void EnemyGetDelta(s8 *, s8 *, direction *);
 void EnemyDeacticvate(u8);
 void EnemyInvaderUpdate(u8);
 void EnemySweeperUpdate(u8);
+void EnemySparxUpdate(u8);
 
 void EnemyInit(direction dir, enemytype type) {
     u8 i = ENEMY_COUNT;
@@ -44,6 +46,13 @@ void EnemyInit(direction dir, enemytype type) {
                         mapSweeperA[enemyPool[i].dir]
                     );
                     break;
+                case SPARX:
+                    enemyPool[i].score = 500;
+                    DrawMap(
+                        enemyPool[i].x, enemyPool[i].y,
+                        mapSparxA[enemyPool[i].dir]
+                    );
+                    break;
             }
             return;
         }
@@ -55,21 +64,25 @@ void EnemyDeactivate(u8 i) {
     enemyPool[i].active = false;
 }
 
-void EnemyInvaderUpdate(u8 i) {
-    s8 xDelta = 0, yDelta = 0;
-    switch(enemyPool[i].dir) {
+void EnemyGetDelta(s8 *dX, s8 *dY, direction *dir) {
+    switch(*dir) {
         case WEST:
-            yDelta = 1;
+            *dY = 1;
             break;
         case NORTH:
-            xDelta = -1;
+            *dX = -1;
             break;
         case EAST:
-            yDelta = -1;
+            *dY = -1;
             break;
         default:
-            xDelta = 1;
+            *dX = 1;
     }
+}
+
+void EnemyInvaderUpdate(u8 i) {
+    s8 xDelta = 0, yDelta = 0;
+    EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
 
     enemyPool[i].animationTime = enemyPool[i].animationTime == 79 ? 0 : enemyPool[i].animationTime + 1;
 
@@ -104,19 +117,7 @@ void EnemyInvaderUpdate(u8 i) {
 
 void EnemySweeperUpdate(u8 i) {
     s8 xDelta = 0, yDelta = 0;
-    switch(enemyPool[i].dir) {
-        case WEST:
-            yDelta = 1;
-            break;
-        case NORTH:
-            xDelta = -1;
-            break;
-        case EAST:
-            yDelta = -1;
-            break;
-        default:
-            xDelta = 1;
-    }
+    EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
 
     enemyPool[i].animationTime = enemyPool[i].animationTime == 7 ? 0 : enemyPool[i].animationTime + 1;
 
@@ -135,12 +136,47 @@ void EnemySweeperUpdate(u8 i) {
             EnemyDeactivate(i);
             return;
         }
-    }
 
-    if(!enemyPool[i].animationTime) {
         DrawMap(enemyPool[i].x, enemyPool[i].y, mapSweeperA[enemyPool[i].dir]);
     } else if(enemyPool[i].animationTime == 4) {
         DrawMap(enemyPool[i].x, enemyPool[i].y, mapSweeperB[enemyPool[i].dir]);
+    }
+}
+
+void EnemySparxUpdate(u8 i) {
+    s8 xDelta = 0, yDelta = 0;
+    EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
+
+    enemyPool[i].animationTime = enemyPool[i].animationTime == 79 ? 0 : enemyPool[i].animationTime + 1;
+
+    // Update on next animation
+    if(!enemyPool[i].animationTime) {
+        Fill(enemyPool[i].x, enemyPool[i].y, ENEMY_WIDTH, ENEMY_HEIGHT, 0);
+        enemyPool[i].x += xDelta;
+        enemyPool[i].y += yDelta;
+        enemyPool[i].movements++;
+
+        // Reached the player? Then Deactivate
+        if(
+            enemyPool[i].x == playerXCoords[enemyPool[i].dir]
+            && enemyPool[i].y == playerYCoords[enemyPool[i].dir]
+        ) {
+            EnemyDeactivate(i);
+            return;
+        }
+    }
+    
+    switch(enemyPool[i].animationTime) {
+        case 0:
+            DrawMap(enemyPool[i].x, enemyPool[i].y, mapSparxA[enemyPool[i].dir]);
+            break;
+        case 20:
+        case 60:
+            DrawMap(enemyPool[i].x, enemyPool[i].y, mapSparxB[enemyPool[i].dir]);
+            break;
+        case 40:
+            DrawMap(enemyPool[i].x, enemyPool[i].y, mapSparxC[enemyPool[i].dir]);
+            break;
     }
 }
 
@@ -166,6 +202,9 @@ void EnemyUpdate(u8 i) {
             break;
         case SWEEPER:
             EnemySweeperUpdate(i);
+            break;
+        case SPARX:
+            EnemySparxUpdate(i);
             break;
     }
 }
