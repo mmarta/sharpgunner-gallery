@@ -81,12 +81,33 @@
             <map var-name="mapSparxNorthC" left="20" top="9" width="2" height="2" />
             <map var-name="mapSparxEastC" left="22" top="9" width="2" height="2" />
 
-            <map var-name="mapHookNE" left="0" top="11" width="1" height="1" />
-            <map var-name="mapHookSE" left="1" top="11" width="1" height="1" />
-            <map var-name="mapHookSW" left="2" top="11" width="1" height="1" />
-            <map var-name="mapHookNW" left="3" top="11" width="1" height="1" />
-            <map var-name="mapWireA" left="4" top="11" width="1" height="1" />
-            <map var-name="mapWireB" left="5" top="11" width="1" height="1" />
+            <map var-name="mapLaserBackfeedHorizontalA" left="24" top="10" width="2" height="1" />
+            <map var-name="mapLaserBackfeedHorizontalB" left="24" top="9" width="2" height="1" />
+            <map var-name="mapLaserBackfeedHorizontalC" left="26" top="10" width="2" height="1" />
+            <map var-name="mapLaserBackfeedHorizontalD" left="26" top="9" width="2" height="1" />
+            <map var-name="mapLaserBackfeedHorizontalE" left="28" top="10" width="2" height="1" />
+            <map var-name="mapLaserBackfeedHorizontalF" left="28" top="9" width="2" height="1" />
+            <map var-name="mapLaserBackfeedHorizontalG" left="30" top="10" width="2" height="1" />
+            <map var-name="mapLaserBackfeedHorizontalH" left="30" top="9" width="2" height="1" />
+
+            <map var-name="mapLaserBackfeedVerticalA" left="0" top="11" width="1" height="2" />
+            <map var-name="mapLaserBackfeedVerticalB" left="1" top="11" width="1" height="2" />
+            <map var-name="mapLaserBackfeedVerticalC" left="2" top="11" width="1" height="2" />
+            <map var-name="mapLaserBackfeedVerticalD" left="3" top="11" width="1" height="2" />
+            <map var-name="mapLaserBackfeedVerticalE" left="4" top="11" width="1" height="2" />
+            <map var-name="mapLaserBackfeedVerticalF" left="5" top="11" width="1" height="2" />
+            <map var-name="mapLaserBackfeedVerticalG" left="6" top="11" width="1" height="2" />
+            <map var-name="mapLaserBackfeedVerticalH" left="7" top="11" width="1" height="2" />
+
+            <map var-name="mapEnemyLaserHorizontal" left="8" top="11" width="2" height="2" />
+            <map var-name="mapEnemyLaserVertical" left="10" top="11" width="2" height="2" />
+
+            <map var-name="mapHookNE" left="0" top="13" width="1" height="1" />
+            <map var-name="mapHookSE" left="1" top="13" width="1" height="1" />
+            <map var-name="mapHookSW" left="2" top="13" width="1" height="1" />
+            <map var-name="mapHookNW" left="3" top="13" width="1" height="1" />
+            <map var-name="mapWireA" left="4" top="13" width="1" height="1" />
+            <map var-name="mapWireB" left="5" top="13" width="1" height="1" />
         </maps>
     </output>
 </gfx-xform>

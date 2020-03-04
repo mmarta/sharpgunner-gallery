@@ -36,6 +36,20 @@ const char *mapLaserHorizontal[] = {
     mapLaserHorizontalG, mapLaserHorizontalH
 };
 
+const char *mapLaserBackfeedVertical[] = {
+    mapLaserBackfeedVerticalA, mapLaserBackfeedVerticalB,
+    mapLaserBackfeedVerticalC, mapLaserBackfeedVerticalD,
+    mapLaserBackfeedVerticalE, mapLaserBackfeedVerticalF,
+    mapLaserBackfeedVerticalG, mapLaserBackfeedVerticalH
+};
+
+const char *mapLaserBackfeedHorizontal[] = {
+    mapLaserBackfeedHorizontalA, mapLaserBackfeedHorizontalB,
+    mapLaserBackfeedHorizontalC, mapLaserBackfeedHorizontalD,
+    mapLaserBackfeedHorizontalE, mapLaserBackfeedHorizontalF,
+    mapLaserBackfeedHorizontalG, mapLaserBackfeedHorizontalH
+};
+
 const char *mapInvaderA[] = {
     mapInvaderSouthA, mapInvaderWestA,
     mapInvaderNorthA, mapInvaderEastA

@@ -84,6 +84,27 @@ extern const char mapSparxWestC[];
 extern const char mapSparxNorthC[];
 extern const char mapSparxEastC[];
 
+extern const char mapLaserBackfeedHorizontalA[];
+extern const char mapLaserBackfeedHorizontalB[];
+extern const char mapLaserBackfeedHorizontalC[];
+extern const char mapLaserBackfeedHorizontalD[];
+extern const char mapLaserBackfeedHorizontalE[];
+extern const char mapLaserBackfeedHorizontalF[];
+extern const char mapLaserBackfeedHorizontalG[];
+extern const char mapLaserBackfeedHorizontalH[];
+
+extern const char mapLaserBackfeedVerticalA[];
+extern const char mapLaserBackfeedVerticalB[];
+extern const char mapLaserBackfeedVerticalC[];
+extern const char mapLaserBackfeedVerticalD[];
+extern const char mapLaserBackfeedVerticalE[];
+extern const char mapLaserBackfeedVerticalF[];
+extern const char mapLaserBackfeedVerticalG[];
+extern const char mapLaserBackfeedVerticalH[];
+
+extern const char mapEnemyLaserVertical[];
+extern const char mapEnemyLaserHorizontal[];
+
 extern const char mapHookNE[];
 extern const char mapHookSE[];
 extern const char mapHookSW[];
@@ -100,6 +121,8 @@ extern const char *mapFighterKill[];
 
 extern const char *mapLaserVertical[];
 extern const char *mapLaserHorizontal[];
+extern const char *mapLaserBackfeedVertical[];
+extern const char *mapLaserBackfeedHorizontal[];
 
 extern const char *mapInvaderA[];
 extern const char *mapInvaderB[];

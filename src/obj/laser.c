@@ -71,19 +71,19 @@ void LaserUpdate(u8 i) {
     switch(lasers[i].dir) {
         case WEST:
             lasers[i].y -= lasers[i].backfeed ? -1 : 1;
-            DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
+            DrawMap(lasers[i].x, lasers[i].y, lasers[i].backfeed ? mapLaserBackfeedHorizontal[lasers[i].tileIndex] : mapLaserHorizontal[lasers[i].tileIndex]);
             break;
         case EAST:
             lasers[i].y += lasers[i].backfeed ? -1 : 1;
-            DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
+            DrawMap(lasers[i].x, lasers[i].y, lasers[i].backfeed ? mapLaserBackfeedHorizontal[lasers[i].tileIndex] : mapLaserHorizontal[lasers[i].tileIndex]);
             break;
         case NORTH:
             lasers[i].x += lasers[i].backfeed ? -1 : 1;
-            DrawMap(lasers[i].x, lasers[i].y, mapLaserVertical[lasers[i].tileIndex]);
+            DrawMap(lasers[i].x, lasers[i].y, lasers[i].backfeed ? mapLaserBackfeedVertical[lasers[i].tileIndex]: mapLaserVertical[lasers[i].tileIndex]);
             break;
         default:
             lasers[i].x -= lasers[i].backfeed ? -1 : 1;
-            DrawMap(lasers[i].x, lasers[i].y, mapLaserVertical[lasers[i].tileIndex]);
+            DrawMap(lasers[i].x, lasers[i].y, lasers[i].backfeed ? mapLaserBackfeedVertical[lasers[i].tileIndex]: mapLaserVertical[lasers[i].tileIndex]);
     }
 }
 
