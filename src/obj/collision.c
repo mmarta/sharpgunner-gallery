@@ -53,7 +53,7 @@ void CollisionRunAll() {
                 &enemyPool[i].x, &enemyPool[i].y, ENEMY_WIDTH, ENEMY_HEIGHT,
                 &lasers[j].x, &lasers[j].y, lasers[j].w, lasers[j].h
             )) {
-                if(enemyPool[i].type == SPARX && enemyPool[i].animationTime >= 40 && enemyPool[i].animationTime < 60) {
+                if(enemyPool[i].type == SPARX && enemyPool[i].animationTime >= 20 && enemyPool[i].animationTime < 70) {
                     // Sparx laser feedback check
                     lasers[j].backfeed = true;
                 } else {

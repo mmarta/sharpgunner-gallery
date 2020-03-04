@@ -56,6 +56,7 @@ int main() {
 
         PlayerUpdate();
 
+        // Input
         PlayerInput();
     }
 

@@ -165,16 +165,20 @@ void EnemySparxUpdate(u8 i) {
             return;
         }
     }
-    
+
     switch(enemyPool[i].animationTime) {
         case 0:
             DrawMap(enemyPool[i].x, enemyPool[i].y, mapSparxA[enemyPool[i].dir]);
             break;
-        case 20:
-        case 60:
+        case 10:
+        case 70:
             DrawMap(enemyPool[i].x, enemyPool[i].y, mapSparxB[enemyPool[i].dir]);
             break;
+        case 20:
+        case 30:
         case 40:
+        case 50:
+        case 60:
             DrawMap(enemyPool[i].x, enemyPool[i].y, mapSparxC[enemyPool[i].dir]);
             break;
     }
