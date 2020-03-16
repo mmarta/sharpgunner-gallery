@@ -10,4 +10,9 @@ typedef enum {
   SOUTH, WEST, NORTH, EAST
 } direction;
 
+#define EDGE_WEST 26
+#define EDGE_EAST 0
+#define EDGE_NORTH 2
+#define EDGE_SOUTH 28
+
 #endif

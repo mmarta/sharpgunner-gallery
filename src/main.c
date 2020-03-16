@@ -27,6 +27,7 @@ int main() {
     PlayerResume();
 
     EnemyInit(WEST, INVADER);
+    LaserEnemyInit(WEST, ENEMY_WEST_START_X, ENEMY_WEST_START_Y + 2);
     EnemyInit(SOUTH, SWEEPER);
     EnemyInit(EAST, SPARX);
 
@@ -47,6 +48,11 @@ int main() {
         i = LASER_COUNT;
         while(i--) {
             LaserUpdate(i);
+        }
+
+        i = LASER_COUNT_ENEMY;
+        while(i--) {
+            LaserEnemyUpdate(i);
         }
 
         i = ENEMY_COUNT;

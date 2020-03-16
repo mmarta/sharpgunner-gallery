@@ -9,14 +9,14 @@
 #define PLAYER_WIDTH 2
 #define PLAYER_HEIGHT 2
 
-#define PLAYER_SOUTH_X 28
+#define PLAYER_SOUTH_X EDGE_SOUTH
 #define PLAYER_SOUTH_Y 13
 #define PLAYER_WEST_X 15
-#define PLAYER_WEST_Y 26
-#define PLAYER_NORTH_X 2
+#define PLAYER_WEST_Y EDGE_WEST
+#define PLAYER_NORTH_X EDGE_NORTH
 #define PLAYER_NORTH_Y 13
 #define PLAYER_EAST_X 15
-#define PLAYER_EAST_Y 0
+#define PLAYER_EAST_Y EDGE_EAST
 
 typedef struct {
     u8 lives, animationTime, killTime, firing, poweredUp, x, y;
