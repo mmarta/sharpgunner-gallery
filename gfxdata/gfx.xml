@@ -108,6 +108,9 @@
             <map var-name="mapHookNW" left="3" top="13" width="1" height="1" />
             <map var-name="mapWireA" left="4" top="13" width="1" height="1" />
             <map var-name="mapWireB" left="5" top="13" width="1" height="1" />
+
+            <map var-name="mapBGCrossA" left="6" top="13" width="1" height="1" />
+            <map var-name="mapBGCrossB" left="7" top="13" width="1" height="1" />
         </maps>
     </output>
 </gfx-xform>

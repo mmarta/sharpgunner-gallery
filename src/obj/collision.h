@@ -1,5 +1,5 @@
-#ifndef COLLISION_H
-#define COLLISION_H
+#ifndef _COLLISION_H
+#define _COLLISION_H
 
 #include "../system/defines.h"
 #include "laser.h"

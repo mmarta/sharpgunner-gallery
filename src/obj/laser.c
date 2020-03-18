@@ -3,6 +3,8 @@
 Laser lasers[LASER_COUNT];
 Laser lasersEnemy[LASER_COUNT_ENEMY];
 
+void LaserUpdateTileIndex(u8);
+
 u8 LaserInit(direction dir, u8 x, u8 y) {
     u8 i = LASER_COUNT;
 
@@ -72,29 +74,30 @@ void LaserUpdate(u8 i) {
         return;
     }
 
-    if(lasers[i].backfeed) {
+    // Backfeed vs forward
+    if(lasers[i].backfeed && lasers[i].time > 0) {
         lasers[i].time -= 2;
     } else {
         lasers[i].time += 2;
     }
 
-    if(lasers[i].time == 20 || !lasers[i].time) {
+    // Lasers
+    if(lasers[i].time == 20) {
         LaserDeactivate(i);
         return;
     } else if(lasers[i].time < 4) {
-        if(lasers[i].time % 2 == 0) {
-            lasers[i].tileIndex += lasers[i].backfeed ? -1 : 1;
-        }
+        LaserUpdateTileIndex(i);
     } else if(lasers[i].time < 16) {
         if(lasers[i].time % 4 == 0) {
-            lasers[i].tileIndex += lasers[i].backfeed ? -1 : 1;
+            LaserUpdateTileIndex(i);
         }
     } else {
         if(lasers[i].time % 2 == 0) {
-            lasers[i].tileIndex += lasers[i].backfeed ? -1 : 1;
+            LaserUpdateTileIndex(i);
         }
     }
 
+    // Don't update if it's not a multiple of 2
     if(lasers[i].time % 2) {
         return;
     }
@@ -102,20 +105,64 @@ void LaserUpdate(u8 i) {
     Fill(lasers[i].x, lasers[i].y, lasers[i].w, lasers[i].h, 0);
     switch(lasers[i].dir) {
         case WEST:
-            lasers[i].y -= lasers[i].backfeed ? -1 : 1;
-            DrawMap(lasers[i].x, lasers[i].y, lasers[i].backfeed ? mapLaserBackfeedHorizontal[lasers[i].tileIndex] : mapLaserHorizontal[lasers[i].tileIndex]);
+            if(lasers[i].backfeed) {
+                if(lasers[i].y == EDGE_WEST) {
+                    LaserEnemyDeactivate(i);
+                } else {
+                    lasers[i].y++;
+                    DrawMap(lasers[i].x, lasers[i].y, mapLaserBackfeedHorizontal[lasers[i].tileIndex]);
+                }
+            } else {
+                lasers[i].y--;
+                DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
+            }
             break;
         case EAST:
-            lasers[i].y += lasers[i].backfeed ? -1 : 1;
-            DrawMap(lasers[i].x, lasers[i].y, lasers[i].backfeed ? mapLaserBackfeedHorizontal[lasers[i].tileIndex] : mapLaserHorizontal[lasers[i].tileIndex]);
+            if(lasers[i].backfeed) {
+                if(lasers[i].y == EDGE_EAST) {
+                    LaserEnemyDeactivate(i);
+                } else {
+                    lasers[i].y--;
+                    DrawMap(lasers[i].x, lasers[i].y, mapLaserBackfeedHorizontal[lasers[i].tileIndex]);
+                }
+            } else {
+                lasers[i].y++;
+                DrawMap(lasers[i].x, lasers[i].y, mapLaserHorizontal[lasers[i].tileIndex]);
+            }
             break;
         case NORTH:
-            lasers[i].x += lasers[i].backfeed ? -1 : 1;
-            DrawMap(lasers[i].x, lasers[i].y, lasers[i].backfeed ? mapLaserBackfeedVertical[lasers[i].tileIndex]: mapLaserVertical[lasers[i].tileIndex]);
+            if(lasers[i].backfeed) {
+                if(lasers[i].y == EDGE_NORTH) {
+                    LaserEnemyDeactivate(i);
+                } else {
+                    lasers[i].x--;
+                    DrawMap(lasers[i].x, lasers[i].y, mapLaserBackfeedVertical[lasers[i].tileIndex]);
+                }
+            } else {
+                lasers[i].x++;
+                DrawMap(lasers[i].x, lasers[i].y, mapLaserVertical[lasers[i].tileIndex]);
+            }
             break;
         default:
-            lasers[i].x -= lasers[i].backfeed ? -1 : 1;
-            DrawMap(lasers[i].x, lasers[i].y, lasers[i].backfeed ? mapLaserBackfeedVertical[lasers[i].tileIndex]: mapLaserVertical[lasers[i].tileIndex]);
+            if(lasers[i].backfeed) {
+                if(lasers[i].y == EDGE_SOUTH) {
+                    LaserEnemyDeactivate(i);
+                } else {
+                    lasers[i].x++;
+                    DrawMap(lasers[i].x, lasers[i].y, mapLaserBackfeedVertical[lasers[i].tileIndex]);
+                }
+            } else {
+                lasers[i].x--;
+                DrawMap(lasers[i].x, lasers[i].y, mapLaserVertical[lasers[i].tileIndex]);
+            }
+    }
+}
+
+void LaserUpdateTileIndex(u8 i) {
+    if(lasers[i].backfeed) {
+        lasers[i].tileIndex += lasers[i].tileIndex ? -1 : 0;
+    } else {
+        lasers[i].tileIndex++;
     }
 }
 
@@ -135,7 +182,7 @@ void LaserEnemyUpdate(u8 i) {
             if(lasersEnemy[i].y == EDGE_WEST) {
                 LaserEnemyDeactivate(i);
             } else {
-                lasersEnemy[i].y += 1;
+                lasersEnemy[i].y++;
                 DrawMap(lasersEnemy[i].x, lasersEnemy[i].y, mapEnemyLaserHorizontal);
             }
             break;
@@ -143,7 +190,7 @@ void LaserEnemyUpdate(u8 i) {
             if(lasersEnemy[i].y == EDGE_EAST) {
                 LaserEnemyDeactivate(i);
             } else {
-                lasersEnemy[i].y -= 1;
+                lasersEnemy[i].y--;
                 DrawMap(lasersEnemy[i].x, lasersEnemy[i].y, mapEnemyLaserHorizontal);
             }
             break;
@@ -151,7 +198,7 @@ void LaserEnemyUpdate(u8 i) {
             if(lasersEnemy[i].y == EDGE_NORTH) {
                 LaserEnemyDeactivate(i);
             } else {
-                lasersEnemy[i].x -= 1;
+                lasersEnemy[i].x--;
                 DrawMap(lasersEnemy[i].x, lasersEnemy[i].y, mapEnemyLaserVertical);
             }
             break;
@@ -159,7 +206,7 @@ void LaserEnemyUpdate(u8 i) {
             if(lasersEnemy[i].y == EDGE_SOUTH) {
                 LaserEnemyDeactivate(i);
             } else {
-                lasersEnemy[i].x += 1;
+                lasersEnemy[i].x++;
                 DrawMap(lasersEnemy[i].x, lasersEnemy[i].y, mapEnemyLaserVertical);
             }
     }

@@ -1,5 +1,5 @@
-#ifndef ENEMY_H
-#define ENEMY_H
+#ifndef _ENEMY_H
+#define _ENEMY_H
 
 #include "../system/defines.h"
 #include "../system/graphics.h"

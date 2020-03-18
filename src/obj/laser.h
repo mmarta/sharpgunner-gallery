@@ -1,5 +1,5 @@
-#ifndef LASER_H
-#define LASER_H
+#ifndef _LASER_H
+#define _LASER_H
 
 #include "../system/defines.h"
 #include "../system/graphics.h"

@@ -2,6 +2,7 @@
 
 u8 CollisionCheck(u8 *, u8 *, u8, u8, u8 *, u8 *, u8, u8);
 u8 CollisionEnemyLaserPreCheck(Enemy *, Laser *);
+u8 CollisionPlayerLaserPreCheck(Player *, Laser *);
 u8 CollisionEnemyPlayerPreCheck(Enemy *, Player *);
 
 u8 CollisionCheck(
@@ -23,7 +24,19 @@ u8 CollisionEnemyLaserPreCheck(Enemy *enemy, Laser *laser) {
         return false;
     }
 
-    if((*enemy).killTime > 0) {
+    if((*enemy).killTime > 0 || (*laser).backfeed) {
+        return false;
+    }
+
+    return true;
+}
+
+u8 CollisionPlayerLaserPreCheck(Player *player, Laser *laser) {
+    if(!(*player).active || !(*laser).active) {
+        return false;
+    }
+
+    if((*player).killTime > 0) {
         return false;
     }
 
@@ -62,7 +75,6 @@ void CollisionRunAll() {
                     EnemyKill(i);
                     PlayerAddScoreDelta(enemyPool[i].score);
                 }
-
             }
         }
 
@@ -74,6 +86,28 @@ void CollisionRunAll() {
             PlayerKill();
             EnemyKill(i);
             PlayerAddScoreDelta(enemyPool[i].score);
+        }
+    }
+
+    i = LASER_COUNT;
+    while(i--) {
+        if(CollisionPlayerLaserPreCheck(&players[activePlayer], &lasers[i]) && CollisionCheck(
+            &lasers[i].x, &lasers[i].y, lasers[i].w, lasers[i].h,
+            &players[activePlayer].x, &players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT
+        )) {
+            PlayerKill();
+            LaserDeactivate(i);
+        }
+    }
+
+    i = LASER_COUNT_ENEMY;
+    while(i--) {
+        if(CollisionPlayerLaserPreCheck(&players[activePlayer], &lasersEnemy[i]) && CollisionCheck(
+            &lasersEnemy[i].x, &lasersEnemy[i].y, lasersEnemy[i].w, lasersEnemy[i].h,
+            &players[activePlayer].x, &players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT
+        )) {
+            PlayerKill();
+            LaserEnemyDeactivate(i);
         }
     }
 }

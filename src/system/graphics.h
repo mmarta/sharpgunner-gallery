@@ -1,5 +1,5 @@
-#ifndef GRAPHICS_H
-#define GRAPHICS_H
+#ifndef _GRAPHICS_H
+#define _GRAPHICS_H
 
 #include "defines.h"
 
@@ -111,6 +111,9 @@ extern const char mapHookSW[];
 extern const char mapHookNW[];
 extern const char mapWireA[];
 extern const char mapWireB[];
+
+extern const char mapBGCrossA[];
+extern const char mapBGCrossB[];
 
 // Progression Maps (arrays of pointers)
 

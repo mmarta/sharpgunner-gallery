@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef _PLAYER_H
+#define _PLAYER_H
 
 #include "../system/defines.h"
 #include "../system/graphics.h"

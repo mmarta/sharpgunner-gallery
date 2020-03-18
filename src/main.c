@@ -1,5 +1,6 @@
 #include "system/defines.h"
 #include "system/graphics.h"
+#include "system/background.h"
 #include "obj/laser.h"
 #include "obj/player.h"
 #include "obj/enemy.h"
@@ -21,6 +22,8 @@ int main() {
     DrawHiLabel();
     PrintU32Vertical(1, 11, hi, 9999999);
 
+    BackgroundStart();
+
     PlayerStart(0);
     PlayerStart(1);
     activePlayer = 0;
@@ -40,6 +43,8 @@ int main() {
             hi = players[activePlayer].score;
             PrintU32Vertical(1, 11, hi, 9999999);
         }
+
+        BackgroundUpdate();
 
         // ...then collisions
         CollisionRunAll();

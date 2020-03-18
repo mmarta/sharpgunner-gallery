@@ -1,5 +1,5 @@
-#ifndef DEFINES_H
-#define DEFINES_H
+#ifndef _DEFINES_H
+#define _DEFINES_H
 
 #include <avr/io.h>
 #include <stdlib.h>
