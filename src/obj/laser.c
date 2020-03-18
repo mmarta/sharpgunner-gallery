@@ -107,7 +107,7 @@ void LaserUpdate(u8 i) {
         case WEST:
             if(lasers[i].backfeed) {
                 if(lasers[i].y == EDGE_WEST) {
-                    LaserEnemyDeactivate(i);
+                    LaserDeactivate(i);
                 } else {
                     lasers[i].y++;
                     DrawMap(lasers[i].x, lasers[i].y, mapLaserBackfeedHorizontal[lasers[i].tileIndex]);
@@ -120,7 +120,7 @@ void LaserUpdate(u8 i) {
         case EAST:
             if(lasers[i].backfeed) {
                 if(lasers[i].y == EDGE_EAST) {
-                    LaserEnemyDeactivate(i);
+                    LaserDeactivate(i);
                 } else {
                     lasers[i].y--;
                     DrawMap(lasers[i].x, lasers[i].y, mapLaserBackfeedHorizontal[lasers[i].tileIndex]);
@@ -132,8 +132,8 @@ void LaserUpdate(u8 i) {
             break;
         case NORTH:
             if(lasers[i].backfeed) {
-                if(lasers[i].y == EDGE_NORTH) {
-                    LaserEnemyDeactivate(i);
+                if(lasers[i].x == EDGE_NORTH) {
+                    LaserDeactivate(i);
                 } else {
                     lasers[i].x--;
                     DrawMap(lasers[i].x, lasers[i].y, mapLaserBackfeedVertical[lasers[i].tileIndex]);
@@ -145,8 +145,8 @@ void LaserUpdate(u8 i) {
             break;
         default:
             if(lasers[i].backfeed) {
-                if(lasers[i].y == EDGE_SOUTH) {
-                    LaserEnemyDeactivate(i);
+                if(lasers[i].x == EDGE_SOUTH) {
+                    LaserDeactivate(i);
                 } else {
                     lasers[i].x++;
                     DrawMap(lasers[i].x, lasers[i].y, mapLaserBackfeedVertical[lasers[i].tileIndex]);

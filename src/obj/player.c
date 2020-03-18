@@ -74,6 +74,7 @@ void PlayerDrawScoreLabel(u8 i) {
 void PlayerResume() {
     players[activePlayer].animationTime = 0;
     players[activePlayer].killTime = 0;
+    players[activePlayer].hookEnabled = false;
     toggleTime = 59;
 
     // Back to south
@@ -199,7 +200,7 @@ void PlayerMoveHook() {
                 }
                 break;
         }
-        
+
         if(players[activePlayer].animationTime % 2 == 0) {
             PlayerDrawTiles();
         }
@@ -224,7 +225,10 @@ void PlayerDrawTiles() {
 }
 
 void PlayerInput() {
-    if(players[activePlayer].hookEnabled) {
+    if(
+        !players[activePlayer].active || players[activePlayer].hookEnabled
+        || players[activePlayer].killTime
+    ) {
         return;
     }
 

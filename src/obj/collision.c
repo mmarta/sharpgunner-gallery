@@ -24,7 +24,7 @@ u8 CollisionEnemyLaserPreCheck(Enemy *enemy, Laser *laser) {
         return false;
     }
 
-    if((*enemy).killTime > 0 || (*laser).backfeed) {
+    if((*enemy).killTime > 0) {
         return false;
     }
 
