@@ -45,8 +45,15 @@ void BackgroundUpdate() {
     }
 
     u8 i = BACKGROUND_CROSS_COUNT;
+    u8 prevTile, nextTile;
     while(i--) {
-        SetTile(bgCrossX[i], bgCrossY[i], 0);
+        // Only erase tile if it's a true BG "star"
+        prevTile = GetTile(bgCrossX[i], bgCrossY[i]);
+        if(prevTile == pgm_read_byte(&(mapBGCrossA[2])) || prevTile == pgm_read_byte(&(mapBGCrossB[2]))) {
+            SetTile(bgCrossX[i], bgCrossY[i], 0);
+        }
+
+        // Map the next Y position
         switch(i) {
             case 0:
             case 1:
@@ -58,6 +65,7 @@ void BackgroundUpdate() {
                 bgCrossY[i] = bgCrossY[i] == 27 ? 16 : bgCrossY[i] + 1;
         }
 
+        // Map the next X position
         switch(i) {
             case 1:
             case 2:
@@ -69,6 +77,10 @@ void BackgroundUpdate() {
                 bgCrossX[i] = bgCrossX[i] == 2 ? 13 : bgCrossX[i] - 1;
         }
 
-        DrawMap(bgCrossX[i], bgCrossY[i], i % 2 ? mapBGCrossB : mapBGCrossA);
+        // Only write tile if it's blank
+        nextTile = GetTile(bgCrossX[i], bgCrossY[i]);
+        if(nextTile == 0) {
+            DrawMap(bgCrossX[i], bgCrossY[i], i % 2 ? mapBGCrossB : mapBGCrossA);
+        }
     }
 }

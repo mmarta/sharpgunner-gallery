@@ -45,7 +45,7 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 ## Objects that must be built in order to link
 OBJECTS = uzeboxVideoEngineCore.o uzeboxCore.o uzeboxSoundEngine.o uzeboxSoundEngineCore.o uzeboxVideoEngine.o
-OBJECTS += graphics.o background.o laser.o player.o enemy.o collision.o main.o
+OBJECTS += graphics.o background.o laser.o player.o enemy.o collision.o level.o enemygen.o main.o
 
 ## Objects explicitly added by the user
 LINKONLYOBJECTS =
@@ -90,6 +90,12 @@ enemy.o: src/obj/enemy.c
 
 collision.o: src/obj/collision.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $< -o collision.o
+
+level.o: src/system/level.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $< -o level.o
+
+enemygen.o: src/system/enemygen.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $< -o enemygen.o
 
 main.o: src/main.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $< -o main.o

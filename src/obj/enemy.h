@@ -33,6 +33,8 @@ extern Enemy enemyPool[];
 extern u8 enemyStartXCoords[];
 extern u8 enemyStartYCoords[];
 
+extern u8 enemyNextSpawnTime;
+
 void EnemyInit(direction, enemytype);
 void EnemyUpdate(u8);
 void EnemyKill(u8);

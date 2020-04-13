@@ -5,6 +5,8 @@
 #include "obj/player.h"
 #include "obj/enemy.h"
 #include "obj/collision.h"
+#include "system/level.h"
+#include "system/enemygen.h"
 
 u32 hi = 10000;
 
@@ -29,10 +31,7 @@ int main() {
     activePlayer = 0;
     PlayerResume();
 
-    EnemyInit(WEST, INVADER);
-    LaserEnemyInit(WEST, ENEMY_WEST_START_X, ENEMY_WEST_START_Y + 2);
-    EnemyInit(SOUTH, SWEEPER);
-    EnemyInit(EAST, SPARX);
+    EnemyGenLevelBegin();
 
     while(1) {
         WaitVsync(1);
@@ -48,6 +47,9 @@ int main() {
 
         // ...then collisions
         CollisionRunAll();
+
+        // Level enemy gen next
+        EnemyGenEngineTick();
 
         // Sprite stuff next
         i = LASER_COUNT;

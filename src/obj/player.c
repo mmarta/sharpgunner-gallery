@@ -29,6 +29,7 @@ void PlayerStart(u8 i) {
     players[i].score = 0;
     players[i].poweredUp = 0;
     players[i].active = true;
+    players[i].level = 0;
     PlayerDrawScoreLabel(i);
     PrintU32Vertical(1, i ? 0 : 21, players[i].score, 9999999);
 }

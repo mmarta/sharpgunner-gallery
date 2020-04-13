@@ -20,7 +20,7 @@
 
 typedef struct {
     u8 lives, animationTime, killTime, firing, poweredUp, x, y;
-    u8 hookX, hookY, hookDX, hookDY, hookEnabled, active;
+    u8 hookX, hookY, hookDX, hookDY, hookEnabled, active, level;
     u16 scoreDelta;
     u32 score;
     direction dir, hookDir;
