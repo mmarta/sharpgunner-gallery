@@ -2,7 +2,6 @@
 
 u8 CollisionCheck(u8 *, u8 *, u8, u8, u8 *, u8 *, u8, u8);
 u8 CollisionEnemyLaserPreCheck(Enemy *, Laser *);
-u8 CollisionPlayerLaserPreCheck(Player *, Laser *);
 u8 CollisionEnemyPlayerPreCheck(Enemy *, Player *);
 
 u8 CollisionCheck(
@@ -97,17 +96,6 @@ void CollisionRunAll() {
         )) {
             PlayerKill();
             LaserDeactivate(i);
-        }
-    }
-
-    i = LASER_COUNT_ENEMY;
-    while(i--) {
-        if(CollisionPlayerLaserPreCheck(&players[activePlayer], &lasersEnemy[i]) && CollisionCheck(
-            &lasersEnemy[i].x, &lasersEnemy[i].y, lasersEnemy[i].w, lasersEnemy[i].h,
-            &players[activePlayer].x, &players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT
-        )) {
-            PlayerKill();
-            LaserEnemyDeactivate(i);
         }
     }
 }

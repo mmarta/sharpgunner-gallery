@@ -99,8 +99,9 @@
             <map var-name="mapLaserBackfeedVerticalG" left="6" top="11" width="1" height="2" />
             <map var-name="mapLaserBackfeedVerticalH" left="7" top="11" width="1" height="2" />
 
-            <map var-name="mapEnemyLaserHorizontal" left="8" top="11" width="2" height="2" />
-            <map var-name="mapEnemyLaserVertical" left="10" top="11" width="2" height="2" />
+            <map var-name="mapEnemyNucleusLarge" left="8" top="11" width="2" height="2" />
+            <map var-name="mapEnemyNucleusSmall" left="10" top="11" width="2" height="2" />
+            <map var-name="mapEnemyAsteroid" left="12" top="11" width="2" height="2" />
 
             <map var-name="mapHookNE" left="0" top="13" width="1" height="1" />
             <map var-name="mapHookSE" left="1" top="13" width="1" height="1" />

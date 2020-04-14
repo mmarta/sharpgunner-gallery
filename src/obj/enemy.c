@@ -84,10 +84,10 @@ void EnemyInvaderUpdate(u8 i) {
     s8 xDelta = 0, yDelta = 0;
     EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
 
-    enemyPool[i].animationTime = enemyPool[i].animationTime == 79 ? 0 : enemyPool[i].animationTime + 1;
+    enemyPool[i].animationTime = enemyPool[i].animationTime == 39 ? 0 : enemyPool[i].animationTime + 1;
 
     // Update on next animation
-    if(enemyPool[i].animationTime == 0 || enemyPool[i].animationTime == 40) {
+    if(enemyPool[i].animationTime == 0 || enemyPool[i].animationTime == 20) {
         Fill(enemyPool[i].x, enemyPool[i].y, ENEMY_WIDTH, ENEMY_HEIGHT, 0);
         enemyPool[i].x += xDelta;
         enemyPool[i].y += yDelta;

@@ -57,11 +57,6 @@ int main() {
             LaserUpdate(i);
         }
 
-        i = LASER_COUNT_ENEMY;
-        while(i--) {
-            LaserEnemyUpdate(i);
-        }
-
         i = ENEMY_COUNT;
         while(i--) {
             EnemyUpdate(i);
