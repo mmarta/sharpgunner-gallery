@@ -312,6 +312,7 @@ void EnemyUpdate(u8 i) {
 void EnemyKill(u8 i) {
     // Don't "kill" an asteroid
     if(enemyPool[i].type == ASTEROID) {
+        DrawMap(enemyPool[i].x, enemyPool[i].y, mapEnemyAsteroid);
         return;
     }
 
