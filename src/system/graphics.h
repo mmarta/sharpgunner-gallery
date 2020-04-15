@@ -138,6 +138,11 @@ extern const char *mapSparxA[];
 extern const char *mapSparxB[];
 extern const char *mapSparxC[];
 
+extern const char mapEnemyNucleusLarge[];
+extern const char mapEnemyNucleusSmall[];
+
+extern const char mapEnemyAsteroid[];
+
 extern const char *mapEnemyKill[];
 
 // The bare tiles themselves

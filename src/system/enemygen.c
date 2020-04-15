@@ -31,13 +31,25 @@ void EnemyGenEngineTick() {
     if(nextDirection == lastSpawnDirection) {
         nextDirection = (nextDirection + 1) % 4;
     }
-    u8 enemyPickedID = rand() % (currentLevel->invaderFactor + currentLevel->sweeperFactor + currentLevel->sparxFactor);
+
+    u8 enemyPickedID = rand() % (
+        currentLevel->invaderFactor + currentLevel->sweeperFactor + currentLevel->sparxFactor
+        + currentLevel->nucleusFactor + currentLevel->asteroidFactor
+    );
+
     if(enemyPickedID < currentLevel->invaderFactor) {
         EnemyInit(nextDirection, INVADER);
     } else if(enemyPickedID < currentLevel->invaderFactor + currentLevel->sweeperFactor) {
         EnemyInit(nextDirection, SWEEPER);
-    } else {
+    } else if(enemyPickedID < currentLevel->invaderFactor + currentLevel->sweeperFactor + currentLevel->sparxFactor) {
         EnemyInit(nextDirection, SPARX);
+    } else if(
+        enemyPickedID < currentLevel->invaderFactor + currentLevel->sweeperFactor
+        + currentLevel->sparxFactor + currentLevel->nucleusFactor
+    ) {
+        EnemyInit(nextDirection, NUCLEUS);
+    } else {
+        EnemyInit(nextDirection, ASTEROID);
     }
 
     // Set next timeout

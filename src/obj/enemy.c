@@ -17,6 +17,8 @@ void EnemyDeacticvate(u8);
 void EnemyInvaderUpdate(u8);
 void EnemySweeperUpdate(u8);
 void EnemySparxUpdate(u8);
+void EnemyNucleusUpdate(u8);
+void EnemyAsteroidUpdate(u8);
 
 void EnemyInit(direction dir, enemytype type) {
     u8 i = ENEMY_COUNT;
@@ -51,6 +53,20 @@ void EnemyInit(direction dir, enemytype type) {
                     DrawMap(
                         enemyPool[i].x, enemyPool[i].y,
                         mapSparxA[enemyPool[i].dir]
+                    );
+                    break;
+                case NUCLEUS:
+                    enemyPool[i].score = 200;
+                    DrawMap(
+                        enemyPool[i].x, enemyPool[i].y,
+                        mapEnemyNucleusLarge
+                    );
+                    break;
+                case ASTEROID:
+                    enemyPool[i].score = 0;
+                    DrawMap(
+                        enemyPool[i].x, enemyPool[i].y,
+                        mapEnemyAsteroid
                     );
                     break;
             }
@@ -184,6 +200,71 @@ void EnemySparxUpdate(u8 i) {
     }
 }
 
+void EnemyNucleusUpdate(u8 i) {
+    s8 xDelta = 0, yDelta = 0;
+    EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
+
+    // First phase
+    if(enemyPool[i].animationTime < 60) {
+        enemyPool[i].animationTime = enemyPool[i].animationTime == 19 ? 0 : enemyPool[i].animationTime + 1;
+    } else {
+        enemyPool[i].animationTime = enemyPool[i].animationTime == 63 ? 60 : enemyPool[i].animationTime + 1;
+    }
+
+    // Update on next animation
+    if(!enemyPool[i].animationTime || enemyPool[i].animationTime == 60) {
+        Fill(enemyPool[i].x, enemyPool[i].y, ENEMY_WIDTH, ENEMY_HEIGHT, 0);
+        enemyPool[i].x += xDelta;
+        enemyPool[i].y += yDelta;
+        enemyPool[i].movements++;
+
+        // Reached the player? Then Deactivate
+        if(
+            enemyPool[i].x == playerXCoords[enemyPool[i].dir]
+            && enemyPool[i].y == playerYCoords[enemyPool[i].dir]
+        ) {
+            EnemyDeactivate(i);
+            return;
+        }
+    }
+
+    switch(enemyPool[i].animationTime) {
+        case 0:
+            DrawMap(enemyPool[i].x, enemyPool[i].y, mapEnemyNucleusLarge);
+            break;
+        case 60:
+            DrawMap(enemyPool[i].x, enemyPool[i].y, mapEnemyNucleusSmall);
+            break;
+    }
+}
+
+void EnemyAsteroidUpdate(u8 i) {
+    s8 xDelta = 0, yDelta = 0;
+    EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
+
+    // First phase
+    enemyPool[i].animationTime = enemyPool[i].animationTime == 29 ? 0 : enemyPool[i].animationTime + 1;
+
+    // Update on next animation
+    if(!enemyPool[i].animationTime) {
+        Fill(enemyPool[i].x, enemyPool[i].y, ENEMY_WIDTH, ENEMY_HEIGHT, 0);
+        enemyPool[i].x += xDelta;
+        enemyPool[i].y += yDelta;
+        enemyPool[i].movements++;
+
+        // Reached the player? Then Deactivate
+        if(
+            enemyPool[i].x == playerXCoords[enemyPool[i].dir]
+            && enemyPool[i].y == playerYCoords[enemyPool[i].dir]
+        ) {
+            EnemyDeactivate(i);
+            return;
+        } else {
+            DrawMap(enemyPool[i].x, enemyPool[i].y, mapEnemyAsteroid);
+        }
+    }
+}
+
 void EnemyUpdate(u8 i) {
     if(!enemyPool[i].active) {
         return;
@@ -191,7 +272,16 @@ void EnemyUpdate(u8 i) {
 
     if(enemyPool[i].killTime > 0) {
         if(enemyPool[i].killTime == 17) {
-            EnemyDeactivate(i);
+            // Nucleus 1st hit?
+            if(enemyPool[i].type == NUCLEUS && enemyPool[i].animationTime < 60) {
+                enemyPool[i].killTime = 0;
+                enemyPool[i].score = 600;
+                enemyPool[i].animationTime = 60;
+                DrawMap(enemyPool[i].x, enemyPool[i].y, mapEnemyNucleusSmall);
+            } else { // Destroy anything else
+                EnemyDeactivate(i);
+            }
+
             return;
         } else if(enemyPool[i].killTime % 4 == 1) {
             DrawMap(enemyPool[i].x, enemyPool[i].y, mapEnemyKill[enemyPool[i].killTime / 4]);
@@ -210,9 +300,20 @@ void EnemyUpdate(u8 i) {
         case SPARX:
             EnemySparxUpdate(i);
             break;
+        case NUCLEUS:
+            EnemyNucleusUpdate(i);
+            break;
+        case ASTEROID:
+            EnemyAsteroidUpdate(i);
+            break;
     }
 }
 
 void EnemyKill(u8 i) {
+    // Don't "kill" an asteroid
+    if(enemyPool[i].type == ASTEROID) {
+        return;
+    }
+
     enemyPool[i].killTime = 1;
 }

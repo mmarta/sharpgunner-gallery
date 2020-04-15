@@ -4,7 +4,8 @@
 #include "defines.h"
 
 typedef struct {
-    u8 invaderFactor, sweeperFactor, sparxFactor, randomFactor, enemyTotal, minGenTime;
+    u8 invaderFactor, sweeperFactor, sparxFactor, nucleusFactor, asteroidFactor,
+        randomFactor, enemyTotal, minGenTime;
     u16 bonus;
 } Level;
 
