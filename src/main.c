@@ -31,6 +31,7 @@ int main() {
     activePlayer = 0;
     PlayerResume();
 
+    LevelStart();
     EnemyGenLevelBegin();
 
     while(1) {
@@ -49,6 +50,7 @@ int main() {
         CollisionRunAll();
 
         // Level enemy gen next
+        LevelUpdate();
         EnemyGenEngineTick();
 
         // Sprite stuff next
