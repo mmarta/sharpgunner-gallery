@@ -84,7 +84,6 @@ void CollisionRunAll() {
         )) {
             PlayerKill();
             EnemyKill(i);
-            PlayerAddScoreDelta(enemyPool[i].score);
         }
     }
 
