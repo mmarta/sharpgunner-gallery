@@ -14,6 +14,9 @@ typedef struct {
 extern const Level levels[];
 extern u8 levelTime, levelTick;
 
+void LevelStart();
+void LevelDisplayReady();
 void LevelUpdate();
+u8 LevelPlayerDeath();
 
 #endif

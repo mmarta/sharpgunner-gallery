@@ -18,6 +18,8 @@ void DrawHiLabel() {
 int main() {
     u8 i;
 
+    srand(GetTrueRandomSeed());
+
     SetTileTable(tiles);
     ClearVram();
 
@@ -29,9 +31,11 @@ int main() {
     PlayerStart(0);
     PlayerStart(1);
     activePlayer = 0;
-    PlayerResume();
+    playersInGame = 2;
 
     LevelStart();
+    LevelDisplayReady();
+    PlayerResume();
     EnemyGenLevelBegin();
 
     while(1) {
@@ -64,7 +68,17 @@ int main() {
             EnemyUpdate(i);
         }
 
-        PlayerUpdate();
+        if(!PlayerUpdate()) {
+            if(LevelPlayerDeath()) {
+                PlayerResume();
+            } else {
+                // Todo: Remove this.
+                Fill(2, 0, 28, 28, 0);
+                while(true) {
+                    WaitVsync(1);
+                }
+            }
+        }
 
         // Input
         PlayerInput();

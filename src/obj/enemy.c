@@ -13,7 +13,6 @@ u8 enemyStartYCoords[] = {
 };
 
 void EnemyGetDelta(s8 *, s8 *, direction *);
-void EnemyDeacticvate(u8);
 void EnemyInvaderUpdate(u8);
 void EnemySweeperUpdate(u8);
 void EnemySparxUpdate(u8);
@@ -76,8 +75,10 @@ void EnemyInit(direction dir, enemytype type) {
 }
 
 void EnemyDeactivate(u8 i) {
-    Fill(enemyPool[i].x, enemyPool[i].y, ENEMY_WIDTH, ENEMY_HEIGHT, 0);
-    enemyPool[i].active = false;
+    if(enemyPool[i].active) {
+        Fill(enemyPool[i].x, enemyPool[i].y, ENEMY_WIDTH, ENEMY_HEIGHT, 0);
+        enemyPool[i].active = false;
+    }
 }
 
 void EnemyGetDelta(s8 *dX, s8 *dY, direction *dir) {

@@ -15,11 +15,12 @@ u8 playerYCoords[] = {
 const char pBlankStr[] PROGMEM = "   ";
 
 u8 activePlayer = 0;
+u8 playersInGame = 0;
 u8 toggleTime = 0;
 u8 fireTimeout = 0;
 
 void PlayerDrawScoreLabel(u8);
-void PlayerSetDirCoordinates();
+void PlayerSetDirCoordinates(u8);
 void PlayerFire();
 void PlayerDrawTiles();
 void PlayerMoveHook();
@@ -30,13 +31,27 @@ void PlayerStart(u8 i) {
     players[i].poweredUp = 0;
     players[i].active = true;
     players[i].level = 0;
+    players[i].dir = SOUTH;
+    PlayerSetDirCoordinates(i);
     PlayerDrawScoreLabel(i);
     PrintU32Vertical(1, i ? 0 : 21, players[i].score, 9999999);
 }
 
-void PlayerSetDirCoordinates() {
-    players[activePlayer].x = playerXCoords[players[activePlayer].dir];
-    players[activePlayer].y = playerYCoords[players[activePlayer].dir];
+void PlayerDrawScoreLabel(u8 i) {
+    if(i) {
+        SetTile(0, 2, 69);
+        SetTile(0, 3, 68);
+        SetTile(0, 4, 67);
+    } else {
+        SetTile(0, 23, 66);
+        SetTile(0, 24, 65);
+        SetTile(0, 25, 64);
+    }
+}
+
+void PlayerSetDirCoordinates(u8 i) {
+    players[i].x = playerXCoords[players[i].dir];
+    players[i].y = playerYCoords[players[i].dir];
 }
 
 void PlayerAddScoreDelta(u16 val) {
@@ -60,18 +75,6 @@ void PlayerFlushScore() {
     }
 }
 
-void PlayerDrawScoreLabel(u8 i) {
-    if(i) {
-        SetTile(0, 2, 69);
-        SetTile(0, 3, 68);
-        SetTile(0, 4, 67);
-    } else {
-        SetTile(0, 23, 66);
-        SetTile(0, 24, 65);
-        SetTile(0, 25, 64);
-    }
-}
-
 void PlayerResume() {
     players[activePlayer].animationTime = 0;
     players[activePlayer].killTime = 0;
@@ -81,7 +84,7 @@ void PlayerResume() {
     // Back to south
     Fill(players[activePlayer].x, players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT, 0);
     players[activePlayer].dir = SOUTH;
-    PlayerSetDirCoordinates();
+    PlayerSetDirCoordinates(activePlayer);
     DrawMap(players[activePlayer].x, players[activePlayer].y, mapFighterSouthA);
 }
 
@@ -118,7 +121,7 @@ void PlayerMoveHook() {
         && players[activePlayer].y == players[activePlayer].hookDY
     ) { // Finishing
         players[activePlayer].dir = players[activePlayer].hookDir;
-        PlayerSetDirCoordinates();
+        PlayerSetDirCoordinates(activePlayer);
         players[activePlayer].hookEnabled = false;
     } else if(
         players[activePlayer].hookX == players[activePlayer].hookDX
@@ -283,9 +286,9 @@ void PlayerInput() {
     }
 }
 
-void PlayerUpdate() {
+u8 PlayerUpdate() {
     if(!players[activePlayer].active) {
-        return;
+        return true;
     }
 
     if(fireTimeout) {
@@ -298,9 +301,14 @@ void PlayerUpdate() {
         if(players[activePlayer].killTime == 25) {
             players[activePlayer].killTime = 0;
             players[activePlayer].lives--;
-            PlayerResume(); // Move this later
+            if(!players[activePlayer].lives) {
+                players[activePlayer].active = false;
+            }
+            // Make sure label is drawn.
+            PlayerDrawScoreLabel(activePlayer);
+            return false;
         }
-        return;
+        return true;
     }
 
     players[activePlayer].animationTime =
@@ -310,12 +318,14 @@ void PlayerUpdate() {
 
     if(players[activePlayer].hookEnabled) {
         PlayerMoveHook();
-        return;
+        return true;
     }
 
     if(players[activePlayer].animationTime % 2 == 0) {
         PlayerDrawTiles();
     }
+
+    return true;
 }
 
 void PlayerKill() {

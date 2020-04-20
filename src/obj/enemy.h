@@ -36,6 +36,7 @@ extern u8 enemyStartYCoords[];
 extern u8 enemyNextSpawnTime;
 
 void EnemyInit(direction, enemytype);
+void EnemyDeactivate(u8);
 void EnemyUpdate(u8);
 void EnemyKill(u8);
 

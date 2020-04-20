@@ -30,13 +30,14 @@ extern Player players[];
 extern u8 playerXCoords[];
 extern u8 playerYCoords[];
 extern u8 activePlayer;
+extern u8 playersInGame;
 
 void PlayerStart(u8);
 void PlayerAddScoreDelta(u16);
 void PlayerFlushScore();
 void PlayerResume();
 void PlayerInput();
-void PlayerUpdate();
+u8 PlayerUpdate();
 void PlayerKill();
 
 #endif
