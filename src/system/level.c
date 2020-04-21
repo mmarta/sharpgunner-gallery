@@ -55,7 +55,7 @@ void LevelIncrease() {
     PlayerAddScoreDelta(levels[players[activePlayer].level].bonus);
     bonusTextNum = levels[players[activePlayer].level].bonus;
     players[activePlayer].level++;
-    bonusTextTime = 96;
+    bonusTextTime = 160;
     LevelStart();
 }
 
