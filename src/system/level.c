@@ -17,6 +17,10 @@ const Level levels[] = {
     {
         .invaderFactor = 3, .sweeperFactor = 7, .sparxFactor = 0, .nucleusFactor = 0,
         .asteroidFactor = 3, .bonus = 3000, .randomFactor = 110, .minGenTime = 30
+    },
+    {
+        .invaderFactor = 2, .sweeperFactor = 7, .sparxFactor = 2, .nucleusFactor = 0,
+        .asteroidFactor = 5, .bonus = 3000, .randomFactor = 100, .minGenTime = 30
     }
 };
 
@@ -31,7 +35,7 @@ void LevelDisplayGameOver();
 
 void LevelStart() {
     levelTime = 30;
-    PrintVerticalRAM(30, 12, "STAGE TIME");
+    PrintVerticalRAM(30, 6, "TIME");
     PrintU8Vertical(30, 0, levelTime);
     PrintU8Vertical(30, 20, players[activePlayer].level + 1);
     PrintVerticalRAM(30, 27, "STAGE");
@@ -119,6 +123,7 @@ void LevelDisplayReady() {
     PrintVerticalPROGMEM(13, 16, readyStr);
     PrintVerticalPROGMEM(14, 17, activePlayer ? player2Str : player1Str);
     while(timer--) {
+        MachineInput();
         WaitVsync(1);
     }
 
@@ -131,6 +136,7 @@ void LevelDisplayGameOver() {
     PrintVerticalPROGMEM(13, 18, gameOverStr);
     PrintVerticalPROGMEM(14, 17, activePlayer ? player2Str : player1Str);
     while(timer--) {
+        MachineInput();
         WaitVsync(1);
     }
     Fill(2, 0, 28, 28, 0);
