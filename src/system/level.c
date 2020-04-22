@@ -120,8 +120,8 @@ u8 LevelPlayerDeath() {
 void LevelDisplayReady() {
     u8 timer = 90;
     Fill(2, 0, 28, 28, 0);
-    PrintVerticalPROGMEM(13, 16, readyStr);
-    PrintVerticalPROGMEM(14, 17, activePlayer ? player2Str : player1Str);
+    PrintVerticalPROGMEM(14, 16, readyStr);
+    PrintVerticalPROGMEM(16, 17, activePlayer ? player2Str : player1Str);
     while(timer--) {
         MachineInput();
         WaitVsync(1);
@@ -131,10 +131,10 @@ void LevelDisplayReady() {
 }
 
 void LevelDisplayGameOver() {
-    u8 timer = 120;
+    u8 timer = 180;
     Fill(2, 0, 28, 28, 0);
-    PrintVerticalPROGMEM(13, 18, gameOverStr);
-    PrintVerticalPROGMEM(14, 17, activePlayer ? player2Str : player1Str);
+    PrintVerticalPROGMEM(14, 18, gameOverStr);
+    PrintVerticalPROGMEM(16, 17, activePlayer ? player2Str : player1Str);
     while(timer--) {
         MachineInput();
         WaitVsync(1);
