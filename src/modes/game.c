@@ -1,12 +1,15 @@
 #include "game.h"
 
 void GameStart(u8 playerCount) {
+    machineMode = GAME;
     PlayerStart(0);
-    if(playerCount) {
+    if(playerCount == 2) {
         PlayerStart(1);
     }
     activePlayer = 0;
     playersInGame = playerCount;
+
+    Fill(30, 0, 2, 28, 0);
 
     LevelStart();
     LevelDisplayReady();
@@ -18,7 +21,7 @@ void GameStart(u8 playerCount) {
 
 void GameUpdate() {
     u8 i;
-    
+
     // BG Stuff first
     PlayerFlushScore();
     if(players[activePlayer].score > hi) {
@@ -51,14 +54,11 @@ void GameUpdate() {
             PlayerResume();
         } else {
             // Todo: Remove this.
-            Fill(2, 0, 28, 28, 0);
-            while(true) {
-                WaitVsync(1);
-            }
+            machineMode = TITLE;
+            return;
         }
     }
 
     // Input
-    MachineInput();
     PlayerInput();
 }

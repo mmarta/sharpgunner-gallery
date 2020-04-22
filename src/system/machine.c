@@ -1,10 +1,11 @@
 #include "machine.h"
 
 u8 credits = 0;
-MachineMode machineMode = GAME;
+MachineMode machineMode = TITLE;
 u32 hi = 10000;
 
 u8 coinSwitchDown = false;
+int inputs[] = { 0, 0 };
 
 void MachineSetup() {
     srand(GetTrueRandomSeed());
@@ -12,8 +13,8 @@ void MachineSetup() {
     SetTileTable(tiles);
     ClearVram();
 
-    PrintVerticalRAM(31, 17, "CREDITS");
-    PrintU8Vertical(31, 8, credits);
+    PrintVerticalRAM(31, 18, "CREDITS");
+    PrintU8Vertical(31, 9, credits);
 
     SetTile(0, 13, 71);
     SetTile(0, 14, 70);
@@ -21,10 +22,9 @@ void MachineSetup() {
 }
 
 void MachineInput() {
-    int inputs[] = {
-        ReadJoypad(0),
-        ReadJoypad(1)
-    };
+    // Read inputs (unrolled)
+    inputs[0] = ReadJoypad(0);
+    inputs[1] = ReadJoypad(1);
 
     // Test switch
     if(inputs[0] && BTN_SR) {
@@ -37,7 +37,7 @@ void MachineInput() {
             if(credits < 9) {
                 credits++;
                 if(machineMode != GAME) {
-                    PrintU8Vertical(31, 8, credits);
+                    PrintU8Vertical(31, 9, credits);
                 }
             }
             coinSwitchDown = true;

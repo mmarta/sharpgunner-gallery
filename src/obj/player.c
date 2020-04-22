@@ -236,7 +236,7 @@ void PlayerInput() {
         return;
     }
 
-    int stick = ReadJoypad(activePlayer);
+    int stick = inputs[activePlayer];
 
     if(stick & BTN_LEFT) {
         if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {

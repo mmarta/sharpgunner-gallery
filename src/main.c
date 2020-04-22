@@ -1,16 +1,27 @@
 #include "system/machine.h"
 #include "modes/game.h"
+#include "modes/title.h"
 
 int main() {
     MachineSetup();
-
-    // Todo: change to title/game alternation
-    GameStart(1);
+    TitleStart();
 
     while(1) {
         WaitVsync(1);
 
-        GameUpdate();
+        switch(machineMode) {
+            case GAME:
+                GameUpdate();
+                if(machineMode == TITLE) {
+                    TitleStart();
+                }
+                break;
+            case TITLE:
+                TitleUpdate();
+                break;
+        }
+
+        MachineInput();
     }
 
     return 0;

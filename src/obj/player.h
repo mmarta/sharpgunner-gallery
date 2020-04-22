@@ -3,6 +3,7 @@
 
 #include "../system/defines.h"
 #include "../system/graphics.h"
+#include "../system/machine.h"
 #include "laser.h"
 
 #define PLAYER_COUNT 2
@@ -37,6 +38,7 @@ void PlayerAddScoreDelta(u16);
 void PlayerFlushScore();
 void PlayerResume();
 void PlayerInput();
+void PlayerDrawTiles();
 u8 PlayerUpdate();
 void PlayerKill();
 

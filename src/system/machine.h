@@ -11,6 +11,7 @@ typedef enum {
 extern u8 credits;
 extern MachineMode machineMode;
 extern u32 hi;
+extern int inputs[];
 
 void MachineSetup();
 void MachineInput();
