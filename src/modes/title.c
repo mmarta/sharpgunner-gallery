@@ -39,53 +39,53 @@ void TitleUpdate() {
             players[activePlayer].y = 13;
             players[activePlayer].dir = SOUTH;
             break;
-        case 270:
+        case 248:
             players[activePlayer].dir = WEST;
             break;
-        case 300:
+        case 256:
             players[activePlayer].dir = NORTH;
             break;
-        case 330:
+        case 264:
             players[activePlayer].dir = EAST;
             break;
-        case 360:
+        case 272:
             players[activePlayer].dir = SOUTH;
             break;
-        case 390:
+        case 300:
             wireX = players[activePlayer].x - 1;
             wireY = players[activePlayer].y + 2;
             DrawMap(wireX, wireY, mapHookNW);
-        case 391:
-        case 392:
-        case 393:
-        case 394:
-        case 395:
+        case 301:
+        case 302:
+        case 303:
+        case 304:
+        case 305:
             DrawMap(wireX, wireY, mapWireB);
             wireX--;
             wireY++;
             DrawMap(wireX, wireY, mapHookNW);
             break;
-        case 419:
+        case 329:
             while(wireX < players[activePlayer].x) {
                 SetTile(wireX, wireY, 0);
                 wireX++;
                 wireY--;
             }
-        case 420:
+        case 330:
             wireX = players[activePlayer].x - 1;
             wireY = players[activePlayer].y - 1;
             DrawMap(wireX, wireY, mapHookNE);
-        case 421:
-        case 422:
-        case 423:
-        case 424:
-        case 425:
+        case 331:
+        case 332:
+        case 333:
+        case 334:
+        case 335:
             DrawMap(wireX, wireY, mapWireA);
             wireX--;
             wireY--;
             DrawMap(wireX, wireY, mapHookNE);
             break;
-        case 449:
+        case 359:
             while(wireX < players[activePlayer].x) {
                 SetTile(wireX, wireY, 0);
                 wireX++;
