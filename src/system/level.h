@@ -20,4 +20,6 @@ void LevelDisplayReady();
 void LevelUpdate();
 u8 LevelPlayerDeath();
 
+#define CLEAR_LEVEL() Fill(2, 0, 28, 28, 0)
+
 #endif
