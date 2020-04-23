@@ -21,7 +21,6 @@ u8 fireTimeout = 0;
 
 void PlayerDrawScoreLabel(u8);
 void PlayerSetDirCoordinates(u8);
-void PlayerFire();
 void PlayerDrawTiles();
 void PlayerMoveHook();
 
@@ -113,6 +112,37 @@ void PlayerFire() {
             fireTimeout = 2;
         }
     }
+}
+
+void PlayerLaunchHook(direction dir) {
+    switch(dir) {
+        case WEST:
+            players[activePlayer].hookDir = WEST;
+            players[activePlayer].hookX = players[activePlayer].x + (players[activePlayer].dir == NORTH ? 2 : -1);
+            players[activePlayer].hookY = players[activePlayer].y + 2;
+            players[activePlayer].hookEnabled = true;
+            break;
+        case EAST:
+            players[activePlayer].hookDir = EAST;
+            players[activePlayer].hookX = players[activePlayer].x + (players[activePlayer].dir == NORTH ? 2 : -1);
+            players[activePlayer].hookY = players[activePlayer].y - 1;
+            players[activePlayer].hookEnabled = true;
+            break;
+        case NORTH:
+            players[activePlayer].hookDir = NORTH;
+            players[activePlayer].hookY = players[activePlayer].y + (players[activePlayer].dir == EAST ? 2 : -1);
+            players[activePlayer].hookX = players[activePlayer].x - 1;
+            players[activePlayer].hookEnabled = true;
+            break;
+        default:
+            players[activePlayer].hookDir = SOUTH;
+            players[activePlayer].hookY = players[activePlayer].y + (players[activePlayer].dir == EAST ? 2 : -1);
+            players[activePlayer].hookX = players[activePlayer].x + 2;
+            players[activePlayer].hookEnabled = true;
+    }
+
+    players[activePlayer].hookDX = playerXCoords[players[activePlayer].hookDir];
+    players[activePlayer].hookDY = playerYCoords[players[activePlayer].hookDir];
 }
 
 void PlayerMoveHook() {
@@ -240,38 +270,20 @@ void PlayerInput() {
 
     if(stick & BTN_LEFT) {
         if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
-            players[activePlayer].hookDir = WEST;
-            players[activePlayer].hookX = players[activePlayer].x + (players[activePlayer].dir == NORTH ? 2 : -1);
-            players[activePlayer].hookY = players[activePlayer].y + 2;
-            players[activePlayer].hookEnabled = true;
+            PlayerLaunchHook(WEST);
         }
     } else if(stick & BTN_RIGHT) {
         if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
-            players[activePlayer].hookDir = EAST;
-            players[activePlayer].hookX = players[activePlayer].x + (players[activePlayer].dir == NORTH ? 2 : -1);
-            players[activePlayer].hookY = players[activePlayer].y - 1;
-            players[activePlayer].hookEnabled = true;
+            PlayerLaunchHook(EAST);
         }
     } else if(stick & BTN_UP) {
         if(players[activePlayer].dir == EAST || players[activePlayer].dir == WEST) {
-            players[activePlayer].hookDir = NORTH;
-            players[activePlayer].hookY = players[activePlayer].y + (players[activePlayer].dir == EAST ? 2 : -1);
-            players[activePlayer].hookX = players[activePlayer].x - 1;
-            players[activePlayer].hookEnabled = true;
+            PlayerLaunchHook(NORTH);
         }
     } else if(stick & BTN_DOWN) {
         if(players[activePlayer].dir == EAST || players[activePlayer].dir == WEST) {
-            players[activePlayer].hookDir = SOUTH;
-            players[activePlayer].hookY = players[activePlayer].y + (players[activePlayer].dir == EAST ? 2 : -1);
-            players[activePlayer].hookX = players[activePlayer].x + 2;
-            players[activePlayer].hookEnabled = true;
+            PlayerLaunchHook(SOUTH);
         }
-    }
-
-    // Did we grapple off this round?
-    if(players[activePlayer].hookEnabled) {
-        players[activePlayer].hookDX = playerXCoords[players[activePlayer].hookDir];
-        players[activePlayer].hookDY = playerYCoords[players[activePlayer].hookDir];
     }
 
     if(stick & BTN_A) {

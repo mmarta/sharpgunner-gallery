@@ -36,6 +36,8 @@ extern u8 playersInGame;
 void PlayerStart(u8);
 void PlayerAddScoreDelta(u16);
 void PlayerFlushScore();
+void PlayerFire();
+void PlayerLaunchHook(direction);
 void PlayerResume();
 void PlayerInput();
 void PlayerDrawTiles();

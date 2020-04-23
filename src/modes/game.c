@@ -22,21 +22,26 @@ void GameStart(u8 playerCount) {
 void GameUpdate() {
     u8 i;
 
-    // BG Stuff first
-    PlayerFlushScore();
-    if(players[activePlayer].score > hi) {
-        hi = players[activePlayer].score;
-        PrintU32Vertical(1, 11, hi, 9999999);
+    // Flush score (if not DEMO)
+    if(machineMode == GAME) {
+        PlayerFlushScore();
+        if(players[activePlayer].score > hi) {
+            hi = players[activePlayer].score;
+            PrintU32Vertical(1, 11, hi, 9999999);
+        }
     }
 
+    // BG Stuff
     BackgroundUpdate();
 
     // ...then collisions
     CollisionRunAll();
 
-    // Level enemy gen next
-    LevelUpdate();
-    EnemyGenEngineTick();
+    // Level enemy gen next (if not DEMO)
+    if(machineMode == GAME) {
+        LevelUpdate();
+        EnemyGenEngineTick();
+    }
 
     // Sprite stuff next
     i = LASER_COUNT;
@@ -59,6 +64,8 @@ void GameUpdate() {
         }
     }
 
-    // Input
-    PlayerInput();
+    // Input (if not DEMO)
+    if(machineMode == GAME) {
+        PlayerInput();
+    }
 }

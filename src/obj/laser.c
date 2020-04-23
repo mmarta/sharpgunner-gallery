@@ -135,6 +135,8 @@ void LaserUpdateTileIndex(u8 i) {
 }
 
 void LaserDeactivate(u8 i) {
-    Fill(lasers[i].x, lasers[i].y, lasers[i].w, lasers[i].h, 0);
-    lasers[i].active = 0;
+    if(lasers[i].active) {
+        Fill(lasers[i].x, lasers[i].y, lasers[i].w, lasers[i].h, 0);
+        lasers[i].active = 0;
+    }
 }
