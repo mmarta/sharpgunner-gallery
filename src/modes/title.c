@@ -66,6 +66,9 @@ void TitleUpdate() {
                 PrintVerticalRAM(25, 21, "@2020 RED BALLTOP");
                 break;
             case 240:
+                players[activePlayer].animationTime = 0;
+                players[activePlayer].killTime = 0;
+                players[activePlayer].hookEnabled = false;
                 players[activePlayer].x = 19;
                 players[activePlayer].y = 13;
                 players[activePlayer].dir = SOUTH;
@@ -169,19 +172,65 @@ void TitleUpdate() {
 
 
     titleTime++;
-    if(titleTime == 900) {
+    if(titleTime == 1120) {
         TitleDemoClean();
         titleTime = 0;
     }
 }
 
 void TitleDemoUpdate() {
-    if(titleTime == 600) {
-        EnemyInit(WEST, INVADER);
-    } if(titleTime == 620) {
-        PlayerLaunchHook(WEST);
-    } if(titleTime == 660) {
-        PlayerFire();
+    switch(titleTime) {
+        case 600:
+            EnemyInit(WEST, INVADER);
+            break;
+        case 620:
+            PlayerLaunchHook(WEST);
+            break;
+        case 660:
+            PlayerFire();
+            break;
+        case 680:
+            EnemyInit(SOUTH, SWEEPER);
+            break;
+        case 690:
+            PlayerLaunchHook(SOUTH);
+            break;
+        case 730:
+            PlayerFire();
+            break;
+        case 770:
+            EnemyInit(NORTH, INVADER);
+            break;
+        case 800:
+            PlayerLaunchHook(EAST);
+            break;
+        case 830:
+            EnemyInit(WEST, ASTEROID);
+            EnemyInit(NORTH, INVADER);
+            PlayerLaunchHook(NORTH);
+            break;
+        case 860:
+            EnemyInit(EAST, SPARX);
+            PlayerFire();
+            break;
+        case 890:
+            PlayerFire();
+            break;
+        case 930:
+            PlayerLaunchHook(EAST);
+            break;
+        case 1010:
+            PlayerFire();
+            EnemyInit(SOUTH, SPARX);
+            break;
+        case 1030:
+            PlayerLaunchHook(SOUTH);
+            EnemyInit(WEST, NUCLEUS);
+            break;
+        case 1060:
+            PlayerFire(); // Will kill player
+            EnemyInit(NORTH, ASTEROID);
+            break;
     }
 
     GameUpdate();

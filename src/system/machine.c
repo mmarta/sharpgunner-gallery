@@ -12,10 +12,24 @@ void MachineSetup() {
 
     SetTileTable(tiles);
     ClearVram();
+}
 
-    PrintVerticalRAM(31, 18, "CREDITS");
-    PrintU8Vertical(31, 9, credits);
+void MachineCrossHatch() {
+    u8 i = 90;
+    Fill(0, 0, 32, 28, 252);
+    while(i--) {
+        WaitVsync(1);
+    }
 
+    i = 0;
+    while(i < 32) {
+        Fill(i, 0, 1, 28, 0);
+        WaitVsync(1);
+        i++;
+    }
+}
+
+void MachineInitHi() {
     SetTile(0, 13, 71);
     SetTile(0, 14, 70);
     PrintU32Vertical(1, 11, hi, 9999999);

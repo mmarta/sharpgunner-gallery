@@ -243,8 +243,10 @@ void PlayerMoveHook() {
 
 void PlayerDrawTiles() {
     if(players[activePlayer].killTime) {
-        if(players[activePlayer].killTime % 6 == 1) {
+        if(players[activePlayer].killTime % 6 == 1 && players[activePlayer].killTime < 25) {
             DrawMap(players[activePlayer].x, players[activePlayer].y, mapFighterKill[players[activePlayer].killTime / 6]);
+        } else if(players[activePlayer].killTime == 25) {
+            Fill(players[activePlayer].x, players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT, 0);
         }
         return;
     }
@@ -310,7 +312,7 @@ u8 PlayerUpdate() {
     if(players[activePlayer].killTime) {
         PlayerDrawTiles();
         players[activePlayer].killTime++;
-        if(players[activePlayer].killTime == 25) {
+        if(players[activePlayer].killTime == 55) {
             players[activePlayer].killTime = 0;
             players[activePlayer].lives--;
             if(!players[activePlayer].lives) {

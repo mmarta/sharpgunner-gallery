@@ -14,6 +14,8 @@ extern u32 hi;
 extern int inputs[];
 
 void MachineSetup();
+void MachineCrossHatch();
+void MachineInitHi();
 void MachineInput();
 
 #endif

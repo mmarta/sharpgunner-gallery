@@ -4,6 +4,8 @@
 
 int main() {
     MachineSetup();
+    MachineCrossHatch();
+    MachineInitHi();
     TitleStart();
 
     while(1) {
