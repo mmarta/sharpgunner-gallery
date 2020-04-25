@@ -6,6 +6,9 @@ u8 prevCredits = 0;
 u8 wireX;
 u8 wireY;
 
+const char barkyStr1[] PROGMEM = "DESIGNED & PROGRAMMED IN C";
+const char barkyStr2[] PROGMEM = "BY MARC MARTA";
+
 void TitleBeginDemo();
 void TitleDemoUpdate();
 void TitleDemoClean();
@@ -63,6 +66,8 @@ void TitleUpdate() {
                 PrintVerticalRAM(6, 22, "SHARPGUNNER GALLERY");
                 break;
             case 180:
+                PrintVerticalPROGMEM(8, 26, barkyStr1);
+                PrintVerticalPROGMEM(9, 19, barkyStr2);
                 PrintVerticalRAM(25, 21, "@2020 RED BALLTOP");
                 break;
             case 240:
