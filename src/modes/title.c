@@ -21,13 +21,24 @@ void TitleStart() {
 }
 
 void TitleBeginDemo() {
+    u8 i;
     CLEAR_TITLE();
     BackgroundStart();
-    PlayerStart(0);
+    PlayerStart(0, 1);
     PlayerResume();
 
     PrintVerticalRAM(4, 25, "GAME");
     PrintVerticalRAM(4, 5, "OVER");
+
+    i = ENEMY_COUNT;
+    while(i--) {
+        EnemyDeactivate(i);
+    }
+
+    i = LASER_COUNT;
+    while(i--) {
+        LaserDeactivate(i);
+    }
 }
 
 void TitleDemoClean() {

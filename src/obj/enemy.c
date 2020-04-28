@@ -34,28 +34,28 @@ void EnemyInit(direction dir, enemytype type) {
 
             switch(type) {
                 case INVADER:
-                    enemyPool[i].score = 100;
+                    enemyPool[i].score = 200;
                     DrawMap(
                         enemyPool[i].x, enemyPool[i].y,
                         mapInvaderA[enemyPool[i].dir]
                     );
                     break;
                 case SWEEPER:
-                    enemyPool[i].score = 250;
+                    enemyPool[i].score = 500;
                     DrawMap(
                         enemyPool[i].x, enemyPool[i].y,
                         mapSweeperA[enemyPool[i].dir]
                     );
                     break;
                 case SPARX:
-                    enemyPool[i].score = 500;
+                    enemyPool[i].score = 1000;
                     DrawMap(
                         enemyPool[i].x, enemyPool[i].y,
                         mapSparxA[enemyPool[i].dir]
                     );
                     break;
                 case NUCLEUS:
-                    enemyPool[i].score = 200;
+                    enemyPool[i].score = 400;
                     DrawMap(
                         enemyPool[i].x, enemyPool[i].y,
                         mapEnemyNucleusLarge
@@ -101,10 +101,12 @@ void EnemyInvaderUpdate(u8 i) {
     s8 xDelta = 0, yDelta = 0;
     EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
 
-    enemyPool[i].animationTime = enemyPool[i].animationTime == 39 ? 0 : enemyPool[i].animationTime + 1;
+    u8 flipTime = players[activePlayer].level > 4 ? 29 : 39;
+
+    enemyPool[i].animationTime = enemyPool[i].animationTime == flipTime ? 0 : enemyPool[i].animationTime + 1;
 
     // Update on next animation
-    if(enemyPool[i].animationTime == 0 || enemyPool[i].animationTime == 20) {
+    if(enemyPool[i].animationTime == 0 || enemyPool[i].animationTime == ((flipTime >> 1) + 1)) {
         Fill(enemyPool[i].x, enemyPool[i].y, ENEMY_WIDTH, ENEMY_HEIGHT, 0);
         enemyPool[i].x += xDelta;
         enemyPool[i].y += yDelta;
@@ -136,7 +138,9 @@ void EnemySweeperUpdate(u8 i) {
     s8 xDelta = 0, yDelta = 0;
     EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
 
-    enemyPool[i].animationTime = enemyPool[i].animationTime == 7 ? 0 : enemyPool[i].animationTime + 1;
+    u8 flipTime = players[activePlayer].level > 4 ? 7 : 11;
+
+    enemyPool[i].animationTime = enemyPool[i].animationTime == flipTime ? 0 : enemyPool[i].animationTime + 1;
 
     // Update on next animation
     if(!enemyPool[i].animationTime) {
@@ -243,8 +247,10 @@ void EnemyAsteroidUpdate(u8 i) {
     s8 xDelta = 0, yDelta = 0;
     EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
 
+    u8 flipTime = players[activePlayer].level > 4 ? 11 : 15;
+
     // First phase
-    enemyPool[i].animationTime = enemyPool[i].animationTime == 29 ? 0 : enemyPool[i].animationTime + 1;
+    enemyPool[i].animationTime = enemyPool[i].animationTime == flipTime ? 0 : enemyPool[i].animationTime + 1;
 
     // Update on next animation
     if(!enemyPool[i].animationTime) {
@@ -276,7 +282,7 @@ void EnemyUpdate(u8 i) {
             // Nucleus 1st hit?
             if(enemyPool[i].type == NUCLEUS && enemyPool[i].animationTime < 60) {
                 enemyPool[i].killTime = 0;
-                enemyPool[i].score = 600;
+                enemyPool[i].score = 1200;
                 enemyPool[i].animationTime = 60;
                 DrawMap(enemyPool[i].x, enemyPool[i].y, mapEnemyNucleusSmall);
             } else { // Destroy anything else

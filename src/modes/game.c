@@ -1,15 +1,27 @@
 #include "game.h"
 
 void GameStart(u8 playerCount) {
+    u8 i;
     machineMode = GAME;
-    PlayerStart(0);
+
+    Fill(30, 0, 2, 28, 0);
+
+    PlayerStart(0, 3);
     if(playerCount == 2) {
-        PlayerStart(1);
+        PlayerStart(1, 3);
     }
     activePlayer = 0;
     playersInGame = playerCount;
 
-    Fill(30, 0, 2, 28, 0);
+    i = ENEMY_COUNT;
+    while(i--) {
+        EnemyDeactivate(i);
+    }
+
+    i = LASER_COUNT;
+    while(i--) {
+        LaserDeactivate(i);
+    }
 
     LevelStart();
     LevelDisplayReady();

@@ -4,7 +4,10 @@ u8 enemyGenSpawnTimeout = 0;
 direction lastSpawnDirection = SOUTH;
 
 void EnemyGenLevelBegin() {
-    const Level *currentLevel = &levels[players[activePlayer].level];
+    u8 levelToGrab = players[activePlayer].level > 12
+        ? (players[activePlayer].level % 3) + 10
+        : players[activePlayer].level;
+    const Level *currentLevel = &levels[levelToGrab];
     enemyGenSpawnTimeout = currentLevel->minGenTime + (rand() % currentLevel->randomFactor);
 }
 
@@ -15,7 +18,11 @@ void EnemyGenEngineTick() {
         return;
     }
 
-    const Level *currentLevel = &levels[players[activePlayer].level];
+    u8 levelToGrab = players[activePlayer].level > 12
+        ? (players[activePlayer].level % 3) + 10
+        : players[activePlayer].level;
+
+    const Level *currentLevel = &levels[levelToGrab];
 
     // Pick next enemy from factors
     direction nextDirection = rand() % 4;

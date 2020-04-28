@@ -22,11 +22,13 @@ u8 fireTimeout = 0;
 void PlayerDrawScoreLabel(u8);
 void PlayerSetDirCoordinates(u8);
 void PlayerDrawTiles();
+void PlayerDrawLives(u8);
 void PlayerMoveHook();
 
-void PlayerStart(u8 i) {
-    players[i].lives = 3;
+void PlayerStart(u8 i, u8 lives) {
+    players[i].lives = lives;
     players[i].score = 0;
+    players[i].extendScore = 20000;
     players[i].poweredUp = 0;
     players[i].active = true;
     players[i].level = 0;
@@ -34,6 +36,7 @@ void PlayerStart(u8 i) {
     PlayerSetDirCoordinates(i);
     PlayerDrawScoreLabel(i);
     PrintU32Vertical(1, i ? 0 : 21, players[i].score, 9999999);
+    PlayerDrawLives(i);
 }
 
 void PlayerDrawScoreLabel(u8 i) {
@@ -45,6 +48,18 @@ void PlayerDrawScoreLabel(u8 i) {
         SetTile(0, 23, 66);
         SetTile(0, 24, 65);
         SetTile(0, 25, 64);
+    }
+}
+
+void PlayerDrawLives(u8 i) {
+    if(!players[i].lives) {
+        return;
+    }
+
+    u8 j = 0, count = players[i].lives - 1;
+    while(j < 5) {
+        SetTile(31, 27 - j, j < count ? 253 : 0);
+        j++;
     }
 }
 
@@ -61,6 +76,11 @@ void PlayerFlushScore() {
     if(players[activePlayer].scoreDelta) {
         players[activePlayer].score += players[activePlayer].scoreDelta;
         players[activePlayer].scoreDelta = 0;
+        if(players[activePlayer].score >= players[activePlayer].extendScore) {
+            players[activePlayer].lives++;
+            players[activePlayer].extendScore += 60000;
+            PlayerDrawLives(activePlayer);
+        }
         PrintU32Vertical(1, activePlayer ? 0 : 21, players[activePlayer].score, 9999999);
     }
 
@@ -315,6 +335,7 @@ u8 PlayerUpdate() {
         if(players[activePlayer].killTime == 55) {
             players[activePlayer].killTime = 0;
             players[activePlayer].lives--;
+            PlayerDrawLives(activePlayer);
             if(!players[activePlayer].lives) {
                 players[activePlayer].active = false;
             }
