@@ -38,7 +38,7 @@ void BackgroundStart() {
 
 void BackgroundUpdate() {
     updateTime++;
-    if(updateTime == 4) {
+    if(updateTime == 3) {
         updateTime = 0;
     } else {
         return;

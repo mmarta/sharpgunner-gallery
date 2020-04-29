@@ -27,8 +27,8 @@ void TitleBeginDemo() {
     PlayerStart(0, 1);
     PlayerResume();
 
-    PrintVerticalRAM(4, 25, "GAME");
-    PrintVerticalRAM(4, 5, "OVER");
+    PrintVerticalRAM(5, 22, "GAME");
+    PrintVerticalRAM(5, 8, "OVER");
 
     i = ENEMY_COUNT;
     while(i--) {

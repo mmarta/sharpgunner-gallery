@@ -7,12 +7,12 @@ const char player2Str[] PROGMEM = "PLAYER 2";
 
 const Level levels[] = {
     {
-        .invaderFactor = 10, .sweeperFactor = 0, .sparxFactor = 0, .nucleusFactor = 0,
-        .asteroidFactor = 0, .bonus = 1000, .randomFactor = 110, .minGenTime = 30
+        .invaderFactor = 9, .sweeperFactor = 0, .sparxFactor = 0, .nucleusFactor = 0,
+        .asteroidFactor = 2, .bonus = 1000, .randomFactor = 110, .minGenTime = 30
     },
     {
         .invaderFactor = 6, .sweeperFactor = 4, .sparxFactor = 0, .nucleusFactor = 0,
-        .asteroidFactor = 2, .bonus = 2000, .randomFactor = 100, .minGenTime = 30
+        .asteroidFactor = 3, .bonus = 2000, .randomFactor = 100, .minGenTime = 30
     },
     {
         .invaderFactor = 3, .sweeperFactor = 7, .sparxFactor = 0, .nucleusFactor = 0,
@@ -75,19 +75,37 @@ void LevelStart() {
 
 void LevelIncrease() {
     u8 i = ENEMY_COUNT;
+    u8 levelToGrab = players[activePlayer].level > 12
+        ? (players[activePlayer].level % 3) + 9
+        : players[activePlayer].level;
+
+    // Eliminate all enemies & award player enemy points & bonus
     while(i--) {
         if(enemyPool[i].active && !enemyPool[i].killTime) {
+            // Set NUCLEUS to small & kill, deactivate asteroids, kill all others
             if(enemyPool[i].type == NUCLEUS && enemyPool[i].animationTime < 60) {
                 enemyPool[i].animationTime = 60;
-                enemyPool[i].killTime = 0;
+                EnemyKill(i);
+            } else if(enemyPool[i].type == ASTEROID) {
+                EnemyDeactivate(i);
+            } else {
+                EnemyKill(i);
             }
+            PlayerAddScoreDelta(enemyPool[i].score);
+        } else if(enemyPool[i].active && enemyPool[i].type == NUCLEUS && enemyPool[i].killTime && enemyPool[i].animationTime < 60) {
+            // Nucleus in transition to smaller? Set to small, kill, award player points
+            enemyPool[i].animationTime = 60;
             EnemyKill(i);
             PlayerAddScoreDelta(enemyPool[i].score);
         }
     }
-    PlayerAddScoreDelta(levels[players[activePlayer].level].bonus);
-    bonusTextNum = levels[players[activePlayer].level].bonus;
-    players[activePlayer].level++;
+    PlayerAddScoreDelta(levels[levelToGrab].bonus);
+    bonusTextNum = levels[levelToGrab].bonus;
+
+    // Increase the actual level
+    if(players[activePlayer].level < 255) {
+        players[activePlayer].level++;
+    }
     bonusTextTime = 160;
     LevelStart();
 }

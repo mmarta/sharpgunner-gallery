@@ -37,8 +37,8 @@ void GameUpdate() {
     // Flush score (if not DEMO)
     if(machineMode == GAME) {
         PlayerFlushScore();
-        if(players[activePlayer].score > hi) {
-            hi = players[activePlayer].score;
+        if(players[activePlayer].score > hi && hi < 9999999) {
+            hi = players[activePlayer].score < 9999999 ? players[activePlayer].score : 9999999;
             PrintU32Vertical(1, 11, hi, 9999999);
         }
     }
