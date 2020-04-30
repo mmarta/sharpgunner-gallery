@@ -107,6 +107,7 @@ void LevelIncrease() {
         players[activePlayer].level++;
     }
     bonusTextTime = 160;
+    TriggerFx(PATCH_NEXT_LEVEL, 255, 1);
     LevelStart();
 }
 

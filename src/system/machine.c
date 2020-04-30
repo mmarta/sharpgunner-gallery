@@ -12,6 +12,8 @@ void MachineSetup() {
 
     SetTileTable(tiles);
     ClearVram();
+
+    SFXInit();
 }
 
 void MachineCrossHatch() {
@@ -54,6 +56,7 @@ void MachineInput() {
                     PrintU8Vertical(31, 9, credits);
                 }
             }
+            TriggerFx(PATCH_COIN_UP, 255, 1);
             coinSwitchDown = true;
         }
     } else if(coinSwitchDown) {

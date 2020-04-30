@@ -130,6 +130,7 @@ void PlayerFire() {
 
         if(LaserInit(players[activePlayer].dir, x, y)) {
             fireTimeout = 2;
+            TriggerFx(PATCH_PLAYER_FIRE, 255, 1);
         }
     }
 }
@@ -163,6 +164,7 @@ void PlayerLaunchHook(direction dir) {
 
     players[activePlayer].hookDX = playerXCoords[players[activePlayer].hookDir];
     players[activePlayer].hookDY = playerYCoords[players[activePlayer].hookDir];
+    TriggerFx(PATCH_PLAYER_LAUNCH_HOOK, 255, 1);
 }
 
 void PlayerMoveHook() {
@@ -253,6 +255,13 @@ void PlayerMoveHook() {
                     DrawMap(players[activePlayer].hookX, players[activePlayer].hookY, mapHookSW);
                 }
                 break;
+        }
+
+        if(
+            players[activePlayer].hookX == players[activePlayer].hookDX
+            || players[activePlayer].hookY == players[activePlayer].hookDY
+        ) {
+            TriggerFx(PATCH_PLAYER_LATCH_HOOK, 255, 1);
         }
 
         if(players[activePlayer].animationTime % 2 == 0) {

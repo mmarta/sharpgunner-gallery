@@ -2,6 +2,7 @@
 #define _LEVEL_H
 
 #include "defines.h"
+#include "../audio/sfx.h"
 #include "machine.h"
 #include "../obj/player.h"
 #include "../obj/enemy.h"
