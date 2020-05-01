@@ -3,6 +3,7 @@
 
 #include "../system/defines.h"
 #include "../system/graphics.h"
+#include "../audio/sfx.h"
 #include "player.h"
 
 #define ENEMY_COUNT 6
@@ -19,7 +20,7 @@
 #define ENEMY_EAST_START_Y 11
 
 typedef enum {
-  INVADER, SWEEPER, SPARX, NUCLEUS, ASTEROID
+    INVADER, SWEEPER, SPARX, NUCLEUS, ASTEROID
 } enemytype;
 
 typedef struct {
@@ -38,6 +39,6 @@ extern u8 enemyNextSpawnTime;
 void EnemyInit(direction, enemytype);
 void EnemyDeactivate(u8);
 void EnemyUpdate(u8);
-void EnemyKill(u8);
+void EnemyKill(u8, u8);
 
 #endif

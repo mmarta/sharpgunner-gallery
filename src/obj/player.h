@@ -42,6 +42,7 @@ void PlayerLaunchHook(direction);
 void PlayerResume();
 void PlayerInput();
 void PlayerDrawTiles();
+void PlayerDrawLives(u8);
 u8 PlayerUpdate();
 void PlayerKill();
 

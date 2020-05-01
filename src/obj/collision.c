@@ -68,10 +68,11 @@ void CollisionRunAll() {
                 if(enemyPool[i].type == SPARX && enemyPool[i].animationTime >= 20 && enemyPool[i].animationTime < 70) {
                     // Sparx laser feedback check
                     lasers[j].backfeed = true;
+                    SFXPlay(PATCH_BACKFIRE);
                 } else {
                     // Normal enemy
                     LaserDeactivate(j);
-                    EnemyKill(i);
+                    EnemyKill(i, true);
                     PlayerAddScoreDelta(enemyPool[i].score);
                 }
             }
@@ -83,7 +84,7 @@ void CollisionRunAll() {
             &players[activePlayer].x, &players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT
         )) {
             PlayerKill();
-            EnemyKill(i);
+            EnemyKill(i, false);
         }
     }
 

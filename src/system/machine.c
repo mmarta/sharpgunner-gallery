@@ -56,7 +56,7 @@ void MachineInput() {
                     PrintU8Vertical(31, 9, credits);
                 }
             }
-            TriggerFx(PATCH_COIN_UP, 255, 1);
+            SFXPlay(PATCH_COIN_UP);
             coinSwitchDown = true;
         }
     } else if(coinSwitchDown) {

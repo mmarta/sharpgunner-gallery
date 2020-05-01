@@ -316,12 +316,18 @@ void EnemyUpdate(u8 i) {
     }
 }
 
-void EnemyKill(u8 i) {
+void EnemyKill(u8 i, u8 playSound) {
     // Don't "kill" an asteroid
     if(enemyPool[i].type == ASTEROID) {
         DrawMap(enemyPool[i].x, enemyPool[i].y, mapEnemyAsteroid);
+        if(playSound) {
+            SFXPlay(PATCH_TINK);
+        }
         return;
     }
 
+    if(playSound) {
+        SFXPlay(PATCH_ENEMY_KILL);
+    }
     enemyPool[i].killTime = 1;
 }

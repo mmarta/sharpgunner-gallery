@@ -22,7 +22,6 @@ u8 fireTimeout = 0;
 void PlayerDrawScoreLabel(u8);
 void PlayerSetDirCoordinates(u8);
 void PlayerDrawTiles();
-void PlayerDrawLives(u8);
 void PlayerMoveHook();
 
 void PlayerStart(u8 i, u8 lives) {
@@ -79,6 +78,7 @@ void PlayerFlushScore() {
         if(players[activePlayer].score >= players[activePlayer].extendScore) {
             players[activePlayer].lives++;
             players[activePlayer].extendScore += 60000;
+            SFXPlay(PATCH_EXTEND);
             PlayerDrawLives(activePlayer);
         }
         PrintU32Vertical(1, activePlayer ? 0 : 21, players[activePlayer].score, 9999999);
@@ -130,7 +130,7 @@ void PlayerFire() {
 
         if(LaserInit(players[activePlayer].dir, x, y)) {
             fireTimeout = 2;
-            TriggerFx(PATCH_PLAYER_FIRE, 255, 1);
+            SFXPlay(PATCH_PLAYER_FIRE);
         }
     }
 }
@@ -164,7 +164,7 @@ void PlayerLaunchHook(direction dir) {
 
     players[activePlayer].hookDX = playerXCoords[players[activePlayer].hookDir];
     players[activePlayer].hookDY = playerYCoords[players[activePlayer].hookDir];
-    TriggerFx(PATCH_PLAYER_LAUNCH_HOOK, 255, 1);
+    SFXPlay(PATCH_PLAYER_LAUNCH_HOOK);
 }
 
 void PlayerMoveHook() {
@@ -261,7 +261,7 @@ void PlayerMoveHook() {
             players[activePlayer].hookX == players[activePlayer].hookDX
             || players[activePlayer].hookY == players[activePlayer].hookDY
         ) {
-            TriggerFx(PATCH_PLAYER_LATCH_HOOK, 255, 1);
+            SFXPlay(PATCH_PLAYER_LATCH_HOOK);
         }
 
         if(players[activePlayer].animationTime % 2 == 0) {
@@ -374,4 +374,5 @@ u8 PlayerUpdate() {
 
 void PlayerKill() {
     players[activePlayer].killTime = 1;
+    SFXPlay(PATCH_PLAYER_KILL);
 }

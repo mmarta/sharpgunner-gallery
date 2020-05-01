@@ -85,17 +85,17 @@ void LevelIncrease() {
             // Set NUCLEUS to small & kill, deactivate asteroids, kill all others
             if(enemyPool[i].type == NUCLEUS && enemyPool[i].animationTime < 60) {
                 enemyPool[i].animationTime = 60;
-                EnemyKill(i);
+                EnemyKill(i, false);
             } else if(enemyPool[i].type == ASTEROID) {
                 EnemyDeactivate(i);
             } else {
-                EnemyKill(i);
+                EnemyKill(i, false);
             }
             PlayerAddScoreDelta(enemyPool[i].score);
         } else if(enemyPool[i].active && enemyPool[i].type == NUCLEUS && enemyPool[i].killTime && enemyPool[i].animationTime < 60) {
             // Nucleus in transition to smaller? Set to small, kill, award player points
             enemyPool[i].animationTime = 60;
-            EnemyKill(i);
+            EnemyKill(i, false);
             PlayerAddScoreDelta(enemyPool[i].score);
         }
     }
@@ -107,7 +107,7 @@ void LevelIncrease() {
         players[activePlayer].level++;
     }
     bonusTextTime = 160;
-    TriggerFx(PATCH_NEXT_LEVEL, 255, 1);
+    SFXPlay(PATCH_NEXT_LEVEL);
     LevelStart();
 }
 
@@ -158,6 +158,7 @@ u8 LevelPlayerDeath() {
 
     // Clear the screen and write
     LevelStart();
+    PlayerDrawLives(activePlayer);
     LevelDisplayReady();
 
     // Deactivate all enemies
