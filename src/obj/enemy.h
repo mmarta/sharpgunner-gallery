@@ -3,7 +3,7 @@
 
 #include "../system/defines.h"
 #include "../system/graphics.h"
-#include "../audio/sfx.h"
+#include "../audio/audio.h"
 #include "player.h"
 
 #define ENEMY_COUNT 6

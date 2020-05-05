@@ -13,7 +13,7 @@ void MachineSetup() {
     SetTileTable(tiles);
     ClearVram();
 
-    SFXInit();
+    AudioInit();
 }
 
 void MachineCrossHatch() {

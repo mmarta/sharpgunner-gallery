@@ -2,7 +2,7 @@
 #define _LEVEL_H
 
 #include "defines.h"
-#include "../audio/sfx.h"
+#include "../audio/audio.h"
 #include "machine.h"
 #include "../obj/player.h"
 #include "../obj/enemy.h"
@@ -17,7 +17,7 @@ extern const Level levels[];
 extern u8 levelTime, levelTick;
 
 void LevelStart();
-void LevelDisplayReady();
+void LevelDisplayReady(u8);
 void LevelUpdate();
 u8 LevelPlayerDeath();
 

@@ -159,7 +159,7 @@ u8 LevelPlayerDeath() {
     // Clear the screen and write
     LevelStart();
     PlayerDrawLives(activePlayer);
-    LevelDisplayReady();
+    LevelDisplayReady(90);
 
     // Deactivate all enemies
     i = ENEMY_COUNT;
@@ -170,8 +170,7 @@ u8 LevelPlayerDeath() {
     return true;
 }
 
-void LevelDisplayReady() {
-    u8 timer = 90;
+void LevelDisplayReady(u8 timer) {
     CLEAR_LEVEL();
     PrintVerticalPROGMEM(14, 16, readyStr);
     PrintVerticalPROGMEM(16, 17, activePlayer ? player2Str : player1Str);

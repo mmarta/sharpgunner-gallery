@@ -136,32 +136,6 @@ const char patchExtend[] PROGMEM = {
     0, PATCH_END
 };
 
-const char patchBG[] PROGMEM = {
-    0, PC_WAVE, 2,
-    0, PC_PITCH, 20,
-    0, PC_ENV_VOL, 192,
-    0, PC_SLIDE, -10,
-    30, PC_NOTE_CUT, 0,
-    0, PATCH_END
-};
-
-const struct PatchStruct patches[] PROGMEM = {
-    {0, NULL, patchCoinUp, 0, 0},
-    {0, NULL, patchPlayerFire, 0, 0},
-    {0, NULL, patchPlayerLaunchHook, 0, 0},
-    {0, NULL, patchPlayerLatchHook, 0, 0},
-    {0, NULL, patchNextLevel, 0, 0},
-    {0, NULL, patchPlayerKill, 0, 0},
-    {0, NULL, patchEnemyKill, 0, 0},
-    {0, NULL, patchTink, 0, 0},
-    {0, NULL, patchExtend, 0, 0},
-    {0, NULL, patchBackfire, 0, 0}
-};
-
-void SFXInit() {
-    InitMusicPlayer(patches);
-}
-
 void SFXPlay(u8 patchNum) {
     if(patchNum == 128) {
         TriggerNote(3, patchNum, 3, 255);

@@ -3,7 +3,7 @@
 
 #include "defines.h"
 #include "graphics.h"
-#include "../audio/sfx.h"
+#include "../audio/audio.h"
 
 typedef enum {
     GAME, TITLE

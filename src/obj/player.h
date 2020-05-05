@@ -3,7 +3,7 @@
 
 #include "../system/defines.h"
 #include "../system/graphics.h"
-#include "../audio/sfx.h"
+#include "../audio/audio.h"
 #include "../system/machine.h"
 #include "laser.h"
 

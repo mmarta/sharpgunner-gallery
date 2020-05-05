@@ -24,7 +24,8 @@ void GameStart(u8 playerCount) {
     }
 
     LevelStart();
-    LevelDisplayReady();
+    MusicPlayPatch(MUSIC_START);
+    LevelDisplayReady(150);
     PlayerResume();
     EnemyGenLevelBegin();
 

@@ -14,9 +14,18 @@
 #define PATCH_EXTEND 8
 #define PATCH_BACKFIRE 9
 
-extern const struct PatchStruct patches[];
+extern const char patchCoinUp[];
+extern const char patchPlayerFire[];
+extern const char patchPlayerLaunchHook[];
+extern const char patchPlayerLatchHook[];
+extern const char patchNextLevel[];
+extern const char patchPlayerKill[];
+extern const char patchEnemyKill[];
+extern const char patchBackfire[];
+extern const char patchTink[];
+extern const char patchExtend[];
+extern const char patchBG[];
 
-void SFXInit();
 void SFXPlay(u8);
 
 #endif
