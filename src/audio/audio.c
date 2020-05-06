@@ -19,5 +19,6 @@ const struct PatchStruct patches[] PROGMEM = {
 };
 
 void AudioInit() {
+    EnableSoundEngine();
     InitMusicPlayer(patches);
 }
