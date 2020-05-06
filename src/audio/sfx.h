@@ -13,6 +13,7 @@
 #define PATCH_TINK 7
 #define PATCH_EXTEND 8
 #define PATCH_BACKFIRE 9
+#define PATCH_BG 10
 
 extern const char patchCoinUp[];
 extern const char patchPlayerFire[];

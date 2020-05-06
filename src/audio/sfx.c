@@ -136,10 +136,15 @@ const char patchExtend[] PROGMEM = {
     0, PATCH_END
 };
 
+const char patchBG[] PROGMEM = {
+    0, PC_WAVE, 2,
+    0, PC_PITCH, 40,
+    0, PC_ENV_VOL, 192,
+    0, PC_SLIDE, -10,
+    20, PC_NOTE_CUT, 0,
+    0, PATCH_END
+};
+
 void SFXPlay(u8 patchNum) {
-    if(patchNum == 128) {
-        TriggerNote(3, patchNum, 3, 255);
-    } else {
-        TriggerFx(patchNum, 224, 1);
-    }
+    TriggerFx(patchNum, 192, 1);
 }

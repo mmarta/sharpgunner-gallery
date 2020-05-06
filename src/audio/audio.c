@@ -11,11 +11,13 @@ const struct PatchStruct patches[] PROGMEM = {
     {0, NULL, patchTink, 0, 0},
     {0, NULL, patchExtend, 0, 0},
     {0, NULL, patchBackfire, 0, 0},
+    {0, NULL, patchBG, 0, 0},
     {0, NULL, musicPatchStartA, 0, 0},
-    {0, NULL, musicPatchStartB, 0, 0}
+    {0, NULL, musicPatchStartB, 0, 0},
+    {0, NULL, musicPatchGameOverA, 0, 0},
+    {0, NULL, musicPatchGameOverB, 0, 0}
 };
 
 void AudioInit() {
     InitMusicPlayer(patches);
-    SetMasterVolume(192);
 }

@@ -2,47 +2,12 @@
 
 const char musicPatchStartA[] PROGMEM = {
     0, PC_WAVE, 2,
-    0, PC_ENV_VOL, 0,
     0, PC_PITCH, 48,
-    4, PC_ENV_VOL, 64,
-    4, PC_ENV_VOL, 128,
-    4, PC_ENV_VOL, 192,
-    4, PC_ENV_VOL, 255,
-    48, PC_PITCH, 46,
-    4, PC_ENV_VOL, 64,
-    4, PC_ENV_VOL, 128,
-    4, PC_ENV_VOL, 192,
-    4, PC_ENV_VOL, 255,
-    48, PC_PITCH, 48,
-    4, PC_ENV_VOL, 64,
-    4, PC_ENV_VOL, 128,
-    4, PC_ENV_VOL, 192,
-    4, PC_ENV_VOL, 255,
-    14, PC_NOTE_CUT, 0,
+    64, PC_PITCH, 46,
+    64, PC_PITCH, 48,
+    30, PC_NOTE_CUT, 0,
     0, PATCH_END
 };
-
-/*const char musicPatchStartB[] PROGMEM = {
-    0, PC_WAVE, 4,
-    0, PC_ENV_VOL, 0,
-    0, PC_PITCH, 67,
-    6, PC_ENV_VOL, 64,
-    6, PC_ENV_VOL, 128,
-    6, PC_ENV_VOL, 192,
-    6, PC_ENV_VOL, 255,
-    36, PC_PITCH, 68,
-    6, PC_ENV_VOL, 64,
-    6, PC_ENV_VOL, 128,
-    6, PC_ENV_VOL, 192,
-    6, PC_ENV_VOL, 255,
-    36, PC_PITCH, 67,
-    6, PC_ENV_VOL, 64,
-    6, PC_ENV_VOL, 128,
-    6, PC_ENV_VOL, 192,
-    6, PC_ENV_VOL, 255,
-    6, PC_NOTE_CUT, 0,
-    0, PATCH_END
-};*/
 
 const char musicPatchStartB[] PROGMEM = {
     0, PC_WAVE, 4,
@@ -131,7 +96,53 @@ const char musicPatchStartB[] PROGMEM = {
     0, PATCH_END
 };
 
+const char musicPatchGameOverA[] PROGMEM = {
+    0, PC_WAVE, 4,
+    0, PC_PITCH, 60,
+    16, PC_PITCH, 58,
+    8, PC_PITCH, 56,
+    16, PC_PITCH, 55,
+    8, PC_PITCH, 53,
+    30, PC_ENV_VOL, 192,
+    4, PC_ENV_VOL, 128,
+    4, PC_ENV_VOL, 64,
+    4, PC_ENV_VOL, 0,
+    6, PC_PITCH, 48,
+    0, PC_ENV_VOL, 255,
+    12, PC_ENV_VOL, 0,
+    0, PC_ENV_VOL, 255,
+    4, PC_PITCH, 48,
+    12, PC_ENV_VOL, 0,
+    0, PC_ENV_VOL, 255,
+    4, PC_PITCH, 48,
+    12, PC_NOTE_CUT, 0,
+    0, PATCH_END
+};
+
+const char musicPatchGameOverB[] PROGMEM = {
+    0, PC_WAVE, 3,
+    0, PC_PITCH, 60,
+    16, PC_PITCH, 62,
+    8, PC_PITCH, 63,
+    16, PC_PITCH, 65,
+    8, PC_PITCH, 67,
+    30, PC_ENV_VOL, 192,
+    4, PC_ENV_VOL, 128,
+    4, PC_ENV_VOL, 64,
+    4, PC_ENV_VOL, 0,
+    6, PC_PITCH, 64,
+    0, PC_ENV_VOL, 255,
+    12, PC_ENV_VOL, 0,
+    0, PC_ENV_VOL, 255,
+    4, PC_PITCH, 67,
+    12, PC_ENV_VOL, 0,
+    0, PC_ENV_VOL, 255,
+    4, PC_PITCH, 72,
+    12, PC_NOTE_CUT, 0,
+    0, PATCH_END
+};
+
 void MusicPlayPatch(u8 musicNum) {
-    TriggerFx(musicNum, 255, 1);
-    TriggerFx(musicNum + 1, 255, 1);
+    TriggerFx(musicNum, 192, 1);
+    TriggerFx(musicNum + 1, 192, 1);
 }

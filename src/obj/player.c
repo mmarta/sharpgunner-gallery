@@ -99,6 +99,7 @@ void PlayerResume() {
     players[activePlayer].killTime = 0;
     players[activePlayer].hookEnabled = false;
     toggleTime = 59;
+    players[activePlayer].soundTime = 0;
 
     // Back to south
     Fill(players[activePlayer].x, players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT, 0);
@@ -368,6 +369,13 @@ u8 PlayerUpdate() {
     if(players[activePlayer].animationTime % 2 == 0) {
         PlayerDrawTiles();
     }
+
+    if(!players[activePlayer].soundTime) {
+        TriggerFx(PATCH_BG, 192, 0);
+    }
+
+    players[activePlayer].soundTime =
+        players[activePlayer].soundTime == 20 ? 0 : players[activePlayer].soundTime + 1;
 
     return true;
 }

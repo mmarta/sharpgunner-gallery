@@ -185,6 +185,7 @@ void LevelDisplayReady(u8 timer) {
 void LevelDisplayGameOver() {
     u8 timer = 180;
     CLEAR_LEVEL();
+    MusicPlayPatch(MUSIC_GAME_OVER);
     PrintVerticalPROGMEM(14, 18, gameOverStr);
     PrintVerticalPROGMEM(16, 17, activePlayer ? player2Str : player1Str);
     while(timer--) {

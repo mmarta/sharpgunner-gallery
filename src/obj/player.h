@@ -21,7 +21,7 @@
 #define PLAYER_EAST_Y EDGE_EAST
 
 typedef struct {
-    u8 lives, animationTime, killTime, firing, poweredUp, x, y;
+    u8 lives, animationTime, killTime, soundTime, firing, poweredUp, x, y;
     u8 hookX, hookY, hookDX, hookDY, hookEnabled, active, level;
     u16 scoreDelta;
     u32 score, extendScore;
