@@ -1,6 +1,7 @@
 #include "system/machine.h"
 #include "modes/game.h"
 #include "modes/title.h"
+#include "modes/test.h"
 
 int main() {
     MachineSetup();
@@ -21,9 +22,20 @@ int main() {
             case TITLE:
                 TitleUpdate();
                 break;
+            case TEST:
+                TestUpdate();
+                if(machineMode == TITLE) {
+                    credits = 0;
+                    MachineCrossHatch();
+                    MachineInitHi();
+                    TitleStart();
+                }
+                break;
         }
 
-        MachineInput();
+        if(!MachineInput()) {
+            TestInit();
+        }
     }
 
     return 0;

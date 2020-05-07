@@ -7,6 +7,10 @@ u32 hi = 10000;
 u8 coinSwitchDown = false;
 int inputs[] = { 0, 0 };
 
+u8 coinsPerPlay = 1;
+u8 controllers = 2;
+u8 attractSound = true;
+
 void MachineSetup() {
     srand(GetTrueRandomSeed());
 
@@ -37,14 +41,14 @@ void MachineInitHi() {
     PrintU32Vertical(1, 11, hi, 9999999);
 }
 
-void MachineInput() {
+u8 MachineInput() {
     // Read inputs (unrolled)
     inputs[0] = ReadJoypad(0);
     inputs[1] = ReadJoypad(1);
 
     // Test switch
-    if(inputs[0] && BTN_SR) {
-        // Go into test mode
+    if(inputs[0] & BTN_SR && machineMode != TEST) {
+        return false;
     }
 
     // Coin/Service
@@ -62,4 +66,6 @@ void MachineInput() {
     } else if(coinSwitchDown) {
         coinSwitchDown = false;
     }
+
+    return true;
 }

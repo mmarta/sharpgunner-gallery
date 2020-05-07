@@ -78,7 +78,9 @@ void PlayerFlushScore() {
         if(players[activePlayer].score >= players[activePlayer].extendScore) {
             players[activePlayer].lives++;
             players[activePlayer].extendScore += 60000;
-            SFXPlay(PATCH_EXTEND);
+            if(attractSound || machineMode == GAME) {
+                SFXPlay(PATCH_EXTEND);
+            }
             PlayerDrawLives(activePlayer);
         }
         PrintU32Vertical(1, activePlayer ? 0 : 21, players[activePlayer].score, 9999999);
@@ -131,7 +133,9 @@ void PlayerFire() {
 
         if(LaserInit(players[activePlayer].dir, x, y)) {
             fireTimeout = 2;
-            SFXPlay(PATCH_PLAYER_FIRE);
+            if(attractSound || machineMode == GAME) {
+                SFXPlay(PATCH_PLAYER_FIRE);
+            }
         }
     }
 }
@@ -165,7 +169,9 @@ void PlayerLaunchHook(direction dir) {
 
     players[activePlayer].hookDX = playerXCoords[players[activePlayer].hookDir];
     players[activePlayer].hookDY = playerYCoords[players[activePlayer].hookDir];
-    SFXPlay(PATCH_PLAYER_LAUNCH_HOOK);
+    if(attractSound || machineMode == GAME) {
+        SFXPlay(PATCH_PLAYER_LAUNCH_HOOK);
+    }
 }
 
 void PlayerMoveHook() {
@@ -262,7 +268,9 @@ void PlayerMoveHook() {
             players[activePlayer].hookX == players[activePlayer].hookDX
             || players[activePlayer].hookY == players[activePlayer].hookDY
         ) {
-            SFXPlay(PATCH_PLAYER_LATCH_HOOK);
+            if(attractSound || machineMode == GAME) {
+                SFXPlay(PATCH_PLAYER_LATCH_HOOK);
+            }
         }
 
         if(players[activePlayer].animationTime % 2 == 0) {
@@ -298,7 +306,7 @@ void PlayerInput() {
         return;
     }
 
-    int stick = inputs[activePlayer];
+    int stick = inputs[controllers == 2 ? activePlayer : 0];
 
     if(stick & BTN_LEFT) {
         if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
@@ -371,7 +379,9 @@ u8 PlayerUpdate() {
     }
 
     if(!players[activePlayer].soundTime) {
-        TriggerFx(PATCH_BG, 192, 0);
+        if(attractSound || machineMode == GAME) {
+            TriggerFx(PATCH_BG, 192, 0);
+        }
     }
 
     players[activePlayer].soundTime =
@@ -382,5 +392,7 @@ u8 PlayerUpdate() {
 
 void PlayerKill() {
     players[activePlayer].killTime = 1;
-    SFXPlay(PATCH_PLAYER_KILL);
+    if(attractSound || machineMode == GAME) {
+        SFXPlay(PATCH_PLAYER_KILL);
+    }
 }

@@ -6,7 +6,7 @@
 #include "../audio/audio.h"
 
 typedef enum {
-    GAME, TITLE
+    GAME, TITLE, TEST
 } MachineMode;
 
 extern u8 credits;
@@ -14,9 +14,11 @@ extern MachineMode machineMode;
 extern u32 hi;
 extern int inputs[];
 
+extern u8 coinsPerPlay, controllers, attractSound;
+
 void MachineSetup();
 void MachineCrossHatch();
 void MachineInitHi();
-void MachineInput();
+u8 MachineInput();
 
 #endif

@@ -14,8 +14,12 @@ void TitleDemoUpdate();
 void TitleDemoClean();
 
 void TitleStart() {
-    PrintVerticalRAM(31, 18, "CREDITS");
-    PrintU8Vertical(31, 9, credits);
+    if(!coinsPerPlay) {
+        PrintVerticalRAM(31, 18, "FREE  PLAY");
+    } else {
+        PrintVerticalRAM(31, 18, "CREDITS");
+        PrintU8Vertical(31, 9, credits);
+    }
     titleTime = 0;
     activePlayer = 0;
 }
@@ -159,9 +163,11 @@ void TitleUpdate() {
 
     // Insert coin? Push 1P/2P start?
     if(!modTime || (modTime < 30 && prevCredits != credits)) {
-        if(!credits) {
+        if(!coinsPerPlay) {
+            PrintVerticalRAM(30, 23, "PRESS 1P OR 2P START");
+        } else if(!(credits / coinsPerPlay)) {
             PrintVerticalRAM(30, 19, "INSERT  COIN");
-        } else if(credits == 1) {
+        } else if(credits / coinsPerPlay == 1) {
             PrintVerticalRAM(30, 20, "PRESS 1P START");
         } else {
             PrintVerticalRAM(30, 23, "PRESS 1P OR 2P START");
@@ -174,13 +180,22 @@ void TitleUpdate() {
     MachineInput();
 
     // Start
-    if(credits) {
+    // Free Play?
+    if(!coinsPerPlay) {
         if(inputs[0] & BTN_START) {
-            credits--;
             GameStart(1);
             return;
         } else if(inputs[0] & BTN_SELECT) {
-            credits -= 2;
+            GameStart(2);
+            return;
+        }
+    } else if(credits) {
+        if(inputs[0] & BTN_START && (credits / coinsPerPlay >= 1)) {
+            credits -= coinsPerPlay;
+            GameStart(1);
+            return;
+        } else if(inputs[0] & BTN_SELECT && (credits / coinsPerPlay >= 2)) {
+            credits -= (coinsPerPlay << 1);
             GameStart(2);
             return;
         }

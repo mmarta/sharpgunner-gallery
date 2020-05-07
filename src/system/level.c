@@ -107,7 +107,9 @@ void LevelIncrease() {
         players[activePlayer].level++;
     }
     bonusTextTime = 160;
-    SFXPlay(PATCH_NEXT_LEVEL);
+    if(attractSound || machineMode == GAME) {
+        SFXPlay(PATCH_NEXT_LEVEL);
+    }
     LevelStart();
 }
 
