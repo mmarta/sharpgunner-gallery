@@ -109,6 +109,9 @@ void TitleUpdate() {
                 wireX = players[activePlayer].x - 1;
                 wireY = players[activePlayer].y + 2;
                 DrawMap(wireX, wireY, mapHookNW);
+                if(attractSound) {
+                    SFXPlay(PATCH_PLAYER_LAUNCH_HOOK);
+                }
             case 301:
             case 302:
             case 303:
@@ -129,6 +132,9 @@ void TitleUpdate() {
                 wireX = players[activePlayer].x - 1;
                 wireY = players[activePlayer].y - 1;
                 DrawMap(wireX, wireY, mapHookNE);
+                if(attractSound) {
+                    SFXPlay(PATCH_PLAYER_LAUNCH_HOOK);
+                }
             case 331:
             case 332:
             case 333:

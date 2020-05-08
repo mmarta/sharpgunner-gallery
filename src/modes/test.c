@@ -20,6 +20,19 @@ void TestInit() {
     PrintVerticalRAM(7, 24, "ATTRACT SOUND");
     PrintVerticalRAM(8, 24, "SAVE AND EXIT");
 
+    PrintVerticalRAM(10, 23, "USE P1 STICK TO MOVE");
+    PrintVerticalRAM(11, 24, "USE P1 START TO UPDATE");
+
+    PrintVerticalRAM(14, 18, "INPUT TEST");
+    PrintVerticalRAM(16, 18, "P1      P2");
+    PrintVerticalRAM(17, 26, "LEFT");
+    PrintVerticalRAM(18, 26, "UP");
+    PrintVerticalRAM(19, 26, "RIGHT");
+    PrintVerticalRAM(20, 26, "DOWN");
+    PrintVerticalRAM(21, 26, "FIRE");
+    PrintVerticalRAM(22, 26, "COIN");
+    PrintVerticalRAM(23, 26, "START");
+
     selectedOption = OPTION_COINS;
     while(selectedOption <= OPTION_EXIT) {
         TestShowOption();
@@ -27,6 +40,15 @@ void TestInit() {
     }
     selectedOption = OPTION_COINS;
     PrintVerticalRAM(selectedOption + 5, 26, ">");
+}
+
+void TestSaveToEEPROM() {
+    struct EepromBlockStruct block;
+    block.id = EEPROM_BLOCK;
+    block.data[0] = coinsPerPlay;
+    block.data[1] = controllers;
+    block.data[2] = attractSound;
+    EepromWriteBlock(&block);
 }
 
 void TestChangeOption() {
@@ -44,6 +66,8 @@ void TestChangeOption() {
             attractSound = !attractSound;
             break;
         default:
+            // Save to eeprom
+            TestSaveToEEPROM();
             machineMode = TITLE;
     }
 
@@ -83,7 +107,7 @@ void TestShowOption() {
 
 void TestUpdate() {
     // Change option / Show button pressed
-    if(inputs[0] & BTN_A) {
+    if(inputs[0] & BTN_START) {
         if(!buttonPressed) {
             TestChangeOption();
             buttonPressed = true;
@@ -116,4 +140,20 @@ void TestUpdate() {
     } else if(dirPressed) {
         dirPressed = false;
     }
+
+    // Input tests
+    SetTile(17, 17, inputs[0] & BTN_LEFT ? 1 : 0);
+    SetTile(17, 9, inputs[1] & BTN_LEFT ? 1 : 0);
+    SetTile(18, 17, inputs[0] & BTN_UP ? 1 : 0);
+    SetTile(18, 9, inputs[1] & BTN_UP ? 1 : 0);
+    SetTile(19, 17, inputs[0] & BTN_RIGHT ? 1 : 0);
+    SetTile(19, 9, inputs[1] & BTN_RIGHT ? 1 : 0);
+    SetTile(20, 17, inputs[0] & BTN_DOWN ? 1 : 0);
+    SetTile(20, 9, inputs[1] & BTN_DOWN ? 1 : 0);
+    SetTile(21, 17, inputs[0] & BTN_A ? 1 : 0);
+    SetTile(21, 9, inputs[1] & BTN_A ? 1 : 0);
+    SetTile(22, 17, inputs[1] & BTN_SL ? 1 : 0);
+    SetTile(22, 9, inputs[1] & BTN_SR ? 1 : 0);
+    SetTile(23, 17, inputs[0] & BTN_START ? 1 : 0);
+    SetTile(23, 9, inputs[0] & BTN_SELECT ? 1 : 0);
 }

@@ -11,13 +11,26 @@ u8 coinsPerPlay = 1;
 u8 controllers = 2;
 u8 attractSound = true;
 
+void MachineLoadFromEEPROM();
+
 void MachineSetup() {
     srand(GetTrueRandomSeed());
 
     SetTileTable(tiles);
     ClearVram();
 
+    MachineLoadFromEEPROM();
+
     AudioInit();
+}
+
+void MachineLoadFromEEPROM() {
+    struct EepromBlockStruct block;
+    if(!EepromReadBlock(EEPROM_BLOCK, &block)) {
+        coinsPerPlay = block.data[0];
+        controllers = block.data[1];
+        attractSound = block.data[2];
+    }
 }
 
 void MachineCrossHatch() {
@@ -46,8 +59,13 @@ u8 MachineInput() {
     inputs[0] = ReadJoypad(0);
     inputs[1] = ReadJoypad(1);
 
+    // Stop here if test mode
+    if(machineMode == TEST) {
+        return true;
+    }
+
     // Test switch
-    if(inputs[0] & BTN_SR && machineMode != TEST) {
+    if(inputs[0] & BTN_SR) {
         return false;
     }
 

@@ -5,6 +5,8 @@
 #include "graphics.h"
 #include "../audio/audio.h"
 
+#define EEPROM_BLOCK 10
+
 typedef enum {
     GAME, TITLE, TEST
 } MachineMode;
