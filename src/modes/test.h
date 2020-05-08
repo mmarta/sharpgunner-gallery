@@ -6,7 +6,7 @@
 #include "../system/machine.h"
 
 typedef enum {
-    OPTION_COINS, OPTION_CONTROLS, OPTION_ATTRACT_SOUND, OPTION_EXIT
+    OPTION_COINS, OPTION_CONTROLS, OPTION_ATTRACT_SOUND, OPTION_LIVES, OPTION_EXIT
 } TestOption;
 
 void TestInit();

@@ -10,6 +10,7 @@ int inputs[] = { 0, 0 };
 u8 coinsPerPlay = 1;
 u8 controllers = 2;
 u8 attractSound = true;
+u8 livesPerPlay = 3;
 
 void MachineLoadFromEEPROM();
 
@@ -30,6 +31,7 @@ void MachineLoadFromEEPROM() {
         coinsPerPlay = block.data[0];
         controllers = block.data[1];
         attractSound = block.data[2];
+        livesPerPlay = block.data[3];
     }
 }
 
@@ -74,7 +76,7 @@ u8 MachineInput() {
         if(!coinSwitchDown) {
             if(credits < 9) {
                 credits++;
-                if(machineMode != GAME) {
+                if(machineMode != GAME && coinsPerPlay) {
                     PrintU8Vertical(31, 9, credits);
                 }
             }

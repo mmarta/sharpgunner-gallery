@@ -16,7 +16,7 @@ extern MachineMode machineMode;
 extern u32 hi;
 extern int inputs[];
 
-extern u8 coinsPerPlay, controllers, attractSound;
+extern u8 coinsPerPlay, controllers, attractSound, livesPerPlay;
 
 void MachineSetup();
 void MachineCrossHatch();

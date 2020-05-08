@@ -6,9 +6,9 @@ void GameStart(u8 playerCount) {
 
     Fill(30, 0, 2, 28, 0);
 
-    PlayerStart(0, 3);
+    PlayerStart(0, livesPerPlay);
     if(playerCount == 2) {
-        PlayerStart(1, 3);
+        PlayerStart(1, livesPerPlay);
     }
     activePlayer = 0;
     playersInGame = playerCount;
