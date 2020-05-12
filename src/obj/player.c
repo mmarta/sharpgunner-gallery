@@ -27,6 +27,7 @@ void PlayerMoveHook();
 void PlayerStart(u8 i, u8 lives) {
     players[i].lives = lives;
     players[i].score = 0;
+    players[i].scoreDelta = 0;
     players[i].extendScore = 20000;
     players[i].poweredUp = 0;
     players[i].active = true;
