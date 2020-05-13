@@ -33,6 +33,7 @@ void PlayerStart(u8 i, u8 lives) {
     players[i].active = true;
     players[i].level = 0;
     players[i].dir = SOUTH;
+    players[i].stickPosition = DOWN;
     PlayerSetDirCoordinates(i);
     PlayerDrawScoreLabel(i);
     PrintU32Vertical(1, i ? 0 : 21, players[i].score, 9999999);
@@ -107,6 +108,7 @@ void PlayerResume() {
     // Back to south
     Fill(players[activePlayer].x, players[activePlayer].y, PLAYER_WIDTH, PLAYER_HEIGHT, 0);
     players[activePlayer].dir = SOUTH;
+    players[activePlayer].stickPosition = DOWN;
     PlayerSetDirCoordinates(activePlayer);
     DrawMap(players[activePlayer].x, players[activePlayer].y, mapFighterSouthA);
 }
@@ -308,7 +310,88 @@ void PlayerInput() {
     }
 
     int stick = inputs[controllers == 2 ? activePlayer : 0];
+    stickpos prevStickPosition = players[activePlayer].stickPosition;
 
+    // Get stick pos for next move (if any)
+    if(stick & BTN_DOWN) {
+        if(stick & BTN_LEFT) {
+            players[activePlayer].stickPosition = DOWN_LEFT;
+        } else if(stick & BTN_RIGHT) {
+            players[activePlayer].stickPosition = DOWN_RIGHT;
+        } else {
+            players[activePlayer].stickPosition = DOWN;
+        }
+    } else if(stick & BTN_UP) {
+        if(stick & BTN_LEFT) {
+            players[activePlayer].stickPosition = UP_LEFT;
+        } else if(stick & BTN_RIGHT) {
+            players[activePlayer].stickPosition = UP_RIGHT;
+        } else {
+            players[activePlayer].stickPosition = UP;
+        }
+    } else if(stick & BTN_LEFT) {
+        players[activePlayer].stickPosition = LEFT;
+    } else if(stick & BTN_RIGHT) {
+        players[activePlayer].stickPosition = RIGHT;
+    }
+
+    PrintU8Vertical(29, 2, players[activePlayer].stickPosition);
+
+    // Make a potential move if we have a change
+    if(prevStickPosition != players[activePlayer].stickPosition) {
+        switch(players[activePlayer].stickPosition) {
+            case DOWN_LEFT:
+                if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
+                    PlayerLaunchHook(WEST);
+                } else {
+                    PlayerLaunchHook(SOUTH);
+                }
+                break;
+            case LEFT:
+                if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
+                    PlayerLaunchHook(WEST);
+                }
+                break;
+            case UP_LEFT:
+                if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
+                    PlayerLaunchHook(WEST);
+                } else {
+                    PlayerLaunchHook(NORTH);
+                }
+                break;
+            case UP:
+                if(players[activePlayer].dir == WEST || players[activePlayer].dir == EAST) {
+                    PlayerLaunchHook(NORTH);
+                }
+                break;
+            case UP_RIGHT:
+                if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
+                    PlayerLaunchHook(EAST);
+                } else {
+                    PlayerLaunchHook(NORTH);
+                }
+                break;
+            case RIGHT:
+                if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
+                    PlayerLaunchHook(EAST);
+                }
+                break;
+            case DOWN_RIGHT:
+                if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
+                    PlayerLaunchHook(EAST);
+                } else {
+                    PlayerLaunchHook(SOUTH);
+                }
+                break;
+            default: // DOWN
+                if(players[activePlayer].dir == WEST || players[activePlayer].dir == EAST) {
+                    PlayerLaunchHook(SOUTH);
+                }
+        }
+    }
+
+    // Old move code (4-way only)
+    /*
     if(stick & BTN_LEFT) {
         if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
             PlayerLaunchHook(WEST);
@@ -325,8 +408,9 @@ void PlayerInput() {
         if(players[activePlayer].dir == EAST || players[activePlayer].dir == WEST) {
             PlayerLaunchHook(SOUTH);
         }
-    }
+    }*/
 
+    // Fire
     if(stick & BTN_A) {
         if(!players[activePlayer].firing) {
             PlayerFire();

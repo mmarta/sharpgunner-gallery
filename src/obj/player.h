@@ -26,6 +26,7 @@ typedef struct {
     u16 scoreDelta;
     u32 score, extendScore;
     direction dir, hookDir;
+    stickpos stickPosition;
 } Player;
 
 extern Player players[];

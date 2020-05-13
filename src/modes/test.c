@@ -1,6 +1,6 @@
 #include "test.h"
 
-TestOption selectedOption;
+testoption selectedOption;
 u8 buttonPressed = false;
 u8 dirPressed = false;
 

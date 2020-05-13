@@ -9,10 +9,15 @@
 
 typedef enum {
     GAME, TITLE, TEST
-} MachineMode;
+} machinemode;
+
+typedef enum {
+    DOWN, DOWN_LEFT, LEFT, UP_LEFT,
+    UP, UP_RIGHT, RIGHT, DOWN_RIGHT
+} stickpos;
 
 extern u8 credits;
-extern MachineMode machineMode;
+extern machinemode machineMode;
 extern u32 hi;
 extern int inputs[];
 

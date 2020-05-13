@@ -7,7 +7,7 @@
 
 typedef enum {
     OPTION_COINS, OPTION_CONTROLS, OPTION_ATTRACT_SOUND, OPTION_LIVES, OPTION_EXIT
-} TestOption;
+} testoption;
 
 void TestInit();
 void TestUpdate();

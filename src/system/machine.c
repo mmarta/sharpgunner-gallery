@@ -1,7 +1,7 @@
 #include "machine.h"
 
 u8 credits = 0;
-MachineMode machineMode = TITLE;
+machinemode machineMode = TITLE;
 u32 hi = 10000;
 
 u8 coinSwitchDown = false;
