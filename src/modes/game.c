@@ -26,7 +26,7 @@ void GameStart(u8 playerCount) {
     LevelStart();
     MusicPlayPatch(MUSIC_START);
     LevelDisplayReady(170);
-    PlayerResume();
+    PlayerTurnReset();
     EnemyGenLevelBegin();
 
     BackgroundStart();
@@ -69,7 +69,7 @@ void GameUpdate() {
 
     if(!PlayerUpdate()) {
         if(LevelPlayerDeath()) {
-            PlayerResume();
+            PlayerTurnReset();
         } else {
             // Todo: Remove this.
             machineMode = TITLE;

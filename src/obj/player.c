@@ -98,7 +98,7 @@ void PlayerFlushScore() {
     }
 }
 
-void PlayerResume() {
+void PlayerTurnReset() {
     players[activePlayer].animationTime = 0;
     players[activePlayer].killTime = 0;
     players[activePlayer].hookEnabled = false;
@@ -335,8 +335,6 @@ void PlayerInput() {
         players[activePlayer].stickPosition = RIGHT;
     }
 
-    PrintU8Vertical(29, 2, players[activePlayer].stickPosition);
-
     // Make a potential move if we have a change
     if(prevStickPosition != players[activePlayer].stickPosition) {
         switch(players[activePlayer].stickPosition) {
@@ -389,26 +387,6 @@ void PlayerInput() {
                 }
         }
     }
-
-    // Old move code (4-way only)
-    /*
-    if(stick & BTN_LEFT) {
-        if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
-            PlayerLaunchHook(WEST);
-        }
-    } else if(stick & BTN_RIGHT) {
-        if(players[activePlayer].dir == NORTH || players[activePlayer].dir == SOUTH) {
-            PlayerLaunchHook(EAST);
-        }
-    } else if(stick & BTN_UP) {
-        if(players[activePlayer].dir == EAST || players[activePlayer].dir == WEST) {
-            PlayerLaunchHook(NORTH);
-        }
-    } else if(stick & BTN_DOWN) {
-        if(players[activePlayer].dir == EAST || players[activePlayer].dir == WEST) {
-            PlayerLaunchHook(SOUTH);
-        }
-    }*/
 
     // Fire
     if(stick & BTN_A) {

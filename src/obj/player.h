@@ -40,7 +40,7 @@ void PlayerAddScoreDelta(u16);
 void PlayerFlushScore();
 void PlayerFire();
 void PlayerLaunchHook(direction);
-void PlayerResume();
+void PlayerTurnReset();
 void PlayerInput();
 void PlayerDrawTiles();
 void PlayerDrawLives(u8);

@@ -29,7 +29,7 @@ void TitleBeginDemo() {
     CLEAR_TITLE();
     BackgroundStart();
     PlayerStart(0, 1);
-    PlayerResume();
+    PlayerTurnReset();
 
     PrintVerticalRAM(5, 22, "GAME");
     PrintVerticalRAM(5, 8, "OVER");
