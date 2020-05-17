@@ -101,7 +101,7 @@ void EnemyInvaderUpdate(u8 i) {
     s8 xDelta = 0, yDelta = 0;
     EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
 
-    u8 flipTime = players[activePlayer].level > 4 ? 29 : 39;
+    u8 flipTime = players[activePlayer].level > 4 ? 29 : 34;
 
     enemyPool[i].animationTime = enemyPool[i].animationTime == flipTime ? 0 : enemyPool[i].animationTime + 1;
 
@@ -126,11 +126,6 @@ void EnemyInvaderUpdate(u8 i) {
                     : mapInvaderA[enemyPool[i].dir]
             );
         }
-    } else if(
-        enemyPool[i].movements >= 6
-        && (enemyPool[i].animationTime == 20 || enemyPool[i].animationTime == 60)
-    ) {
-        DrawMap(enemyPool[i].x, enemyPool[i].y, mapInvaderWarn[enemyPool[i].dir]);
     }
 }
 
@@ -138,7 +133,7 @@ void EnemySweeperUpdate(u8 i) {
     s8 xDelta = 0, yDelta = 0;
     EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
 
-    u8 flipTime = players[activePlayer].level > 4 ? 7 : 11;
+    u8 flipTime = players[activePlayer].level > 4 ? 7 : 9;
 
     enemyPool[i].animationTime = enemyPool[i].animationTime == flipTime ? 0 : enemyPool[i].animationTime + 1;
 
@@ -247,7 +242,7 @@ void EnemyAsteroidUpdate(u8 i) {
     s8 xDelta = 0, yDelta = 0;
     EnemyGetDelta(&xDelta, &yDelta, &enemyPool[i].dir);
 
-    u8 flipTime = players[activePlayer].level > 4 ? 11 : 15;
+    u8 flipTime = players[activePlayer].level > 4 ? 9 : 11;
 
     // First phase
     enemyPool[i].animationTime = enemyPool[i].animationTime == flipTime ? 0 : enemyPool[i].animationTime + 1;
