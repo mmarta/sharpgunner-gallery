@@ -8,51 +8,51 @@ const char player2Str[] PROGMEM = "PLAYER 2";
 const Level levels[] = {
     {
         .invaderFactor = 9, .sweeperFactor = 0, .sparxFactor = 0, .nucleusFactor = 0,
-        .asteroidFactor = 2, .bonus = 1000, .randomFactor = 90, .minGenTime = 30
+        .asteroidFactor = 2, .bonus = 1000, .randomFactor = 50, .minGenTime = 20
     },
     {
         .invaderFactor = 6, .sweeperFactor = 4, .sparxFactor = 0, .nucleusFactor = 0,
-        .asteroidFactor = 3, .bonus = 2000, .randomFactor = 80, .minGenTime = 30
+        .asteroidFactor = 3, .bonus = 2000, .randomFactor = 40, .minGenTime = 20
     },
     {
         .invaderFactor = 3, .sweeperFactor = 7, .sparxFactor = 0, .nucleusFactor = 0,
-        .asteroidFactor = 3, .bonus = 3000, .randomFactor = 80, .minGenTime = 30
+        .asteroidFactor = 3, .bonus = 3000, .randomFactor = 40, .minGenTime = 15
     },
     {
         .invaderFactor = 2, .sweeperFactor = 7, .sparxFactor = 2, .nucleusFactor = 0,
-        .asteroidFactor = 5, .bonus = 4000, .randomFactor = 70, .minGenTime = 30
+        .asteroidFactor = 5, .bonus = 4000, .randomFactor = 40, .minGenTime = 15
     },
     {
         .invaderFactor = 0, .sweeperFactor = 7, .sparxFactor = 2, .nucleusFactor = 2,
-        .asteroidFactor = 6, .bonus = 5000, .randomFactor = 60, .minGenTime = 20
+        .asteroidFactor = 6, .bonus = 5000, .randomFactor = 40, .minGenTime = 12
     },
     {
         .invaderFactor = 2, .sweeperFactor = 7, .sparxFactor = 2, .nucleusFactor = 4,
-        .asteroidFactor = 6, .bonus = 6000, .randomFactor = 60, .minGenTime = 20
+        .asteroidFactor = 6, .bonus = 6000, .randomFactor = 35, .minGenTime = 12
     },
     {
         .invaderFactor = 2, .sweeperFactor = 9, .sparxFactor = 2, .nucleusFactor = 6,
-        .asteroidFactor = 6, .bonus = 7000, .randomFactor = 50, .minGenTime = 15
+        .asteroidFactor = 6, .bonus = 7000, .randomFactor = 30, .minGenTime = 12
     },
     {
         .invaderFactor = 3, .sweeperFactor = 9, .sparxFactor = 2, .nucleusFactor = 7,
-        .asteroidFactor = 7, .bonus = 8000, .randomFactor = 50, .minGenTime = 15
+        .asteroidFactor = 7, .bonus = 8000, .randomFactor = 30, .minGenTime = 10
     },
     {
         .invaderFactor = 0, .sweeperFactor = 4, .sparxFactor = 2, .nucleusFactor = 9,
-        .asteroidFactor = 7, .bonus = 9000, .randomFactor = 50, .minGenTime = 15
+        .asteroidFactor = 7, .bonus = 9000, .randomFactor = 25, .minGenTime = 10
     },
     {
         .invaderFactor = 0, .sweeperFactor = 4, .sparxFactor = 2, .nucleusFactor = 9,
-        .asteroidFactor = 7, .bonus = 10000, .randomFactor = 40, .minGenTime = 15
+        .asteroidFactor = 7, .bonus = 10000, .randomFactor = 25, .minGenTime = 5
     },
     {
         .invaderFactor = 3, .sweeperFactor = 9, .sparxFactor = 2, .nucleusFactor = 7,
-        .asteroidFactor = 7, .bonus = 10000, .randomFactor = 40, .minGenTime = 10
+        .asteroidFactor = 7, .bonus = 10000, .randomFactor = 20, .minGenTime = 5
     },
     {
         .invaderFactor = 0, .sweeperFactor = 4, .sparxFactor = 2, .nucleusFactor = 9,
-        .asteroidFactor = 7, .bonus = 10000, .randomFactor = 30, .minGenTime = 10
+        .asteroidFactor = 7, .bonus = 10000, .randomFactor = 20, .minGenTime = 2
     }
 };
 
@@ -75,7 +75,7 @@ void LevelStart() {
 
 void LevelIncrease() {
     u8 i = ENEMY_COUNT;
-    u8 levelToGrab = players[activePlayer].level > 12
+    u8 levelToGrab = players[activePlayer].level >= 12
         ? (players[activePlayer].level % 3) + 9
         : players[activePlayer].level;
 
