@@ -6,7 +6,7 @@
 #include "../audio/audio.h"
 #include "player.h"
 
-#define ENEMY_COUNT 6
+#define ENEMY_COUNT 8
 #define ENEMY_WIDTH 2
 #define ENEMY_HEIGHT 2
 
